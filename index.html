@@ -379,9 +379,8 @@
       /* Nav */
       .nav-desktop    { display: none !important; }
       .nav-hamburger  { display: block !important; }
-      /* Logo: bigger, gold, always visible */
+      /* Logo: gold filter */
       .nav-logo {
-        height: 68px !important;
         filter: brightness(0) invert(1) sepia(1) saturate(0.8) brightness(1.3)
                 drop-shadow(0 0 12px rgba(201,169,110,0.4))
                 drop-shadow(0 2px 4px rgba(0,0,0,0.8)) !important;
@@ -442,8 +441,15 @@
       /* Stats: smaller numbers */
       .stat-num { font-size: 2rem !important; }
 
+      /* Mobile nav: compact height */
+      #navbar { height: 64px !important; padding: 0 1.25rem !important; }
+      .nav-logo { height: 44px !important; }
+
       /* Hero content: below fixed nav */
-      .resp-hero-content { padding-top: 96px !important; }
+      .resp-hero-content { padding-top: 64px !important; }
+
+      /* Scroll margin for fixed nav on mobile */
+      section[id], div[id] { scroll-margin-top: 64px !important; }
 
       /* About */
       .resp-about-main-img { margin-bottom: 0 !important; }
@@ -671,7 +677,7 @@
 </nav>
 
 <!-- Mobile menu -->
-<div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation" style="position:fixed;inset:0;z-index:99;background:rgba(8,6,4,0.97);flex-direction:column;align-items:center;justify-content:center;gap:32px;backdrop-filter:blur(12px);">
+<div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation" style="position:fixed;inset:0;z-index:101;background:rgba(8,6,4,0.97);flex-direction:column;align-items:center;justify-content:center;gap:32px;backdrop-filter:blur(12px);">
   <button id="close-btn" aria-label="Menü schließen" style="position:absolute;top:28px;right:28px;background:none;border:none;cursor:pointer;">
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M1 1l18 18M19 1L1 19" stroke="#c9a96e" stroke-width="1.5"/></svg>
   </button>
@@ -1434,13 +1440,13 @@
         <textarea id="res-details" name="details" class="form-input" rows="4" placeholder="Allergien, besonderer Anlass, Sitzplatzwunsch (innen/außen/am Wasser)…" style="resize:vertical;min-height:100px;"></textarea>
       </div>
 
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+      <div class="resp-flex-col" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
         <div>
           <p style="font-size:0.75rem;color:#6b6259;max-width:340px;line-height:1.6;">Oder rufen Sie uns direkt an:<br/>
             <a href="tel:071464073772" style="color:#c9a96e;text-decoration:none;font-weight:500;">07146 4073772</a>
           </p>
         </div>
-        <button type="submit" class="btn-gold">
+        <button type="submit" class="btn-gold" style="white-space:nowrap;">
           Jetzt Reservieren
           <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M0 5h13M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
@@ -1704,17 +1710,24 @@
 
   // ── Navbar scroll effect ──
   const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
+  function updateNavBg() {
+    const mobile = window.innerWidth < 900;
     if (window.scrollY > 60) {
-      navbar.style.background = 'rgba(16,12,8,0.94)';
+      navbar.style.background = 'rgba(16,12,8,0.96)';
       navbar.style.backdropFilter = 'blur(16px)';
-      navbar.style.boxShadow = '0 1px 0 rgba(201,169,110,0.08)';
+      navbar.style.webkitBackdropFilter = 'blur(16px)';
+      navbar.style.boxShadow = '0 1px 0 rgba(201,169,110,0.10)';
     } else {
-      navbar.style.background = 'transparent';
-      navbar.style.backdropFilter = 'none';
-      navbar.style.boxShadow = 'none';
+      // On mobile, keep a subtle bg so the nav is always legible
+      navbar.style.background = mobile ? 'rgba(10,8,6,0.80)' : 'transparent';
+      navbar.style.backdropFilter = mobile ? 'blur(14px)' : 'none';
+      navbar.style.webkitBackdropFilter = mobile ? 'blur(14px)' : 'none';
+      navbar.style.boxShadow = mobile ? '0 1px 0 rgba(201,169,110,0.06)' : 'none';
     }
-  });
+  }
+  window.addEventListener('scroll', updateNavBg);
+  window.addEventListener('resize', updateNavBg);
+  updateNavBg();
 
   // ── Mobile menu ──
   const hamBtn = document.getElementById('ham-btn');
@@ -1722,6 +1735,8 @@
   const closeBtn = document.getElementById('close-btn');
   hamBtn.addEventListener('click', () => { mobileMenu.classList.add('open'); hamBtn.setAttribute('aria-expanded', 'true'); });
   closeBtn.addEventListener('click', () => { mobileMenu.classList.remove('open'); hamBtn.setAttribute('aria-expanded', 'false'); });
+  // Tap outside (on the overlay backdrop) to close
+  mobileMenu.addEventListener('click', (e) => { if (e.target === mobileMenu) closeMobile(); });
   function closeMobile() { mobileMenu.classList.remove('open'); hamBtn.setAttribute('aria-expanded', 'false'); }
 
   // Show hamburger on small screens
@@ -1863,6 +1878,10 @@
   renderMenu('sushi');
 
   // ── Reservation form ──
+  // Set minimum date on reservation date field to today
+  const resDatum = document.getElementById('res-datum');
+  if (resDatum) resDatum.min = new Date().toISOString().split('T')[0];
+
   function handleReservation(e) {
     e.preventDefault();
     e.target.style.display = 'none';
