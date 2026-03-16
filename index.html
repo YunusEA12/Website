@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mianno — Sushi & Grill</title>
+  <title>Mianno – Sushi & Grill | Remseck am Neckar</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -340,6 +340,81 @@
     /* Mobile menu */
     #mobile-menu { display: none; }
     #mobile-menu.open { display: flex; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 899px) {
+      /* Nav */
+      .nav-desktop    { display: none !important; }
+      .nav-hamburger  { display: block !important; }
+
+      /* Section padding */
+      .resp-pad    { padding-top: 64px !important; padding-bottom: 64px !important; padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+      .resp-pad-sm { padding-top: 52px !important; padding-bottom: 52px !important; padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+
+      /* Grids → single column */
+      .resp-grid-2, .resp-grid-3 { grid-template-columns: 1fr !important; gap: 36px !important; }
+      .resp-grid-form             { grid-template-columns: 1fr !important; gap: 16px !important; }
+      .resp-grid-4                { grid-template-columns: repeat(2,1fr) !important; }
+
+      /* Flex → column */
+      .resp-flex-col       { flex-direction: column !important; gap: 16px !important; }
+      .resp-hero-info      { flex-direction: column !important; gap: 16px !important; }
+      .resp-hero-info > div[style*="width:1px"] { display: none !important; }
+      .resp-footer         { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+
+      /* Hide */
+      .resp-hide { display: none !important; }
+
+      /* Menu tabs — horizontal scroll */
+      .resp-tabs { overflow-x: auto !important; justify-content: flex-start !important; flex-wrap: nowrap !important; padding-bottom: 4px !important; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      .resp-tabs::-webkit-scrollbar { display: none; }
+      .resp-tabs button { flex-shrink: 0 !important; }
+
+      /* Testimonial: remove raise on middle card */
+      .resp-testimonial-raise { transform: translateY(0) !important; box-shadow: none !important; }
+
+      /* Form full-width select */
+      .resp-form-full { max-width: 100% !important; width: 100% !important; }
+
+      /* Experience image strip */
+      .resp-img-strip { height: auto !important; grid-template-columns: 1fr !important; }
+      .resp-img-strip > div { height: 220px !important; }
+      .resp-img-strip > div:nth-child(2),
+      .resp-img-strip > div:nth-child(3) { display: none !important; }
+
+      /* Gallery */
+      .resp-gallery-grid    { grid-template-columns: 1fr 1fr !important; }
+      .resp-gallery-feature { grid-row: span 1 !important; min-height: 200px !important; aspect-ratio: 4/3 !important; }
+
+      /* Gutschein card */
+      .resp-gutschein-card { aspect-ratio: auto !important; padding: 28px 20px !important; }
+
+      /* Gutschein amount buttons */
+      .resp-voucher-btns { flex-wrap: wrap !important; gap: 10px !important; }
+      .resp-voucher-btns > div { flex: 1 1 calc(50% - 10px) !important; }
+
+      /* Stat numbers */
+      .stat-num { font-size: 2.4rem !important; }
+
+      /* Hero heading */
+      .resp-hero-content { padding-top: 100px !important; }
+
+      /* About floating image */
+      .resp-about-main-img { margin-bottom: 0 !important; }
+
+      /* Form padding */
+      .resp-form-pad { padding: 32px 20px !important; }
+
+      /* Contact info grid */
+      .resp-contact-info { grid-template-columns: 1fr 1fr !important; gap: 28px !important; }
+    }
+
+    @media (max-width: 480px) {
+      .resp-gallery-grid { grid-template-columns: 1fr !important; }
+      .resp-contact-info { grid-template-columns: 1fr !important; }
+      .resp-grid-4       { grid-template-columns: repeat(2,1fr) !important; }
+      .resp-voucher-btns > div { flex: 1 1 100% !important; }
+    }
   </style>
 </head>
 <body>
@@ -350,22 +425,22 @@
 <nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:80px;display:flex;align-items:center;justify-content:space-between;transition:background 0.4s ease,backdrop-filter 0.4s ease,box-shadow 0.4s ease;">
   <!-- Logo -->
   <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-    <img src="brand_assets/Mianno-Logo-03.png" alt="Mianno" style="height:48px;width:auto;filter:brightness(0) invert(1) sepia(1) saturate(0.4) brightness(0.9);" />
+    <img src="brand_assets/Mianno-Logo-03.png" alt="Mianno" style="height:64px;width:auto;filter:brightness(0) invert(1) sepia(1) saturate(0.4) brightness(0.9);" />
   </a>
 
   <!-- Desktop Nav -->
-  <div style="display:flex;align-items:center;gap:36px;">
+  <div class="nav-desktop" style="display:flex;align-items:center;gap:36px;">
     <a href="#about" class="nav-link">Restaurant</a>
-    <a href="#mittagstisch" class="nav-link">Mittagstisch</a>
+    <a href="#mittagstisch" class="nav-link">Mittagsmenü</a>
     <a href="#menu" class="nav-link">Speisekarte</a>
     <a href="#gallery" class="nav-link">Galerie</a>
     <a href="#gutschein" class="nav-link">Gutschein</a>
-    <a href="#contact" class="nav-link">Jobs</a>
+    <a href="#jobs" class="nav-link">Jobs</a>
     <a href="#reservations" class="btn-gold" style="padding:10px 22px;font-size:0.6rem;letter-spacing:0.18em;">Reservieren</a>
   </div>
 
   <!-- Mobile hamburger -->
-  <button id="ham-btn" style="display:none;background:none;border:none;cursor:pointer;padding:8px;" aria-label="Menu">
+  <button id="ham-btn" class="nav-hamburger" style="display:none;background:none;border:none;cursor:pointer;padding:8px;" aria-label="Menu">
     <svg width="22" height="16" viewBox="0 0 22 16" fill="none">
       <path d="M0 1h22M0 8h22M0 15h22" stroke="#c9a96e" stroke-width="1.5"/>
     </svg>
@@ -378,11 +453,11 @@
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M1 1l18 18M19 1L1 19" stroke="#c9a96e" stroke-width="1.5"/></svg>
   </button>
   <a href="#about" class="nav-link" style="font-size:1.1rem;letter-spacing:0.25em;" onclick="closeMobile()">Restaurant</a>
-  <a href="#mittagstisch" class="nav-link" style="font-size:1.1rem;letter-spacing:0.25em;" onclick="closeMobile()">Mittagstisch</a>
+  <a href="#mittagstisch" class="nav-link" style="font-size:1.1rem;letter-spacing:0.25em;" onclick="closeMobile()">Mittagsmenü</a>
   <a href="#menu" class="nav-link" style="font-size:1.1rem;letter-spacing:0.25em;" onclick="closeMobile()">Speisekarte</a>
   <a href="#gallery" class="nav-link" style="font-size:1.1rem;letter-spacing:0.25em;" onclick="closeMobile()">Galerie</a>
   <a href="#gutschein" class="nav-link" style="font-size:1.1rem;letter-spacing:0.25em;" onclick="closeMobile()">Gutschein</a>
-  <a href="#contact" class="nav-link" style="font-size:1.1rem;letter-spacing:0.25em;" onclick="closeMobile()">Jobs</a>
+  <a href="#jobs" class="nav-link" style="font-size:1.1rem;letter-spacing:0.25em;" onclick="closeMobile()">Jobs</a>
   <a href="#reservations" class="btn-gold" onclick="closeMobile()">Reservieren</a>
 </div>
 
@@ -390,7 +465,7 @@
 <!-- ════════════════════════════════════════════
      HERO
 ════════════════════════════════════════════ -->
-<section class="hero-bg" style="min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:0 2rem;">
+<section class="hero-bg resp-hero" style="min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:0 2rem;">
 
   <!-- Background image with overlay -->
   <div style="position:absolute;inset:0;z-index:0;">
@@ -401,7 +476,7 @@
   </div>
 
   <!-- Decorative koi illustration (large watermark) -->
-  <div style="position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:600px;height:600px;opacity:0.06;pointer-events:none;">
+  <div style="position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:600px;height:600px;opacity:0.15;pointer-events:none;">
     <img src="brand_assets/Mianno-Logo-03.png" alt="" style="width:100%;height:100%;object-fit:contain;filter:invert(1);transform:scale(1.4);" />
   </div>
 
@@ -409,7 +484,7 @@
   <div style="position:absolute;left:calc(50% - 1px);top:0;bottom:0;width:1px;background:linear-gradient(to bottom, transparent, rgba(201,169,110,0.08) 30%, rgba(201,169,110,0.08) 70%, transparent);pointer-events:none;"></div>
 
   <!-- Hero content -->
-  <div style="position:relative;z-index:1;max-width:900px;padding-top:100px;">
+  <div class="resp-hero-content" style="position:relative;z-index:1;max-width:900px;padding-top:100px;">
 
     <!-- Eyebrow -->
     <div class="fade-up" style="display:flex;align-items:center;gap:16px;margin-bottom:28px;">
@@ -426,7 +501,7 @@
 
     <!-- Sub -->
     <p class="fade-up delay-2" style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;font-style:italic;color:#a09488;margin:28px 0 44px;max-width:420px;line-height:1.65;">
-      Authentische japanische Küche — von der Präzision der Sushi-Bar bis zum Theater des offenen Grills. Willkommen in einer Welt voller Geschmack.
+      Vietnamesische &amp; asiatische Küche trifft auf die Kunst des Sushi — direkt am Remsufer in Remseck. Frisch, authentisch, unvergesslich.
     </p>
 
     <!-- CTAs -->
@@ -439,23 +514,23 @@
     </div>
 
     <!-- Opening info -->
-    <div class="fade-up delay-4" style="display:flex;gap:32px;margin-top:60px;padding-top:40px;border-top:1px solid rgba(201,169,110,0.1);">
+    <div class="fade-up delay-4 resp-hero-info" style="display:flex;gap:32px;margin-top:60px;padding-top:40px;border-top:1px solid rgba(201,169,110,0.1);">
       <div>
         <p style="font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:6px;">Öffnungszeiten</p>
-        <p style="font-size:0.85rem;color:#c8bfae;font-weight:300;">Mo – Fr &nbsp;12:00 – 23:00</p>
-        <p style="font-size:0.85rem;color:#c8bfae;font-weight:300;">Sa – So &nbsp;12:00 – 00:00</p>
+        <p style="font-size:0.85rem;color:#c8bfae;font-weight:300;">Mo – Fr &nbsp;11:30 – 15:00 &amp; 17:00 – 22:00</p>
+        <p style="font-size:0.85rem;color:#c8bfae;font-weight:300;">Sa, So &amp; Feiertage &nbsp;12:00 – 22:00</p>
       </div>
       <div style="width:1px;background:rgba(201,169,110,0.1);"></div>
       <div>
         <p style="font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:6px;">Adresse</p>
-        <p style="font-size:0.85rem;color:#c8bfae;font-weight:300;">Miannostraße 14</p>
-        <p style="font-size:0.85rem;color:#c8bfae;font-weight:300;">10115 Berlin</p>
+        <p style="font-size:0.85rem;color:#c8bfae;font-weight:300;">Am Remsufer 2</p>
+        <p style="font-size:0.85rem;color:#c8bfae;font-weight:300;">71686 Remseck am Neckar</p>
       </div>
       <div style="width:1px;background:rgba(201,169,110,0.1);"></div>
       <div>
         <p style="font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:6px;">Kontakt</p>
-        <p style="font-size:0.85rem;color:#c8bfae;font-weight:300;">+49 (0) 123 456 78</p>
-        <p style="font-size:0.85rem;color:#c9a96e;font-weight:300;text-decoration:underline;text-underline-offset:3px;cursor:pointer;">hello@mianno.de</p>
+        <p style="font-size:0.85rem;color:#c8bfae;font-weight:300;">07146 4073772</p>
+        <p style="font-size:0.85rem;color:#c9a96e;font-weight:300;text-decoration:underline;text-underline-offset:3px;cursor:pointer;">info@mianno.de</p>
       </div>
     </div>
   </div>
@@ -480,22 +555,22 @@
      STATS BAND
 ════════════════════════════════════════════ -->
 <div style="background:linear-gradient(90deg, #0a0804, #120e08, #0a0804);border-top:1px solid rgba(201,169,110,0.1);border-bottom:1px solid rgba(201,169,110,0.1);">
-  <div style="max-width:1200px;margin:0 auto;padding:48px 2rem;display:grid;grid-template-columns:repeat(4,1fr);gap:0;text-align:center;">
-    <div style="padding:0 2rem;border-right:1px solid rgba(201,169,110,0.1);">
-      <div class="stat-num">12+</div>
-      <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-top:8px;">Years of Craft</p>
+  <div class="resp-grid-4" style="max-width:1200px;margin:0 auto;padding:48px 2rem;display:grid;grid-template-columns:repeat(4,1fr);gap:0;text-align:center;">
+    <div style="padding:16px 2rem;border-right:1px solid rgba(201,169,110,0.1);">
+      <div class="stat-num">5,0</div>
+      <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-top:8px;">Google Bewertung</p>
     </div>
-    <div style="padding:0 2rem;border-right:1px solid rgba(201,169,110,0.1);">
-      <div class="stat-num">60+</div>
-      <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-top:8px;">Signature Dishes</p>
+    <div style="padding:16px 2rem;border-right:1px solid rgba(201,169,110,0.1);">
+      <div class="stat-num">52+</div>
+      <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-top:8px;">Gästebewertungen</p>
     </div>
-    <div style="padding:0 2rem;border-right:1px solid rgba(201,169,110,0.1);">
+    <div style="padding:16px 2rem;border-right:1px solid rgba(201,169,110,0.1);">
+      <div class="stat-num">30–40</div>
+      <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-top:8px;">€ pro Person</p>
+    </div>
+    <div style="padding:16px 2rem;">
       <div class="stat-num">3</div>
-      <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-top:8px;">Awards</p>
-    </div>
-    <div style="padding:0 2rem;">
-      <div class="stat-num">98%</div>
-      <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-top:8px;">Gästezufriedenheit</p>
+      <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-top:8px;">Service-Optionen</p>
     </div>
   </div>
 </div>
@@ -504,8 +579,8 @@
 <!-- ════════════════════════════════════════════
      ABOUT
 ════════════════════════════════════════════ -->
-<section id="about" class="section-dark" style="padding:120px 2rem;">
-  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+<section id="about" class="section-dark resp-pad" style="padding:120px 2rem;">
+  <div class="resp-grid-2" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
 
     <!-- Images -->
     <div style="position:relative;">
@@ -517,7 +592,7 @@
         <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(8,6,4,0.7) 0%,rgba(8,6,4,0.1) 50%,transparent 100%);"></div>
       </div>
       <!-- Floating small image -->
-      <div class="img-wrap" style="position:absolute;bottom:-40px;right:-40px;width:200px;height:240px;border-radius:2px;border:3px solid #0a0804;overflow:hidden;box-shadow:0 20px 48px rgba(0,0,0,0.6);">
+      <div class="img-wrap resp-hide" style="position:absolute;bottom:-40px;right:-40px;width:200px;height:240px;border-radius:2px;border:3px solid #0a0804;overflow:hidden;box-shadow:0 20px 48px rgba(0,0,0,0.6);">
         <img src="https://loremflickr.com/200/240/sushi,nigiri?lock=11" alt="Sushi detail" style="width:100%;height:100%;object-fit:cover;" />
         <div style="position:absolute;inset:0;background:rgba(201,169,110,0.04);mix-blend-mode:multiply;"></div>
       </div>
@@ -534,25 +609,25 @@
 
       <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:500;line-height:1.15;letter-spacing:-0.025em;margin:0 0 28px;color:#f5f0e8;">
         Herzlich Willkommen<br/>
-        <span style="font-style:italic;font-weight:400;color:#a09488;">im Mianno Restaurant</span>
+        <span style="font-style:italic;font-weight:400;color:#a09488;">im Mianno Remseck</span>
       </h2>
 
       <p style="font-size:0.9rem;color:#a09488;line-height:1.8;margin-bottom:20px;font-weight:300;">
-        Willkommen bei <em style="color:#c8bfae;font-style:italic;">Mianno</em> — Ihrem Restaurant für authentische japanische Küche. Wir verbinden die Tradition des Sushi-Handwerks mit der Leidenschaft des offenen Grills und bieten Ihnen ein unvergessliches kulinarisches Erlebnis.
+        Willkommen bei <em style="color:#c8bfae;font-style:italic;">Mianno</em> — Ihrem Restaurant für vietnamesische und asiatische Küche direkt am Remsufer in Remseck am Neckar. Wir verbinden die Aromen Vietnams mit der Präzision des Sushi-Handwerks und schaffen ein kulinarisches Erlebnis, das seinesgleichen sucht.
       </p>
       <p style="font-size:0.9rem;color:#a09488;line-height:1.8;margin-bottom:40px;font-weight:300;">
-        Frische Zutaten, handverlesene Fischqualität und höchste Sorgfalt bei der Zubereitung — das sind die Werte, die jedes Gericht bei Mianno auszeichnen. Von der klassischen Nigiri bis zum Wagyu vom Binchotan-Grill erwartet Sie eine Reise durch die Aromen Japans.
+        Von der frisch zubereiteten Pho über handgerolltes Sushi bis hin zu knusprigen Frühlingsrollen — bei Mianno wird jedes Gericht mit Liebe und frischesten Zutaten zubereitet. Genießen Sie die einzigartige Atmosphäre direkt am Wasser mit 5,0 Sternen und über 52 begeisterten Gästebewertungen.
       </p>
 
       <!-- Features -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px;">
+      <div class="resp-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px;">
         <div style="display:flex;align-items:flex-start;gap:12px;">
           <div style="width:32px;height:32px;border:1px solid rgba(201,169,110,0.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="#c9a96e" stroke-width="1.2"/></svg>
           </div>
           <div>
-            <p style="font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:#f5f0e8;margin-bottom:4px;font-weight:500;">Tägliche Lieferung</p>
-            <p style="font-size:0.78rem;color:#6b6259;line-height:1.6;">Frischer Fisch von vertrauenswürdigen Lieferanten, täglich morgens angeliefert.</p>
+            <p style="font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:#f5f0e8;margin-bottom:4px;font-weight:500;">Täglich frische Zutaten</p>
+            <p style="font-size:0.78rem;color:#6b6259;line-height:1.6;">Frischer Fisch und Gemüse von regionalen Lieferanten, täglich morgens angeliefert.</p>
           </div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:12px;">
@@ -560,8 +635,8 @@
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#c9a96e" stroke-width="1.2"/><path d="M7 4v3.5l2 1.5" stroke="#c9a96e" stroke-width="1.2" stroke-linecap="round"/></svg>
           </div>
           <div>
-            <p style="font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:#f5f0e8;margin-bottom:4px;font-weight:500;">Omakase Verfügbar</p>
-            <p style="font-size:0.78rem;color:#6b6259;line-height:1.6;">Küchenchef-Auswahl, vollständig geführt, saisonal geprägt.</p>
+            <p style="font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:#f5f0e8;margin-bottom:4px;font-weight:500;">Lieferservice verfügbar</p>
+            <p style="font-size:0.78rem;color:#6b6259;line-height:1.6;">Genießen Sie Mianno zu Hause — Lieferservice in der Region Remseck am Neckar.</p>
           </div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:12px;">
@@ -569,8 +644,8 @@
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12c0-2.76 2.24-5 5-5s5 2.24 5 5M7 7V2M4 4l3-2 3 2" stroke="#c9a96e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           <div>
-            <p style="font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:#f5f0e8;margin-bottom:4px;font-weight:500;">Private Dining</p>
-            <p style="font-size:0.78rem;color:#6b6259;line-height:1.6;">Exklusive Räume für intime Feiern und besondere Anlässe.</p>
+            <p style="font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:#f5f0e8;margin-bottom:4px;font-weight:500;">Direkt am Remsufer</p>
+            <p style="font-size:0.78rem;color:#6b6259;line-height:1.6;">Einzigartige Lage mit Blick auf den Fluss — ideal für besondere Anlässe.</p>
           </div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:12px;">
@@ -578,8 +653,8 @@
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13l4-8 4 4 2-4 2 8" stroke="#c9a96e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           <div>
-            <p style="font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:#f5f0e8;margin-bottom:4px;font-weight:500;">Kuratierter Sake</p>
-            <p style="font-size:0.78rem;color:#6b6259;line-height:1.6;">80+ Sorten von unabhängigen japanischen Brauereien.</p>
+            <p style="font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:#f5f0e8;margin-bottom:4px;font-weight:500;">Drive-in &amp; Takeaway</p>
+            <p style="font-size:0.78rem;color:#6b6259;line-height:1.6;">Bequem per Drive-in oder Abholung — schnell und unkompliziert.</p>
           </div>
         </div>
       </div>
@@ -593,16 +668,16 @@
 <!-- ════════════════════════════════════════════
      MITTAGSTISCH
 ════════════════════════════════════════════ -->
-<section id="mittagstisch" style="padding:120px 2rem;background:linear-gradient(160deg,#0a0804 0%,#0d0a07 60%,#0a0804 100%);border-top:1px solid rgba(201,169,110,0.08);">
+<section id="mittagstisch" class="resp-pad" style="padding:120px 2rem;background:linear-gradient(160deg,#0a0804 0%,#0d0a07 60%,#0a0804 100%);border-top:1px solid rgba(201,169,110,0.08);">
   <div style="max-width:1200px;margin:0 auto;">
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
+    <div class="resp-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
 
       <!-- Left: header + description -->
       <div>
         <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
           <div class="divider"></div>
-          <span style="font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#c9a96e;font-weight:500;">Mo – Fr · 12:00 – 15:00</span>
+          <span style="font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#c9a96e;font-weight:500;">Mo – Fr · 11:30 – 15:00 Uhr</span>
         </div>
         <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:500;line-height:1.15;letter-spacing:-0.025em;margin:0 0 24px;color:#f5f0e8;">
           Mittagstisch<br/>
@@ -614,7 +689,7 @@
         <p style="font-size:0.9rem;color:#a09488;line-height:1.8;margin-bottom:40px;font-weight:300;">
           Jedes Mittagsgericht umfasst eine Hauptspeise nach Wahl, eine Miso-Suppe und eine kleine Vorspeise. Getränke werden separat berechnet.
         </p>
-        <div style="display:flex;gap:32px;padding:28px;background:rgba(201,169,110,0.04);border:1px solid rgba(201,169,110,0.1);">
+        <div class="resp-flex-col" style="display:flex;gap:32px;padding:28px;background:rgba(201,169,110,0.04);border:1px solid rgba(201,169,110,0.1);">
           <div style="text-align:center;">
             <div style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:#c9a96e;font-weight:300;line-height:1;">ab</div>
             <div style="font-family:'Cormorant Garamond',serif;font-size:3rem;color:#c9a96e;font-weight:300;line-height:1;">12€</div>
@@ -625,7 +700,7 @@
             <div style="display:flex;align-items:center;gap:8px;"><div style="width:4px;height:4px;background:#c9a96e;border-radius:50%;"></div><span style="font-size:0.78rem;color:#a09488;">Miso-Suppe inklusive</span></div>
             <div style="display:flex;align-items:center;gap:8px;"><div style="width:4px;height:4px;background:#c9a96e;border-radius:50%;"></div><span style="font-size:0.78rem;color:#a09488;">Kleine Vorspeise inklusive</span></div>
             <div style="display:flex;align-items:center;gap:8px;"><div style="width:4px;height:4px;background:#c9a96e;border-radius:50%;"></div><span style="font-size:0.78rem;color:#a09488;">Täglich wechselndes Angebot</span></div>
-            <div style="display:flex;align-items:center;gap:8px;"><div style="width:4px;height:4px;background:#c9a96e;border-radius:50%;"></div><span style="font-size:0.78rem;color:#a09488;">Mo – Fr, 12:00 – 15:00 Uhr</span></div>
+            <div style="display:flex;align-items:center;gap:8px;"><div style="width:4px;height:4px;background:#c9a96e;border-radius:50%;"></div><span style="font-size:0.78rem;color:#a09488;">Mo – Fr, 11:30 – 15:00 Uhr</span></div>
           </div>
         </div>
       </div>
@@ -697,7 +772,7 @@
 <!-- ════════════════════════════════════════════
      MENU
 ════════════════════════════════════════════ -->
-<section id="menu" class="section-mid" style="padding:120px 2rem;">
+<section id="menu" class="section-mid resp-pad" style="padding:120px 2rem;">
   <div style="max-width:1200px;margin:0 auto;">
 
     <!-- Section header -->
@@ -716,16 +791,16 @@
     </div>
 
     <!-- Menu categories tabs -->
-    <div style="display:flex;justify-content:center;gap:4px;margin-bottom:56px;" id="menu-tabs">
+    <div class="resp-tabs" style="display:flex;justify-content:center;gap:4px;margin-bottom:56px;" id="menu-tabs">
       <button class="menu-tab active-tab" data-tab="sushi" onclick="switchTab('sushi')" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:10px 24px;background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.25);color:#c9a96e;cursor:pointer;transition:all 0.3s ease;font-family:'Inter',sans-serif;font-weight:500;">Sushi</button>
-      <button class="menu-tab" data-tab="ramen" onclick="switchTab('ramen')" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:10px 24px;background:transparent;border:1px solid rgba(160,148,136,0.15);color:#6b6259;cursor:pointer;transition:all 0.3s ease;font-family:'Inter',sans-serif;font-weight:500;">Ramen</button>
-      <button class="menu-tab" data-tab="grill" onclick="switchTab('grill')" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:10px 24px;background:transparent;border:1px solid rgba(160,148,136,0.15);color:#6b6259;cursor:pointer;transition:all 0.3s ease;font-family:'Inter',sans-serif;font-weight:500;">Grill</button>
-      <button class="menu-tab" data-tab="starters" onclick="switchTab('starters')" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:10px 24px;background:transparent;border:1px solid rgba(160,148,136,0.15);color:#6b6259;cursor:pointer;transition:all 0.3s ease;font-family:'Inter',sans-serif;font-weight:500;">Vorspeisen</button>
+      <button class="menu-tab" data-tab="hauptgerichte" onclick="switchTab('hauptgerichte')" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:10px 24px;background:transparent;border:1px solid rgba(160,148,136,0.15);color:#6b6259;cursor:pointer;transition:all 0.3s ease;font-family:'Inter',sans-serif;font-weight:500;">Hauptgerichte</button>
+      <button class="menu-tab" data-tab="vorspeisen" onclick="switchTab('vorspeisen')" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:10px 24px;background:transparent;border:1px solid rgba(160,148,136,0.15);color:#6b6259;cursor:pointer;transition:all 0.3s ease;font-family:'Inter',sans-serif;font-weight:500;">Vorspeisen</button>
+      <button class="menu-tab" data-tab="getraenke" onclick="switchTab('getraenke')" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:10px 24px;background:transparent;border:1px solid rgba(160,148,136,0.15);color:#6b6259;cursor:pointer;transition:all 0.3s ease;font-family:'Inter',sans-serif;font-weight:500;">Getränke</button>
       <button class="menu-tab" data-tab="desserts" onclick="switchTab('desserts')" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:10px 24px;background:transparent;border:1px solid rgba(160,148,136,0.15);color:#6b6259;cursor:pointer;transition:all 0.3s ease;font-family:'Inter',sans-serif;font-weight:500;">Desserts</button>
     </div>
 
     <!-- Menu grid -->
-    <div id="menu-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+    <div id="menu-grid" class="resp-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
 
       <!-- Cards injected by JS -->
 
@@ -759,7 +834,7 @@
 <!-- ════════════════════════════════════════════
      EXPERIENCE / AMBIANCE
 ════════════════════════════════════════════ -->
-<section id="experience" style="position:relative;padding:140px 2rem;overflow:hidden;background:#080604;">
+<section id="experience" class="resp-pad" style="position:relative;padding:140px 2rem;overflow:hidden;background:#080604;">
 
   <!-- Background decorative -->
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201,169,110,0.05) 0%, transparent 60%);pointer-events:none;"></div>
@@ -772,35 +847,35 @@
       <span style="font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#c9a96e;font-weight:500;">Das Erlebnis</span>
     </div>
     <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:500;letter-spacing:-0.03em;color:#f5f0e8;margin:0 0 80px;max-width:600px;line-height:1.1;">
-      Mehr als ein Abendessen —<br/><span style="font-style:italic;font-weight:400;color:#a09488;">Ein Ritual</span>
+      Mehr als ein Restaurant —<br/><span style="font-style:italic;font-weight:400;color:#a09488;">Ein Erlebnis am Wasser</span>
     </h2>
 
     <!-- 3-column experiences -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,169,110,0.08);">
+    <div class="resp-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,169,110,0.08);">
 
       <div style="padding:48px 40px;background:#080604;position:relative;overflow:hidden;transition:background 0.3s ease;" onmouseenter="this.style.background='#0d0a07'" onmouseleave="this.style.background='#080604'">
         <div style="font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:300;color:rgba(201,169,110,0.12);line-height:1;margin-bottom:24px;">01</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:500;color:#f5f0e8;margin-bottom:16px;letter-spacing:-0.01em;">The Sushi Bar</h3>
-        <p style="font-size:0.83rem;color:#6b6259;line-height:1.75;font-weight:300;">Acht Plätze vor dem Meister. Beobachten Sie, wie jedes Stück in Stille zubereitet wird — Reis auf Körpertemperatur, Fisch mit einem einzigen Messerzug geschnitten. Eine Lektion in Besonnenheit.</p>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:500;color:#f5f0e8;margin-bottom:16px;letter-spacing:-0.01em;">Unsere Sushi-Bar</h3>
+        <p style="font-size:0.83rem;color:#6b6259;line-height:1.75;font-weight:300;">Frisch gerolltes Sushi von erfahrenen Köchen. Jedes Stück wird mit Sorgfalt und dem besten Fisch des Tages zubereitet — von der klassischen Nigiri bis zur kreativen Signature Roll. Handgemacht, immer frisch.</p>
         <div style="position:absolute;bottom:0;left:40px;right:40px;height:1px;background:linear-gradient(90deg, #c9a96e, transparent);opacity:0;transition:opacity 0.3s ease;" class="hover-line"></div>
       </div>
 
       <div style="padding:48px 40px;background:#080604;position:relative;overflow:hidden;transition:background 0.3s ease;" onmouseenter="this.style.background='#0d0a07'" onmouseleave="this.style.background='#080604'">
         <div style="font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:300;color:rgba(201,169,110,0.12);line-height:1;margin-bottom:24px;">02</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:500;color:#f5f0e8;margin-bottom:16px;letter-spacing:-0.01em;">The Open Grill</h3>
-        <p style="font-size:0.83rem;color:#6b6259;line-height:1.75;font-weight:300;">Binchotan-Holzkohle, 800 °C weiße Glut. Wagyu und Wolfsbarsch garen mit einer Präzision, die kein Gasflamme erreichen kann. Das Schauspiel von Rauch und Glut ist die halbe Mahlzeit.</p>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:500;color:#f5f0e8;margin-bottom:16px;letter-spacing:-0.01em;">Vietnamesische Küche</h3>
+        <p style="font-size:0.83rem;color:#6b6259;line-height:1.75;font-weight:300;">Authentische vietnamesische Rezepte, weitergegeben über Generationen. Von der dampfenden Pho über knusprige Frühlingsrollen bis hin zu aromatischen Wok-Gerichten — jede Zubereitung erzählt eine Geschichte.</p>
       </div>
 
       <div style="padding:48px 40px;background:#080604;position:relative;overflow:hidden;transition:background 0.3s ease;" onmouseenter="this.style.background='#0d0a07'" onmouseleave="this.style.background='#080604'">
         <div style="font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:300;color:rgba(201,169,110,0.12);line-height:1;margin-bottom:24px;">03</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:500;color:#f5f0e8;margin-bottom:16px;letter-spacing:-0.01em;">Private Omakase</h3>
-        <p style="font-size:0.83rem;color:#6b6259;line-height:1.75;font-weight:300;">Vollständig privat. Vollständig individuell. Acht bis zwölf Gänge, ausgewählt vom Küchenchef nur für Ihren Tisch. Begleitet von unserem Junmai Daiginjo-Flight oder einer kuratierten Weinauswahl.</p>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:500;color:#f5f0e8;margin-bottom:16px;letter-spacing:-0.01em;">Am Remsufer</h3>
+        <p style="font-size:0.83rem;color:#6b6259;line-height:1.75;font-weight:300;">Einzigartige Lage direkt am Wasser in Remseck am Neckar. Genießen Sie Ihr Essen mit Blick auf den Fluss — drinnen oder draußen auf unserer Terrasse. Das perfekte Ambiente für jeden Anlass.</p>
       </div>
 
     </div>
 
     <!-- Full-width image strip -->
-    <div style="margin-top:80px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;height:320px;">
+    <div class="resp-img-strip" style="margin-top:80px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;height:320px;">
       <div class="img-wrap" style="overflow:hidden;border-radius:2px;">
         <img src="https://loremflickr.com/800/320/restaurant,dining?lock=12" alt="Restaurant interior" style="width:100%;height:100%;object-fit:cover;" />
         <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(8,6,4,0.3), transparent);"></div>
@@ -832,7 +907,7 @@
 <!-- ════════════════════════════════════════════
      GALLERY
 ════════════════════════════════════════════ -->
-<section id="gallery" style="padding:120px 2rem;background:#080604;border-top:1px solid rgba(201,169,110,0.08);">
+<section id="gallery" class="resp-pad" style="padding:120px 2rem;background:#080604;border-top:1px solid rgba(201,169,110,0.08);">
   <div style="max-width:1200px;margin:0 auto;">
 
     <div style="text-align:center;margin-bottom:64px;">
@@ -850,10 +925,10 @@
     </div>
 
     <!-- Gallery grid -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:12px;">
+    <div class="resp-gallery-grid" style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:12px;">
 
       <!-- Large featured image (spans 2 rows on left) -->
-      <div class="img-wrap" style="grid-row:span 2;overflow:hidden;border-radius:2px;min-height:500px;">
+      <div class="img-wrap resp-gallery-feature" style="grid-row:span 2;overflow:hidden;border-radius:2px;min-height:500px;">
         <img src="https://loremflickr.com/600/600/ramen,bowl?lock=20" alt="Ramen" style="width:100%;height:100%;object-fit:cover;" />
         <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(8,6,4,0.75) 0%,transparent 50%);"></div>
         <div style="position:absolute;bottom:24px;left:24px;z-index:1;">
@@ -901,7 +976,7 @@
     </div>
 
     <!-- Bottom row: 3 equal -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px;">
+    <div class="resp-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px;">
       <div class="img-wrap" style="overflow:hidden;border-radius:2px;aspect-ratio:16/9;">
         <img src="https://loremflickr.com/580/280/sake,japanese?lock=25" alt="Sake" style="width:100%;height:100%;object-fit:cover;" />
         <div style="position:absolute;inset:0;background:rgba(8,6,4,0.3);"></div>
@@ -926,17 +1001,17 @@
 <!-- ════════════════════════════════════════════
      GUTSCHEIN
 ════════════════════════════════════════════ -->
-<section id="gutschein" style="padding:100px 2rem;background:linear-gradient(135deg,#0d0a07 0%,#120e08 50%,#0a0804 100%);border-top:1px solid rgba(201,169,110,0.08);position:relative;overflow:hidden;">
+<section id="gutschein" class="resp-pad-sm" style="padding:100px 2rem;background:linear-gradient(135deg,#0d0a07 0%,#120e08 50%,#0a0804 100%);border-top:1px solid rgba(201,169,110,0.08);position:relative;overflow:hidden;">
   <!-- Background watermark -->
   <div style="position:absolute;left:-60px;top:50%;transform:translateY(-50%);width:400px;height:400px;opacity:0.04;pointer-events:none;">
     <img src="brand_assets/Mianno-Logo-03.png" alt="" style="width:100%;height:100%;object-fit:contain;filter:invert(1);" />
   </div>
 
-  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1;">
+  <div class="resp-grid-2" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1;">
 
     <!-- Left: gift card visual -->
     <div style="position:relative;">
-      <div style="background:linear-gradient(135deg, #1a140e 0%, #241c12 50%, #1a140e 100%);border:1px solid rgba(201,169,110,0.25);padding:48px;aspect-ratio:16/10;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 32px 64px rgba(0,0,0,0.5),0 0 0 1px rgba(201,169,110,0.06);">
+      <div class="resp-gutschein-card" style="background:linear-gradient(135deg, #1a140e 0%, #241c12 50%, #1a140e 100%);border:1px solid rgba(201,169,110,0.25);padding:48px;aspect-ratio:16/10;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 32px 64px rgba(0,0,0,0.5),0 0 0 1px rgba(201,169,110,0.06);">
         <!-- Card top -->
         <div style="display:flex;justify-content:space-between;align-items:flex-start;">
           <img src="brand_assets/Mianno-Logo-03.png" alt="Mianno" style="height:40px;filter:brightness(0) invert(1) sepia(1) saturate(0.6) brightness(1.1) contrast(1.1);" />
@@ -954,7 +1029,7 @@
         <div style="display:flex;justify-content:space-between;align-items:flex-end;">
           <div>
             <p style="font-size:0.6rem;color:#6b6259;letter-spacing:0.08em;">Gültig 3 Jahre ab Ausstellungsdatum</p>
-            <p style="font-size:0.6rem;color:#6b6259;letter-spacing:0.08em;">hello@mianno.de</p>
+            <p style="font-size:0.6rem;color:#6b6259;letter-spacing:0.08em;">info@mianno.de</p>
           </div>
           <div style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:rgba(201,169,110,0.3);">Mianno</div>
         </div>
@@ -978,7 +1053,7 @@
       </p>
 
       <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:36px;">
-        <div style="display:flex;gap:20px;">
+        <div class="resp-voucher-btns" style="display:flex;gap:20px;">
           <div style="text-align:center;padding:16px 24px;border:1px solid rgba(201,169,110,0.15);cursor:pointer;transition:border-color 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,169,110,0.4)'" onmouseleave="this.style.borderColor='rgba(201,169,110,0.15)'">
             <p class="price">25 €</p>
           </div>
@@ -995,11 +1070,11 @@
       </div>
 
       <div style="display:flex;flex-direction:column;gap:12px;">
-        <a href="mailto:hello@mianno.de" class="btn-gold">
+        <a href="mailto:info@mianno.de?subject=Gutschein%20Bestellung&body=Hallo%20Mianno-Team%2C%0Aich%20m%C3%B6chte%20gerne%20einen%20Gutschein%20bestellen.%0A%0ABetrag%3A%20%0AName%3A%20%0ATelefon%3A%20%0A%0AViele%20Gr%C3%BC%C3%9Fe" class="btn-gold">
           Gutschein Bestellen
           <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M0 5h13M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <p style="font-size:0.72rem;color:#6b6259;margin-top:8px;">Per E-Mail an hello@mianno.de oder direkt im Restaurant erhältlich.</p>
+        <p style="font-size:0.72rem;color:#6b6259;margin-top:8px;">Per E-Mail an <a href="mailto:info@mianno.de" style="color:#c9a96e;text-decoration:none;">info@mianno.de</a> oder direkt im Restaurant erhältlich.</p>
       </div>
     </div>
 
@@ -1010,7 +1085,7 @@
 <!-- ════════════════════════════════════════════
      TESTIMONIALS
 ════════════════════════════════════════════ -->
-<div style="background:#0a0804;padding:100px 2rem;border-top:1px solid rgba(201,169,110,0.08);">
+<div class="resp-pad-sm" style="background:#0a0804;padding:100px 2rem;border-top:1px solid rgba(201,169,110,0.08);">
   <div style="max-width:1200px;margin:0 auto;">
     <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:16px;">
       <div class="divider"></div>
@@ -1019,7 +1094,7 @@
     </div>
     <h2 style="text-align:center;font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;font-style:italic;color:#a09488;margin:0 0 56px;">"Ein Abend, der uns wochenlang begleitet hat."</h2>
 
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+    <div class="resp-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
 
       <div class="testimonial-card" style="padding:36px 32px;">
         <!-- Stars -->
@@ -1038,7 +1113,7 @@
         </div>
       </div>
 
-      <div class="testimonial-card" style="padding:36px 32px;transform:translateY(-12px);box-shadow:0 32px 64px rgba(0,0,0,0.4);">
+      <div class="testimonial-card resp-testimonial-raise" style="padding:36px 32px;transform:translateY(-12px);box-shadow:0 32px 64px rgba(0,0,0,0.4);">
         <div style="display:flex;gap:4px;margin-bottom:20px;">
           <span style="color:#c9a96e;font-size:0.75rem;">★★★★★</span>
         </div>
@@ -1078,7 +1153,7 @@
 <!-- ════════════════════════════════════════════
      RESERVATIONS
 ════════════════════════════════════════════ -->
-<section id="reservations" style="padding:120px 2rem;background:linear-gradient(160deg,#0d0a07 0%,#080604 50%,#0a0804 100%);position:relative;overflow:hidden;">
+<section id="reservations" class="resp-pad" style="padding:120px 2rem;background:linear-gradient(160deg,#0d0a07 0%,#080604 50%,#0a0804 100%);position:relative;overflow:hidden;">
 
   <!-- Background koi watermark -->
   <div style="position:absolute;right:-100px;bottom:-80px;width:500px;height:500px;opacity:0.04;pointer-events:none;">
@@ -1099,69 +1174,96 @@
       <p style="font-size:0.85rem;color:#6b6259;max-width:400px;margin:0 auto;line-height:1.7;">Reservierung empfohlen. Für Gruppen ab 6 Personen bitte direkt Kontakt aufnehmen.</p>
     </div>
 
-    <!-- Form -->
-    <form style="background:linear-gradient(145deg, rgba(24,18,12,0.7), rgba(14,11,9,0.8));border:1px solid rgba(201,169,110,0.1);padding:56px 48px;backdrop-filter:blur(8px);" onsubmit="handleReservation(event)">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
-        <div>
-          <label style="display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:8px;">Vorname</label>
-          <input type="text" class="form-input" placeholder="Alexandra" required />
-        </div>
-        <div>
-          <label style="display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:8px;">Nachname</label>
-          <input type="text" class="form-input" placeholder="Müller" required />
-        </div>
-        <div>
-          <label style="display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:8px;">Email</label>
-          <input type="email" class="form-input" placeholder="hello@example.com" required />
-        </div>
-        <div>
-          <label style="display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:8px;">Phone</label>
-          <input type="tel" class="form-input" placeholder="+1 (555) 000-0000" />
-        </div>
-        <div>
-          <label style="display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:8px;">Date</label>
-          <input type="date" class="form-input" required />
-        </div>
-        <div>
-          <label style="display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:8px;">Time</label>
-          <select class="form-input" required>
-            <option value="">Uhrzeit wählen</option>
-            <option>12:00 — Lunch</option>
-            <option>12:30 — Lunch</option>
-            <option>13:00 — Lunch</option>
-            <option>13:30 — Lunch</option>
-            <option>19:00 — Dinner</option>
-            <option>19:30 — Dinner</option>
-            <option>20:00 — Dinner</option>
-            <option>20:30 — Dinner</option>
-            <option>21:00 — Dinner</option>
-            <option>21:30 — Dinner</option>
-          </select>
-        </div>
-      </div>
+    <!-- Form — matches real mianno.de reservation form -->
+    <form class="resp-form-pad" style="background:linear-gradient(145deg, rgba(24,18,12,0.7), rgba(14,11,9,0.8));border:1px solid rgba(201,169,110,0.1);padding:56px 48px;backdrop-filter:blur(8px);" onsubmit="handleReservation(event)">
 
+      <!-- Ankunftszeit -->
       <div style="margin-bottom:20px;">
-        <label style="display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:8px;">Personen</label>
-        <select class="form-input" required style="max-width:280px;">
-          <option value="">Anzahl der Gäste</option>
-          <option>1 Person</option>
-          <option>2 Personen</option>
-          <option>3 Personen</option>
-          <option>4 Personen</option>
-          <option>5 Personen</option>
-          <option>6 Personen</option>
+        <label style="display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:8px;">Mögliche Ankunftszeit *</label>
+        <select class="form-input" required>
+          <option value="">Uhrzeit wählen</option>
+          <optgroup label="Mittagstisch (Mo–Fr 11:30–15:00)">
+            <option>11:30 Uhr</option>
+            <option>12:00 Uhr</option>
+            <option>12:30 Uhr</option>
+            <option>13:00 Uhr</option>
+            <option>13:30 Uhr</option>
+            <option>14:00 Uhr</option>
+            <option>14:30 Uhr</option>
+          </optgroup>
+          <optgroup label="Abend (17:00–22:00 Uhr)">
+            <option>17:00 Uhr</option>
+            <option>17:30 Uhr</option>
+            <option>18:00 Uhr</option>
+            <option>18:30 Uhr</option>
+            <option>19:00 Uhr</option>
+            <option>19:30 Uhr</option>
+            <option>20:00 Uhr</option>
+            <option>20:30 Uhr</option>
+            <option>21:00 Uhr</option>
+            <option>21:30 Uhr</option>
+          </optgroup>
+          <optgroup label="Sa, So & Feiertage (12:00–22:00 Uhr)">
+            <option>12:00 Uhr (Sa/So)</option>
+            <option>13:00 Uhr (Sa/So)</option>
+            <option>14:00 Uhr (Sa/So)</option>
+            <option>15:00 Uhr (Sa/So)</option>
+            <option>16:00 Uhr (Sa/So)</option>
+            <option>17:00 Uhr (Sa/So)</option>
+            <option>18:00 Uhr (Sa/So)</option>
+            <option>19:00 Uhr (Sa/So)</option>
+            <option>20:00 Uhr (Sa/So)</option>
+            <option>21:00 Uhr (Sa/So)</option>
+          </optgroup>
         </select>
       </div>
 
+      <div class="resp-grid-form" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+        <div>
+          <label style="display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:8px;">Vorname / First Name *</label>
+          <input type="text" name="vorname" class="form-input" placeholder="Vorname" required />
+        </div>
+        <div>
+          <label style="display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:8px;">Nachname / Last Name *</label>
+          <input type="text" name="nachname" class="form-input" placeholder="Nachname" required />
+        </div>
+        <div>
+          <label style="display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:8px;">E-Mail Adresse *</label>
+          <input type="email" name="email" class="form-input" placeholder="ihre@email.de" required />
+        </div>
+        <div>
+          <label style="display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:8px;">Anzahl der Personen / Visitors *</label>
+          <select name="personen" class="form-input" required>
+            <option value="">Personen wählen</option>
+            <option value="1">1 Person</option>
+            <option value="2">2 Personen</option>
+            <option value="3">3 Personen</option>
+            <option value="4">4 Personen</option>
+            <option value="5">5 Personen</option>
+            <option value="6">6 Personen</option>
+            <option value="7">7 Personen</option>
+            <option value="8+">8+ Personen (bitte anrufen)</option>
+          </select>
+        </div>
+        <div style="grid-column:1/-1;">
+          <label style="display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:8px;">Handynummer / Phone Number *</label>
+          <input type="tel" name="telefon" class="form-input" placeholder="z.B. 07146 4073772" required />
+        </div>
+      </div>
+
       <div style="margin-bottom:32px;">
-        <label style="display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:8px;">Besondere Wünsche</label>
-        <textarea class="form-input" rows="3" placeholder="Diätetische Anforderungen, Allergien, besonderer Anlass…" style="resize:vertical;min-height:80px;"></textarea>
+        <label style="display:block;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:8px;">Details / Besondere Wünsche</label>
+        <textarea name="details" class="form-input" rows="4" placeholder="Allergien, besonderer Anlass, Sitzplatzwunsch (innen/außen/am Wasser)…" style="resize:vertical;min-height:100px;"></textarea>
       </div>
 
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
-        <p style="font-size:0.75rem;color:#6b6259;max-width:300px;line-height:1.6;">Wir bestätigen Ihre Reservierung per E-Mail innerhalb von 2 Stunden.</p>
+        <div>
+          <p style="font-size:0.75rem;color:#6b6259;max-width:340px;line-height:1.6;">Oder rufen Sie uns direkt an:<br/>
+            <a href="tel:071464073772" style="color:#c9a96e;text-decoration:none;font-weight:500;">07146 4073772</a>
+          </p>
+        </div>
         <button type="submit" class="btn-gold">
-          Reservierung Bestätigen
+          Jetzt Reservieren
           <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M0 5h13M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
@@ -1180,7 +1282,7 @@
 <!-- ════════════════════════════════════════════
      JOBS
 ════════════════════════════════════════════ -->
-<section style="padding:100px 2rem;background:#0a0804;border-top:1px solid rgba(201,169,110,0.08);">
+<section id="jobs" class="resp-pad-sm" style="padding:100px 2rem;background:#0a0804;border-top:1px solid rgba(201,169,110,0.08);">
   <div style="max-width:1200px;margin:0 auto;">
 
     <div style="text-align:center;margin-bottom:56px;">
@@ -1197,7 +1299,7 @@
       </p>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,169,110,0.08);">
+    <div class="resp-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,169,110,0.08);">
 
       <div style="padding:40px 36px;background:#0a0804;transition:background 0.3s ease;" onmouseenter="this.style.background='#0e0b08'" onmouseleave="this.style.background='#0a0804'">
         <div style="width:40px;height:40px;border:1px solid rgba(201,169,110,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
@@ -1205,7 +1307,7 @@
         </div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:500;color:#f5f0e8;margin-bottom:12px;">Sushi-Koch (m/w/d)</h3>
         <p style="font-size:0.78rem;color:#6b6259;line-height:1.7;margin-bottom:20px;font-weight:300;">Erfahrung in der Zubereitung von Sushi und japanischer Küche erforderlich. Vollzeit oder Teilzeit möglich.</p>
-        <a href="mailto:jobs@mianno.de" style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#c9a96e;text-decoration:none;border-bottom:1px solid rgba(201,169,110,0.3);padding-bottom:2px;">Jetzt bewerben →</a>
+        <a href="mailto:info@mianno.de" style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#c9a96e;text-decoration:none;border-bottom:1px solid rgba(201,169,110,0.3);padding-bottom:2px;">Jetzt bewerben →</a>
       </div>
 
       <div style="padding:40px 36px;background:#0a0804;transition:background 0.3s ease;" onmouseenter="this.style.background='#0e0b08'" onmouseleave="this.style.background='#0a0804'">
@@ -1214,7 +1316,7 @@
         </div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:500;color:#f5f0e8;margin-bottom:12px;">Servicekraft (m/w/d)</h3>
         <p style="font-size:0.78rem;color:#6b6259;line-height:1.7;margin-bottom:20px;font-weight:300;">Freundliches Auftreten und Freude am Gästekontakt. Quereinsteiger willkommen. Flexible Arbeitszeiten.</p>
-        <a href="mailto:jobs@mianno.de" style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#c9a96e;text-decoration:none;border-bottom:1px solid rgba(201,169,110,0.3);padding-bottom:2px;">Jetzt bewerben →</a>
+        <a href="mailto:info@mianno.de" style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#c9a96e;text-decoration:none;border-bottom:1px solid rgba(201,169,110,0.3);padding-bottom:2px;">Jetzt bewerben →</a>
       </div>
 
       <div style="padding:40px 36px;background:#0a0804;transition:background 0.3s ease;" onmouseenter="this.style.background='#0e0b08'" onmouseleave="this.style.background='#0a0804'">
@@ -1223,13 +1325,13 @@
         </div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:500;color:#f5f0e8;margin-bottom:12px;">Initiativbewerbung</h3>
         <p style="font-size:0.78rem;color:#6b6259;line-height:1.7;margin-bottom:20px;font-weight:300;">Kein passendes Stellenangebot? Wir freuen uns immer über motivierte Bewerbungen aus dem Gastronomiebereich.</p>
-        <a href="mailto:jobs@mianno.de" style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#c9a96e;text-decoration:none;border-bottom:1px solid rgba(201,169,110,0.3);padding-bottom:2px;">Initiativ bewerben →</a>
+        <a href="mailto:info@mianno.de" style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#c9a96e;text-decoration:none;border-bottom:1px solid rgba(201,169,110,0.3);padding-bottom:2px;">Initiativ bewerben →</a>
       </div>
 
     </div>
 
     <div style="text-align:center;margin-top:40px;">
-      <p style="font-size:0.8rem;color:#6b6259;">Bewerbungen bitte an <a href="mailto:jobs@mianno.de" style="color:#c9a96e;text-decoration:none;">jobs@mianno.de</a></p>
+      <p style="font-size:0.8rem;color:#6b6259;">Bewerbungen bitte an <a href="mailto:info@mianno.de" style="color:#c9a96e;text-decoration:none;">info@mianno.de</a></p>
     </div>
 
   </div>
@@ -1239,63 +1341,63 @@
 <!-- ════════════════════════════════════════════
      CONTACT
 ════════════════════════════════════════════ -->
-<section id="contact" style="padding:100px 2rem;background:#080604;border-top:1px solid rgba(201,169,110,0.08);">
-  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
+<section id="contact" class="resp-pad-sm" style="padding:100px 2rem;background:#080604;border-top:1px solid rgba(201,169,110,0.08);">
+  <div class="resp-grid-2" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
 
     <!-- Left -->
     <div>
       <img src="brand_assets/Mianno-Logo-03.png" alt="Mianno" style="height:64px;filter:brightness(0) invert(1) sepia(1) saturate(0.4) brightness(0.9);margin-bottom:32px;display:block;" />
       <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:#a09488;line-height:1.75;max-width:360px;margin-bottom:40px;">
-        A restaurant is not just a place to eat — it is a place to remember. Mianno was built for those evenings worth keeping.
+        Vietnamesische Küche &amp; Sushi direkt am Remsufer. Mit 5,0 Sternen auf Google das beliebteste asiatische Restaurant in Remseck am Neckar.
       </p>
       <div style="display:flex;gap:16px;">
-        <a href="#" style="width:40px;height:40px;border:1px solid rgba(201,169,110,0.2);display:flex;align-items:center;justify-content:center;transition:border-color 0.3s ease,background 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,169,110,0.5)';this.style.background='rgba(201,169,110,0.06)'" onmouseleave="this.style.borderColor='rgba(201,169,110,0.2)';this.style.background='transparent'">
+        <a href="https://www.instagram.com/mianno.sushi.grill/" target="_blank" rel="noopener" title="Instagram" style="width:40px;height:40px;border:1px solid rgba(201,169,110,0.2);display:flex;align-items:center;justify-content:center;transition:border-color 0.3s ease,background 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,169,110,0.5)';this.style.background='rgba(201,169,110,0.06)'" onmouseleave="this.style.borderColor='rgba(201,169,110,0.2)';this.style.background='transparent'">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#c9a96e" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="#c9a96e" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="#c9a96e"/></svg>
         </a>
-        <a href="#" style="width:40px;height:40px;border:1px solid rgba(201,169,110,0.2);display:flex;align-items:center;justify-content:center;transition:border-color 0.3s ease,background 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,169,110,0.5)';this.style.background='rgba(201,169,110,0.06)'" onmouseleave="this.style.borderColor='rgba(201,169,110,0.2)';this.style.background='transparent'">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="https://maps.app.goo.gl/M3ov2Dne8XEMZ4uo8" target="_blank" rel="noopener" title="Google Maps" style="width:40px;height:40px;border:1px solid rgba(201,169,110,0.2);display:flex;align-items:center;justify-content:center;transition:border-color 0.3s ease,background 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,169,110,0.5)';this.style.background='rgba(201,169,110,0.06)'" onmouseleave="this.style.borderColor='rgba(201,169,110,0.2)';this.style.background='transparent'">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="#" style="width:40px;height:40px;border:1px solid rgba(201,169,110,0.2);display:flex;align-items:center;justify-content:center;transition:border-color 0.3s ease,background 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,169,110,0.5)';this.style.background='rgba(201,169,110,0.06)'" onmouseleave="this.style.borderColor='rgba(201,169,110,0.2)';this.style.background='transparent'">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="9" width="4" height="12" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="4" r="2" stroke="#c9a96e" stroke-width="1.5"/></svg>
+        <a href="https://www.mianno.de" target="_blank" rel="noopener" title="Website" style="width:40px;height:40px;border:1px solid rgba(201,169,110,0.2);display:flex;align-items:center;justify-content:center;transition:border-color 0.3s ease,background 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,169,110,0.5)';this.style.background='rgba(201,169,110,0.06)'" onmouseleave="this.style.borderColor='rgba(201,169,110,0.2)';this.style.background='transparent'">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#c9a96e" stroke-width="1.5"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="#c9a96e" stroke-width="1.5"/></svg>
         </a>
       </div>
     </div>
 
     <!-- Right: info grid -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;">
+    <div class="resp-contact-info" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;">
       <div>
-        <p style="font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:#c9a96e;margin-bottom:16px;font-weight:500;">Hours</p>
+        <p style="font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:#c9a96e;margin-bottom:16px;font-weight:500;">Öffnungszeiten</p>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(201,169,110,0.07);padding-bottom:8px;">
             <span style="font-size:0.78rem;color:#6b6259;">Mo – Fr</span>
-            <span style="font-size:0.78rem;color:#a09488;">12:00 – 23:00</span>
+            <span style="font-size:0.78rem;color:#a09488;">11:30–15:00 &amp; 17:00–22:00</span>
           </div>
           <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(201,169,110,0.07);padding-bottom:8px;">
-            <span style="font-size:0.78rem;color:#6b6259;">Samstag</span>
-            <span style="font-size:0.78rem;color:#a09488;">12:00 – 00:00</span>
+            <span style="font-size:0.78rem;color:#6b6259;">Sa &amp; So</span>
+            <span style="font-size:0.78rem;color:#a09488;">12:00 – 22:00</span>
           </div>
           <div style="display:flex;justify-content:space-between;">
-            <span style="font-size:0.78rem;color:#6b6259;">Sonntag</span>
-            <span style="font-size:0.78rem;color:#a09488;">13:00 – 22:00</span>
+            <span style="font-size:0.78rem;color:#6b6259;">Feiertage</span>
+            <span style="font-size:0.78rem;color:#a09488;">12:00 – 22:00</span>
           </div>
         </div>
       </div>
       <div>
-        <p style="font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:#c9a96e;margin-bottom:16px;font-weight:500;">Find Us</p>
-        <p style="font-size:0.82rem;color:#a09488;line-height:1.7;">Miannostraße 14<br/>10115 Berlin<br/>Deutschland</p>
-        <a href="#" style="display:inline-block;margin-top:12px;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#c9a96e;text-decoration:none;border-bottom:1px solid rgba(201,169,110,0.3);padding-bottom:2px;transition:border-color 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,169,110,0.7)'" onmouseleave="this.style.borderColor='rgba(201,169,110,0.3)'">Get Directions →</a>
+        <p style="font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:#c9a96e;margin-bottom:16px;font-weight:500;">Adresse</p>
+        <p style="font-size:0.82rem;color:#a09488;line-height:1.7;">Am Remsufer 2<br/>71686 Remseck am Neckar<br/>Deutschland</p>
+        <a href="https://maps.app.goo.gl/M3ov2Dne8XEMZ4uo8" target="_blank" rel="noopener" style="display:inline-block;margin-top:12px;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#c9a96e;text-decoration:none;border-bottom:1px solid rgba(201,169,110,0.3);padding-bottom:2px;transition:border-color 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,169,110,0.7)'" onmouseleave="this.style.borderColor='rgba(201,169,110,0.3)'">Auf Google Maps öffnen →</a>
       </div>
       <div>
-        <p style="font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:#c9a96e;margin-bottom:16px;font-weight:500;">Contact</p>
+        <p style="font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:#c9a96e;margin-bottom:16px;font-weight:500;">Kontakt</p>
         <p style="font-size:0.82rem;color:#a09488;line-height:1.7;">
-          <a href="tel:+4912345678" style="color:inherit;text-decoration:none;display:block;margin-bottom:6px;transition:color 0.2s;" onmouseenter="this.style.color='#c8bfae'" onmouseleave="this.style.color='#a09488'">+49 (0) 123 456 78</a>
-          <a href="mailto:hello@mianno.de" style="color:#c9a96e;text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='#e8d0a0'" onmouseleave="this.style.color='#c9a96e'">hello@mianno.de</a>
+          <a href="tel:071464073772" style="color:inherit;text-decoration:none;display:block;margin-bottom:6px;transition:color 0.2s;" onmouseenter="this.style.color='#c8bfae'" onmouseleave="this.style.color='#a09488'"><strong style="color:#c8bfae;">07146 4073772</strong></a>
+          <a href="mailto:info@mianno.de" style="color:#c9a96e;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='#e8d0a0'" onmouseleave="this.style.color='#c9a96e'">info@mianno.de</a>
         </p>
       </div>
       <div>
         <p style="font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:#c9a96e;margin-bottom:16px;font-weight:500;">Private Events</p>
-        <p style="font-size:0.78rem;color:#6b6259;line-height:1.7;">Hosting a celebration?<br/>We'd love to be part of it.</p>
-        <a href="#" style="display:inline-block;margin-top:12px;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#c9a96e;text-decoration:none;border-bottom:1px solid rgba(201,169,110,0.3);padding-bottom:2px;" onmouseenter="this.style.borderColor='rgba(201,169,110,0.7)'" onmouseleave="this.style.borderColor='rgba(201,169,110,0.3)'">Enquire →</a>
+        <p style="font-size:0.78rem;color:#6b6259;line-height:1.7;">Geburtstage, Firmenfeiern, Familienfeste — wir sind für Sie da.</p>
+        <a href="mailto:info@mianno.de?subject=Private%20Veranstaltung%20anfragen" style="display:inline-block;margin-top:12px;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#c9a96e;text-decoration:none;border-bottom:1px solid rgba(201,169,110,0.3);padding-bottom:2px;" onmouseenter="this.style.borderColor='rgba(201,169,110,0.7)'" onmouseleave="this.style.borderColor='rgba(201,169,110,0.3)'">Jetzt anfragen →</a>
       </div>
     </div>
 
@@ -1307,11 +1409,11 @@
      FOOTER
 ════════════════════════════════════════════ -->
 <footer class="footer-bg" style="padding:32px 2rem;border-top:1px solid rgba(201,169,110,0.08);">
-  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+  <div class="resp-footer" style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
     <p style="font-size:0.62rem;color:#3a342e;letter-spacing:0.1em;">© 2026 Mianno Restaurant GmbH · Sushi &amp; Grill · Alle Rechte vorbehalten.</p>
     <div style="display:flex;gap:24px;">
-      <a href="#" style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:#3a342e;text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='#6b6259'" onmouseleave="this.style.color='#3a342e'">Impressum</a>
-      <a href="#" style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:#3a342e;text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='#6b6259'" onmouseleave="this.style.color='#3a342e'">Datenschutz</a>
+      <a href="https://www.mianno.de/impressum" target="_blank" rel="noopener" style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:#3a342e;text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='#6b6259'" onmouseleave="this.style.color='#3a342e'">Impressum</a>
+      <a href="https://www.mianno.de/datenschutz" target="_blank" rel="noopener" style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:#3a342e;text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='#6b6259'" onmouseleave="this.style.color='#3a342e'">Datenschutz</a>
       <a href="#mittagstisch" style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:#3a342e;text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='#6b6259'" onmouseleave="this.style.color='#3a342e'">Mittagstisch</a>
       <a href="#gutschein" style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:#3a342e;text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='#6b6259'" onmouseleave="this.style.color='#3a342e'">Gutschein</a>
     </div>
@@ -1356,45 +1458,51 @@
 
   // ── Menu data ──
   const menuData = {
-    ramen: [
-      { name: 'Tonkotsu Ramen', desc: 'Reichhaltige Schweineknochenbrühe, Chashu-Schweinefleisch, weich gekochtes Ei, Nori, Frühlingszwiebeln, Bambussprossen.', price: '18', badge: 'Klassiker', img: 'https://loremflickr.com/580/380/ramen,noodle?lock=101' },
-      { name: 'Miso Ramen', desc: 'Helles Miso-Dashi, Hähnchen-Chashu, Mais, Butter, Menma, rotes Ingwer, Sesam-Topping.', price: '17', badge: null, img: 'https://loremflickr.com/580/380/ramen,soup?lock=102' },
-      { name: 'Shoyu Ramen', desc: 'Klare Sojasoßenbrühe, Rindfleisch-Chashu, Narutomaki, gekochtes Ei, Nori-Blatt.', price: '16', badge: null, img: 'https://loremflickr.com/580/380/ramen,japanese?lock=103' },
-      { name: 'Spicy Mianno Ramen', desc: 'Scharfe Miso-Brühe mit Kimchi, Garnelenöl, Chashu, Pilzen und schwarzem Knoblauch. Hausrezept.', price: '19', badge: 'Signature', img: 'https://loremflickr.com/580/380/ramen,bowl?lock=104' },
-      { name: 'Vegetarisches Ramen', desc: 'Kombu-Shiitake-Dashi, Tofu, Pak Choi, Mais, Pilze, Sojasprossen, Sesamöl.', price: '15', badge: null, img: 'https://loremflickr.com/580/380/noodle,soup?lock=105' },
-      { name: 'Ramen Set', desc: 'Wahl eines Ramen + 3 Gyoza + Edamame. Das vollständige Ramen-Erlebnis.', price: '24', badge: 'Set', img: 'https://loremflickr.com/580/380/japanese,food?lock=106' },
-    ],
     sushi: [
-      { name: 'Otoro Nigiri', desc: 'Thunfischbauch, handgepresst auf Shari-Reis mit einem Hauch Wasabi. Vier Stück.', price: '38', badge: "Chef's Choice", img: 'https://loremflickr.com/580/380/sushi,nigiri?lock=201' },
-      { name: 'Uni Ikura Don', desc: 'Seeigel und Lachsrogen auf gereiftem Essig-Reis. Verfeinert mit Shiso-Öl und Micro-Perilla.', price: '52', badge: null, img: 'https://loremflickr.com/580/380/sushi,rice?lock=202' },
-      { name: 'Aburi Salmon Roll', desc: 'Flambierter Atlantik-Lachs, eingelegte Gurke, Ponzu-Mayo. Gegrillte Frühlingszwiebeln.', price: '24', badge: 'Signature', img: 'https://loremflickr.com/580/380/salmon,sushi?lock=203' },
-      { name: 'Ebi Tempura Maki', desc: 'Knuspriger Tigergarnelen-Tempura, Avocado, Taiko-Mayo, gerösteter Sesam. Acht Stück.', price: '22', badge: null, img: 'https://loremflickr.com/580/380/sushi,maki?lock=204' },
-      { name: 'Hamachi Sashimi', desc: 'Gelbschwanz-Sashimi, Yuzu Kosho, schwarzes Knoblauchöl, essbare Blüten. Sechs Stück.', price: '32', badge: null, img: 'https://loremflickr.com/580/380/sashimi,fish?lock=205' },
-      { name: 'Omakase Set', desc: 'Zwölf Stück nach Wahl des Küchenchefs. Täglich wechselnd mit dem besten verfügbaren Fisch. Vertrauen Sie der Küche.', price: '95', badge: 'Omakase', img: 'https://loremflickr.com/580/380/sushi,omakase?lock=206' },
+      { name: 'Lachs Nigiri (2 Stk.)', desc: 'Frischer Atlantik-Lachs, handgepresst auf gewürztem Reis mit einem Hauch Wasabi.', price: '7,50', badge: 'Beliebt', img: 'https://loremflickr.com/580/380/salmon,nigiri?lock=201' },
+      { name: 'Thunfisch Nigiri (2 Stk.)', desc: 'Premium Gelbflossenthunfisch auf Shari-Reis. Klassisch und präzise.', price: '8,50', badge: null, img: 'https://loremflickr.com/580/380/tuna,sushi?lock=202' },
+      { name: 'Garnelen Nigiri (2 Stk.)', desc: 'Gekochte Tigergarnelenm auf Sushi-Reis, leicht glasiert mit Sojasauce.', price: '7,00', badge: null, img: 'https://loremflickr.com/580/380/shrimp,nigiri?lock=203' },
+      { name: 'California Roll (8 Stk.)', desc: 'Krabbenfleisch, Avocado, Gurke, Sesam. Der Klassiker neu interpretiert.', price: '13,50', badge: 'Klassiker', img: 'https://loremflickr.com/580/380/california,roll?lock=204' },
+      { name: 'Spicy Salmon Roll (8 Stk.)', desc: 'Lachs, Sriracha-Mayo, Gurke, Sesam. Scharf und aromatisch.', price: '14,50', badge: 'Scharf', img: 'https://loremflickr.com/580/380/spicy,salmon,roll?lock=205' },
+      { name: 'Mianno Signature Roll (8 Stk.)', desc: 'Garnele Tempura, Avocado, Lachs obenauf, Teriyaki-Glasur. Unser Hausrezept.', price: '17,50', badge: 'Signature', img: 'https://loremflickr.com/580/380/sushi,roll?lock=206' },
+      { name: 'Lachs Sashimi (6 Stk.)', desc: 'Dünn aufgeschnittener Frischlachs, serviert mit Ingwer und Wasabi.', price: '16,50', badge: null, img: 'https://loremflickr.com/580/380/salmon,sashimi?lock=207' },
+      { name: 'Gemischte Sushi-Platte', desc: '16 Stück: 8 Nigiri (Lachs, Thunfisch, Garnele, Tofu) + 8 Maki. Perfekt zum Teilen.', price: '34,00', badge: 'Empfehlung', img: 'https://loremflickr.com/580/380/sushi,platter?lock=208' },
+      { name: 'Avocado Maki (8 Stk.)', desc: 'Cremige Avocado, Gurke, Sesam. Vegetarisch und leicht.', price: '10,50', badge: 'Vegetarisch', img: 'https://loremflickr.com/580/380/avocado,maki?lock=209' },
     ],
-    grill: [
-      { name: 'A5 Wagyu Ribeye', desc: 'Japanische Miyazaki-Präfektur. 200 g. Binchotan-Holzkohle, Soja-Tare-Glasur, Wasabi-Salz.', price: '145', badge: "Chef's Choice", img: 'https://loremflickr.com/580/380/wagyu,steak?lock=301' },
-      { name: 'Black Cod Misoyaki', desc: '72 Stunden in weißem Miso und Sake mariniert. Über Holzkohle gegrillt. Eingelegte Lotusblüte.', price: '54', badge: 'Signature', img: 'https://loremflickr.com/580/380/grilled,fish?lock=302' },
-      { name: 'Gegrillter Oktopus', desc: 'Galicischer Oktopus, über Binchotan angebrannt. Yuzu Ponzu, geräuchertes Paprikaöl, knusprige Kapern.', price: '36', badge: null, img: 'https://loremflickr.com/580/380/octopus,grilled?lock=303' },
-      { name: 'Wagyu Kurzbratenstück', desc: 'Australisches Wagyu, Shishito-Glasur, Togarashi-Kruste, Minz-Miso.', price: '68', badge: null, img: 'https://loremflickr.com/580/380/beef,grill?lock=304' },
-      { name: 'Tigergarnele Kushiyaki', desc: 'Holzkohle-gegrillte Garnelenspieße, Yuzu Kosho-Butter, Bonito-Flocken.', price: '28', badge: null, img: 'https://loremflickr.com/580/380/prawn,skewer?lock=305' },
-      { name: 'Robatayaki Platte', desc: 'Drei Spieße nach Wahl des Küchenchefs: Saisonaler Fisch, Wagyu-Kurzrippe, saisonales Gemüse.', price: '72', badge: 'Teilen', img: 'https://loremflickr.com/580/380/japanese,grill?lock=306' },
+    hauptgerichte: [
+      { name: 'Gebratene Ente mit Gemüse', desc: 'Knusprige Entenkeule in Hoisin-Sauce, wok-gebratenes Saisongemüse, Jasminreis.', price: '22,50', badge: 'Empfehlung', img: 'https://loremflickr.com/580/380/duck,asian?lock=301' },
+      { name: 'Rindfleisch Pho', desc: 'Vietnamesische Rinderbrühe, Reisnudeln, dünn geschnittenes Rindfleisch, Basilikum, Bohnenkeim, Limette.', price: '17,50', badge: 'Klassiker', img: 'https://loremflickr.com/580/380/pho,vietnamese?lock=302' },
+      { name: 'Garnelen Wok', desc: 'Tigergarnelenm, Zuckererbsen, Paprika, Karotten in Knoblauch-Austernsauce, Jasminreis.', price: '21,00', badge: null, img: 'https://loremflickr.com/580/380/shrimp,wok?lock=303' },
+      { name: 'Chicken Teriyaki', desc: 'Zartes Hähnchenbrust-Filet in hausgemachter Teriyaki-Glasur, gedämpfter Brokkoli, Reis.', price: '18,50', badge: 'Beliebt', img: 'https://loremflickr.com/580/380/chicken,teriyaki?lock=304' },
+      { name: 'Gegrillter Lachs', desc: 'Frischer Atlantik-Lachs vom Grill, Miso-Glasur, wok-gebratener Spinat, Süßkartoffelpüree.', price: '24,50', badge: 'Signature', img: 'https://loremflickr.com/580/380/grilled,salmon?lock=305' },
+      { name: 'Tofu mit Gemüse', desc: 'Gebratener Tofu, saisonales Gemüse, Shiitake-Pilze, Ingwer-Soja-Sauce, Jasminreis.', price: '16,00', badge: 'Vegetarisch', img: 'https://loremflickr.com/580/380/tofu,vegetable?lock=306' },
+      { name: 'Rindfleisch Bulgogi', desc: 'Mariniertes koreanisch-inspiriertes Rindfleisch, Sesam-Frühlingszwiebeln, eingelegter Rettich, Reis.', price: '23,00', badge: null, img: 'https://loremflickr.com/580/380/beef,asian?lock=307' },
+      { name: 'Bun Bo Hue', desc: 'Würzige vietnamesische Suppennudeln mit Rind- und Schweinefleisch, Zitronengras, Chili.', price: '16,50', badge: null, img: 'https://loremflickr.com/580/380/vietnamese,noodle?lock=308' },
+      { name: 'Fried Rice Mianno', desc: 'Gebratener Jasminreis, Ei, Gemüse, Hühnchen oder Garnele, Soja-Ingwer-Sauce. Hausrezept.', price: '15,50', badge: 'Hausrezept', img: 'https://loremflickr.com/580/380/fried,rice?lock=309' },
     ],
-    starters: [
-      { name: 'Edamame Trüffel', desc: 'Gedämpfte Edamame, gehobelter schwarzer Trüffel, Fleur de Sel, Trüffelöl.', price: '16', badge: null, img: 'https://loremflickr.com/580/380/edamame,food?lock=401' },
-      { name: 'Thunfisch Tartare', desc: 'Blauflossen-Thunfisch, Avocado, eingelegter Ingwer, Sesam-Soja-Dressing, Wonton-Cracker.', price: '28', badge: "Chef's Choice", img: 'https://loremflickr.com/580/380/tuna,tartare?lock=402' },
-      { name: 'Gyoza Kara', desc: 'Gebratene Schweine-Garnelen-Teigtaschen, gewürztes Ponzu, schwarzer Essig zum Dippen.', price: '18', badge: null, img: 'https://loremflickr.com/580/380/gyoza,dumpling?lock=403' },
-      { name: 'Premium Miso Suppe', desc: 'Gereiftes weißes Miso, Venusmuscheln, Wakame, Seidenweicher Tofu, japanische Frühlingszwiebel.', price: '12', badge: null, img: 'https://loremflickr.com/580/380/miso,soup?lock=404' },
-      { name: 'Meeresalgen-Salat', desc: 'Fünf Sorten Meeresalgen, Sesamöl-Dressing, Tobiko, Gurkenbänder.', price: '14', badge: null, img: 'https://loremflickr.com/580/380/seaweed,salad?lock=405' },
-      { name: 'Karaage Chicken', desc: 'Freiland-Hähnchen, zweifach frittiert, Shichimi, Kewpie-Mayo, eingelegter Daikon.', price: '22', badge: 'Beliebt', img: 'https://loremflickr.com/580/380/chicken,fried?lock=406' },
+    vorspeisen: [
+      { name: 'Frühlingsrollen (4 Stk.)', desc: 'Knusprige Reisteig-Rollen mit Gemüse und Glasnudeln, süß-saure Dipping-Sauce.', price: '8,50', badge: 'Beliebt', img: 'https://loremflickr.com/580/380/spring,rolls?lock=401' },
+      { name: 'Edamame', desc: 'Gedämpfte Sojabohnenschoten mit Meersalz und Sesam. Der perfekte Start.', price: '5,50', badge: null, img: 'https://loremflickr.com/580/380/edamame,food?lock=402' },
+      { name: 'Gyoza (6 Stk.)', desc: 'Gebratene Teigtaschen gefüllt mit Schweinefleisch und Kohl, Ponzu zum Dippen.', price: '9,50', badge: null, img: 'https://loremflickr.com/580/380/gyoza,dumpling?lock=403' },
+      { name: 'Miso-Suppe', desc: 'Traditionelle japanische Miso-Suppe mit Tofu, Wakame und Frühlingszwiebeln.', price: '4,50', badge: null, img: 'https://loremflickr.com/580/380/miso,soup?lock=404' },
+      { name: 'Asiatischer Salat', desc: 'Mischsalat mit Gurke, Karotte, Radieschen, Sesam-Ingwer-Dressing, gerösteten Erdnüssen.', price: '9,00', badge: 'Leicht', img: 'https://loremflickr.com/580/380/asian,salad?lock=405' },
+      { name: 'Tempura Garnelen (4 Stk.)', desc: 'Luftig ausgebackene Tigergarnelenm, Tentsuyu-Dipping-Sauce, geriebener Rettich.', price: '12,50', badge: "Chef's Choice", img: 'https://loremflickr.com/580/380/tempura,shrimp?lock=406' },
+    ],
+    getraenke: [
+      { name: 'Japanisches Bier (Asahi / Sapporo)', desc: 'Erfrischendes japanisches Premium-Bier, 0,33 l.', price: '4,50', badge: null, img: 'https://loremflickr.com/580/380/japanese,beer?lock=501' },
+      { name: 'Sake kalt (0,2 l)', desc: 'Ausgewählter japanischer Sake, leicht und frisch. Ideal zur Sushi-Platte.', price: '7,50', badge: 'Empfehlung', img: 'https://loremflickr.com/580/380/sake,japanese?lock=502' },
+      { name: 'Grüner Tee (Kanne)', desc: 'Sencha-Qualität, natürlich und aromatisch, heiß serviert.', price: '3,50', badge: null, img: 'https://loremflickr.com/580/380/green,tea?lock=503' },
+      { name: 'Lychee Limonade', desc: 'Hausgemachte Limonade mit Lychee, frischer Minze und Limettensaft.', price: '4,00', badge: 'Hausgemacht', img: 'https://loremflickr.com/580/380/lychee,drink?lock=504' },
+      { name: 'Thai Eistee', desc: 'Traditioneller thailändischer Eistee mit Kondensmilch und Eiswürfeln. Süß und cremig.', price: '4,50', badge: 'Beliebt', img: 'https://loremflickr.com/580/380/thai,iced,tea?lock=505' },
+      { name: 'Softdrinks / Wasser', desc: 'Coca-Cola, Fanta, Sprite, Mineralwasser (still/sprudelnd), 0,33 l.', price: '3,00', badge: null, img: 'https://loremflickr.com/580/380/soft,drink?lock=506' },
     ],
     desserts: [
-      { name: 'Matcha Fondant', desc: 'Warmer Matcha-Lava-Kuchen, Schwarzer-Sesam-Eis, rote Bohnenpaste.', price: '16', badge: 'Signature', img: 'https://loremflickr.com/580/380/matcha,cake?lock=501' },
-      { name: 'Yuzu Käsekuchen', desc: 'Japanischer No-Bake-Käsekuchen, Yuzu-Curd, kristallisierte Yuzu-Schale.', price: '14', badge: null, img: 'https://loremflickr.com/580/380/cheesecake,dessert?lock=502' },
-      { name: 'Mochi-Auswahl', desc: 'Drei hausgemachte Mochi: schwarzer Sesam, Mango und Kirschblüte. Saisonale Rotation.', price: '12', badge: null, img: 'https://loremflickr.com/580/380/mochi,japanese?lock=503' },
-      { name: 'Sake Panna Cotta', desc: 'Junmai Daiginjo-Infusions-Sahne, Beerenkompott, Blattgold.', price: '15', badge: "Chef's Choice", img: 'https://loremflickr.com/580/380/panna,cotta?lock=504' },
-      { name: 'Schokolade Miso', desc: 'Dunkle Schokolade und weißes Miso-Ganache-Tarte, Kinako-Sahne, karamellisierter Sesam.', price: '14', badge: null, img: 'https://loremflickr.com/580/380/chocolate,tart?lock=505' },
-      { name: 'Eis-Flight', desc: 'Drei Kugeln: schwarzer Sesam, Hojicha, gesalzenes Karamell-Miso. Hausgemachte Waffeln.', price: '13', badge: null, img: 'https://loremflickr.com/580/380/ice,cream?lock=506' },
+      { name: 'Matcha Eis (2 Kugeln)', desc: 'Cremiges Matcha-Eis aus japanischem Ceremonial-Grade-Matcha, Mochi-Würfel obendrauf.', price: '6,50', badge: 'Signature', img: 'https://loremflickr.com/580/380/matcha,icecream?lock=601' },
+      { name: 'Mango Sticky Rice', desc: 'Klassisches vietnamesisches Dessert: Klebreis mit frischer Mango und Kokosmilch-Sauce.', price: '7,50', badge: 'Klassiker', img: 'https://loremflickr.com/580/380/mango,rice?lock=602' },
+      { name: 'Mochi-Auswahl (3 Stk.)', desc: 'Drei hausgemachte Mochi: schwarzer Sesam, Mango und Erdbeere. Saisonale Rotation.', price: '7,00', badge: null, img: 'https://loremflickr.com/580/380/mochi,japanese?lock=603' },
+      { name: 'Gebratene Banane', desc: 'In Kokosöl gebratene Banane, Vanilleeis, Karamellsauce, geröstete Sesamsamen.', price: '6,00', badge: 'Beliebt', img: 'https://loremflickr.com/580/380/banana,dessert?lock=604' },
+      { name: 'Crème Brûlée Matcha', desc: 'Klassische Crème Brûlée mit Matcha-Infusion, karamellisierte Zuckerkruste.', price: '8,00', badge: "Chef's Choice", img: 'https://loremflickr.com/580/380/creme,brulee?lock=605' },
+      { name: 'Churros mit Schokolade', desc: 'Knusprige Churros, dunkle Schokoladensauce mit Chili, Zimt-Zucker.', price: '6,50', badge: null, img: 'https://loremflickr.com/580/380/churros,chocolate?lock=606' },
     ],
   };
 
