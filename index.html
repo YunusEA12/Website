@@ -422,10 +422,10 @@
 <!-- ════════════════════════════════════════════
      NAVIGATION
 ════════════════════════════════════════════ -->
-<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:80px;display:flex;align-items:center;justify-content:space-between;transition:background 0.4s ease,backdrop-filter 0.4s ease,box-shadow 0.4s ease;">
+<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:96px;display:flex;align-items:center;justify-content:space-between;transition:background 0.4s ease,backdrop-filter 0.4s ease,box-shadow 0.4s ease;">
   <!-- Logo -->
   <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-    <img src="brand_assets/Mianno-Logo-03.png" alt="Mianno" style="height:64px;width:auto;filter:brightness(0) invert(1) sepia(1) saturate(0.4) brightness(0.9);" />
+    <img src="brand_assets/Mianno-Logo-03.png" alt="Mianno" style="height:88px;width:auto;filter:brightness(0) invert(1) sepia(1) saturate(0.4) brightness(0.9);" />
   </a>
 
   <!-- Desktop Nav -->
@@ -1022,7 +1022,7 @@
         </div>
         <!-- Card amount -->
         <div>
-          <p style="font-family:'Cormorant Garamond',serif;font-size:3rem;color:#c9a96e;font-weight:300;line-height:1;margin-bottom:4px;">50 €</p>
+          <p id="card-amount" style="font-family:'Cormorant Garamond',serif;font-size:3rem;color:#c9a96e;font-weight:300;line-height:1;margin-bottom:4px;">50 €</p>
           <p style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:#6b6259;">Wertgutschein · Mianno Sushi &amp; Grill</p>
         </div>
         <!-- Card bottom -->
@@ -1052,28 +1052,34 @@
         Verschenken Sie ein unvergessliches kulinarisches Erlebnis bei Mianno. Unsere Gutscheine sind in beliebigen Wertbeträgen erhältlich und können für alle Speisen und Getränke eingelöst werden.
       </p>
 
+      <!-- Amount selector -->
       <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:36px;">
-        <div class="resp-voucher-btns" style="display:flex;gap:20px;">
-          <div style="text-align:center;padding:16px 24px;border:1px solid rgba(201,169,110,0.15);cursor:pointer;transition:border-color 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,169,110,0.4)'" onmouseleave="this.style.borderColor='rgba(201,169,110,0.15)'">
-            <p class="price">25 €</p>
+        <p style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#6b6259;margin-bottom:4px;">Wert wählen</p>
+        <div class="resp-voucher-btns" id="voucher-btns" style="display:flex;gap:12px;">
+          <div class="voucher-btn" data-amount="25" onclick="selectVoucher(this)" style="text-align:center;padding:14px 20px;border:1px solid rgba(201,169,110,0.15);cursor:pointer;transition:all 0.25s ease;flex:1;">
+            <p class="price" style="pointer-events:none;">25 €</p>
           </div>
-          <div style="text-align:center;padding:16px 24px;border:1px solid rgba(201,169,110,0.35);background:rgba(201,169,110,0.06);cursor:pointer;">
-            <p class="price">50 €</p>
+          <div class="voucher-btn active-voucher" data-amount="50" onclick="selectVoucher(this)" style="text-align:center;padding:14px 20px;border:1px solid rgba(201,169,110,0.5);background:rgba(201,169,110,0.08);cursor:pointer;transition:all 0.25s ease;flex:1;">
+            <p class="price" style="pointer-events:none;">50 €</p>
           </div>
-          <div style="text-align:center;padding:16px 24px;border:1px solid rgba(201,169,110,0.15);cursor:pointer;transition:border-color 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,169,110,0.4)'" onmouseleave="this.style.borderColor='rgba(201,169,110,0.15)'">
-            <p class="price">100 €</p>
+          <div class="voucher-btn" data-amount="100" onclick="selectVoucher(this)" style="text-align:center;padding:14px 20px;border:1px solid rgba(201,169,110,0.15);cursor:pointer;transition:all 0.25s ease;flex:1;">
+            <p class="price" style="pointer-events:none;">100 €</p>
           </div>
-          <div style="text-align:center;padding:16px 24px;border:1px solid rgba(201,169,110,0.15);cursor:pointer;transition:border-color 0.3s ease;" onmouseenter="this.style.borderColor='rgba(201,169,110,0.4)'" onmouseleave="this.style.borderColor='rgba(201,169,110,0.15)'">
-            <p class="price">Individuell</p>
+          <div class="voucher-btn" data-amount="Individuell" onclick="selectVoucher(this)" style="text-align:center;padding:14px 20px;border:1px solid rgba(201,169,110,0.15);cursor:pointer;transition:all 0.25s ease;flex:1;">
+            <p class="price" style="font-size:0.9rem;pointer-events:none;">Indiv.</p>
           </div>
+        </div>
+        <!-- Custom amount input (shown only when Individuell selected) -->
+        <div id="custom-amount-wrap" style="display:none;margin-top:8px;">
+          <input id="custom-amount" type="number" min="10" step="5" class="form-input" placeholder="Wunschbetrag in € (z.B. 75)" style="max-width:260px;" oninput="updateCardAmount(this.value + ' €')" />
         </div>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:12px;">
-        <a href="mailto:info@mianno.de?subject=Gutschein%20Bestellung&body=Hallo%20Mianno-Team%2C%0Aich%20m%C3%B6chte%20gerne%20einen%20Gutschein%20bestellen.%0A%0ABetrag%3A%20%0AName%3A%20%0ATelefon%3A%20%0A%0AViele%20Gr%C3%BC%C3%9Fe" class="btn-gold">
+        <button onclick="orderVoucher()" class="btn-gold" style="border:none;cursor:pointer;">
           Gutschein Bestellen
           <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M0 5h13M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+        </button>
         <p style="font-size:0.72rem;color:#6b6259;margin-top:8px;">Per E-Mail an <a href="mailto:info@mianno.de" style="color:#c9a96e;text-decoration:none;">info@mianno.de</a> oder direkt im Restaurant erhältlich.</p>
       </div>
     </div>
@@ -1422,6 +1428,26 @@
 
 
 <!-- ════════════════════════════════════════════
+     LIGHTBOX MODAL
+════════════════════════════════════════════ -->
+<div id="lightbox" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(4,3,2,0.95);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:24px;" onclick="closeLightbox()">
+  <button onclick="closeLightbox()" style="position:absolute;top:20px;right:24px;background:none;border:none;cursor:pointer;z-index:9001;">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M2 2l20 20M22 2L2 22" stroke="#c9a96e" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </button>
+  <button id="lb-prev" onclick="event.stopPropagation();shiftLightbox(-1)" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.3);cursor:pointer;padding:14px 12px;z-index:9001;">
+    <svg width="12" height="20" viewBox="0 0 12 20" fill="none"><path d="M10 2L2 10l8 8" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <button id="lb-next" onclick="event.stopPropagation();shiftLightbox(1)" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.3);cursor:pointer;padding:14px 12px;z-index:9001;">
+    <svg width="12" height="20" viewBox="0 0 12 20" fill="none"><path d="M2 2l8 8-8 8" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div onclick="event.stopPropagation()" style="position:relative;max-width:1100px;max-height:90vh;width:100%;">
+    <img id="lb-img" src="" alt="" style="width:100%;max-height:80vh;object-fit:contain;border:1px solid rgba(201,169,110,0.15);display:block;" />
+    <p id="lb-caption" style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:#a09488;text-align:center;margin-top:16px;letter-spacing:0.05em;"></p>
+    <p id="lb-counter" style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;text-align:center;margin-top:8px;"></p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
      JAVASCRIPT
 ════════════════════════════════════════════ -->
 <script>
@@ -1529,13 +1555,23 @@
     `).join('');
   }
 
+  // ── Menu tab switch (fix: also reset inline styles so active state is always visible) ──
   function switchTab(category) {
-    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active-tab'));
-    document.querySelector(`[data-tab="${category}"]`).classList.add('active-tab');
+    document.querySelectorAll('.menu-tab').forEach(t => {
+      t.classList.remove('active-tab');
+      t.style.background    = 'transparent';
+      t.style.borderColor   = 'rgba(160,148,136,0.15)';
+      t.style.color         = '#6b6259';
+    });
+    const active = document.querySelector(`[data-tab="${category}"]`);
+    active.classList.add('active-tab');
+    active.style.background  = 'rgba(201,169,110,0.1)';
+    active.style.borderColor = 'rgba(201,169,110,0.35)';
+    active.style.color       = '#c9a96e';
     renderMenu(category);
   }
 
-  // Init
+  // Init — call after function is defined
   renderMenu('sushi');
 
   // ── Reservation form ──
@@ -1546,22 +1582,179 @@
     window.scrollTo({ top: document.getElementById('reservations').offsetTop, behavior: 'smooth' });
   }
 
+  // ── Gutschein ──
+  let selectedVoucherAmount = '50 €';
+
+  function selectVoucher(el) {
+    // Reset all buttons
+    document.querySelectorAll('.voucher-btn').forEach(b => {
+      b.classList.remove('active-voucher');
+      b.style.borderColor = 'rgba(201,169,110,0.15)';
+      b.style.background  = 'transparent';
+    });
+    // Activate clicked
+    el.classList.add('active-voucher');
+    el.style.borderColor = 'rgba(201,169,110,0.5)';
+    el.style.background  = 'rgba(201,169,110,0.08)';
+
+    const amount = el.dataset.amount;
+    const customWrap = document.getElementById('custom-amount-wrap');
+
+    if (amount === 'Individuell') {
+      customWrap.style.display = 'block';
+      selectedVoucherAmount = 'Individuell';
+      updateCardAmount('— €');
+    } else {
+      customWrap.style.display = 'none';
+      selectedVoucherAmount = amount + ' €';
+      updateCardAmount(amount + ' €');
+    }
+  }
+
+  function updateCardAmount(val) {
+    const el = document.getElementById('card-amount');
+    if (el) el.textContent = val;
+    selectedVoucherAmount = val;
+  }
+
+  function orderVoucher() {
+    const amount = selectedVoucherAmount;
+    const subject = encodeURIComponent('Gutschein Bestellung – ' + amount);
+    const body = encodeURIComponent(
+      'Hallo Mianno-Team,\n\n' +
+      'ich möchte gerne einen Gutschein bestellen.\n\n' +
+      'Gewünschter Betrag: ' + amount + '\n' +
+      'Name: \n' +
+      'Telefon: \n' +
+      'Lieferadresse (falls gewünscht): \n\n' +
+      'Viele Grüße'
+    );
+    window.location.href = 'mailto:info@mianno.de?subject=' + subject + '&body=' + body;
+  }
+
+  // ── Lightbox ──
+  let lbImages = [];
+  let lbIndex  = 0;
+
+  function openLightbox(src, caption, allImages, idx) {
+    lbImages = allImages || [{ src, caption }];
+    lbIndex  = idx || 0;
+    showLightboxSlide();
+    const lb = document.getElementById('lightbox');
+    lb.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function showLightboxSlide() {
+    const img     = document.getElementById('lb-img');
+    const cap     = document.getElementById('lb-caption');
+    const counter = document.getElementById('lb-counter');
+    const item    = lbImages[lbIndex];
+    img.src       = item.src;
+    cap.textContent = item.caption || '';
+    counter.textContent = (lbIndex + 1) + ' / ' + lbImages.length;
+    // Show/hide arrows
+    document.getElementById('lb-prev').style.opacity = lbIndex > 0 ? '1' : '0.2';
+    document.getElementById('lb-next').style.opacity = lbIndex < lbImages.length - 1 ? '1' : '0.2';
+  }
+
+  function shiftLightbox(dir) {
+    const next = lbIndex + dir;
+    if (next >= 0 && next < lbImages.length) {
+      lbIndex = next;
+      showLightboxSlide();
+    }
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  // Keyboard nav for lightbox
+  document.addEventListener('keydown', e => {
+    if (document.getElementById('lightbox').style.display === 'flex') {
+      if (e.key === 'ArrowRight') shiftLightbox(1);
+      if (e.key === 'ArrowLeft')  shiftLightbox(-1);
+      if (e.key === 'Escape')     closeLightbox();
+    }
+  });
+
+  // Make gallery images clickable — collect all gallery images
+  function initGallery() {
+    const galleryImgs = [];
+    document.querySelectorAll('#gallery .img-wrap img').forEach(img => {
+      const wrap   = img.closest('.img-wrap');
+      const capEl  = wrap ? wrap.querySelector('[style*="font-family"]') : null;
+      const caption = capEl ? capEl.textContent.trim() : '';
+      galleryImgs.push({ src: img.src, caption });
+    });
+
+    document.querySelectorAll('#gallery .img-wrap').forEach((wrap, idx) => {
+      wrap.style.cursor = 'pointer';
+      wrap.addEventListener('click', () => openLightbox(null, null, galleryImgs, idx));
+    });
+  }
+
+  // Also make menu card images clickable in lightbox
+  function addMenuCardLightbox() {
+    document.querySelectorAll('#menu-grid .img-wrap').forEach(wrap => {
+      wrap.style.cursor = 'zoom-in';
+      const img     = wrap.querySelector('img');
+      const nameEl  = wrap.closest('.menu-card')?.querySelector('h3');
+      const caption = nameEl ? nameEl.textContent.trim() : '';
+      wrap.addEventListener('click', () => openLightbox(img.src, caption, [{ src: img.src, caption }], 0));
+    });
+  }
+
+  // Patch renderMenu to add lightbox to cards after render
+  const _origRenderMenu = renderMenu;
+  function renderMenuWithLightbox(cat) {
+    _origRenderMenu(cat);
+    setTimeout(addMenuCardLightbox, 50);
+  }
+  // Override references
+  window._switchTab = switchTab;
+
   // ── Intersection observer for fade-in ──
-  const observer = new IntersectionObserver((entries) => {
+  const cardObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
+        entry.target.style.opacity   = '1';
         entry.target.style.transform = 'translateY(0)';
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
 
-  document.querySelectorAll('.menu-card, .testimonial-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
+  function observeCards() {
+    document.querySelectorAll('.menu-card').forEach(el => {
+      if (el.dataset.observed) return;
+      el.dataset.observed = '1';
+      el.style.opacity    = '0';
+      el.style.transform  = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      cardObserver.observe(el);
+    });
+  }
+
+  document.querySelectorAll('.testimonial-card').forEach(el => {
+    el.style.opacity    = '0';
+    el.style.transform  = 'translateY(20px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
+    cardObserver.observe(el);
   });
+
+  // Re-observe after each tab switch and add lightbox
+  const origSwitchTab = switchTab;
+  function switchTab(category) {
+    origSwitchTab(category);
+    setTimeout(() => { observeCards(); addMenuCardLightbox(); }, 50);
+  }
+
+  // Init observers and lightbox
+  observeCards();
+  addMenuCardLightbox();
+  initGallery();
 </script>
 
 </body>
