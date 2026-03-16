@@ -346,6 +346,7 @@
       /* Nav */
       .nav-desktop    { display: none !important; }
       .nav-hamburger  { display: block !important; }
+      .nav-logo       { height: 72px !important; filter: brightness(0) invert(1) sepia(1) saturate(0.6) brightness(1.15) drop-shadow(0 2px 8px rgba(201,169,110,0.25)) !important; }
 
       /* Section padding */
       .resp-pad    { padding-top: 64px !important; padding-bottom: 64px !important; padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
@@ -416,6 +417,27 @@
       .resp-voucher-btns > div { flex: 1 1 100% !important; }
     }
   </style>
+
+  <!-- ── Site-wide reveal animations ── -->
+  <style>
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.reveal-left  { transform: translateX(-28px); }
+    .reveal.reveal-right { transform: translateX(28px); }
+    .reveal.reveal-scale { transform: scale(0.96) translateY(12px); }
+    .reveal.visible {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+    .reveal-d4 { transition-delay: 0.32s; }
+    .reveal-d5 { transition-delay: 0.40s; }
+  </style>
 </head>
 <body>
 
@@ -425,7 +447,7 @@
 <nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:96px;display:flex;align-items:center;justify-content:space-between;transition:background 0.4s ease,backdrop-filter 0.4s ease,box-shadow 0.4s ease;">
   <!-- Logo -->
   <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-    <img src="brand_assets/Mianno-Logo-03.png" alt="Mianno" style="height:88px;width:auto;filter:brightness(0) invert(1) sepia(1) saturate(0.4) brightness(0.9);" />
+    <img src="brand_assets/Mianno-Logo-03.png" alt="Mianno" class="nav-logo" style="height:96px;width:auto;filter:brightness(0) invert(1) sepia(1) saturate(0.5) brightness(1.05);" />
   </a>
 
   <!-- Desktop Nav -->
@@ -514,7 +536,7 @@
     </div>
 
     <!-- Opening info -->
-    <div class="fade-up delay-4 resp-hero-info" style="display:flex;gap:32px;margin-top:60px;padding-top:40px;border-top:1px solid rgba(201,169,110,0.1);">
+    <div class="fade-up delay-4 resp-hero-info" style="display:flex;gap:32px;margin-top:60px;padding-top:40px;">
       <div>
         <p style="font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-bottom:6px;">Öffnungszeiten</p>
         <p style="font-size:0.85rem;color:#c8bfae;font-weight:300;">Mo – Fr &nbsp;11:30 – 15:00 &amp; 17:00 – 22:00</p>
@@ -554,21 +576,21 @@
 <!-- ════════════════════════════════════════════
      STATS BAND
 ════════════════════════════════════════════ -->
-<div style="background:linear-gradient(90deg, #0a0804, #120e08, #0a0804);border-top:1px solid rgba(201,169,110,0.1);border-bottom:1px solid rgba(201,169,110,0.1);">
+<div style="background:linear-gradient(90deg, #0a0804, #120e08, #0a0804);">
   <div class="resp-grid-4" style="max-width:1200px;margin:0 auto;padding:48px 2rem;display:grid;grid-template-columns:repeat(4,1fr);gap:0;text-align:center;">
-    <div style="padding:16px 2rem;border-right:1px solid rgba(201,169,110,0.1);">
+    <div class="reveal reveal-d1" style="padding:16px 2rem;border-right:1px solid rgba(201,169,110,0.1);">
       <div class="stat-num">5,0</div>
       <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-top:8px;">Google Bewertung</p>
     </div>
-    <div style="padding:16px 2rem;border-right:1px solid rgba(201,169,110,0.1);">
+    <div class="reveal reveal-d2" style="padding:16px 2rem;border-right:1px solid rgba(201,169,110,0.1);">
       <div class="stat-num">52+</div>
       <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-top:8px;">Gästebewertungen</p>
     </div>
-    <div style="padding:16px 2rem;border-right:1px solid rgba(201,169,110,0.1);">
+    <div class="reveal reveal-d3" style="padding:16px 2rem;border-right:1px solid rgba(201,169,110,0.1);">
       <div class="stat-num">30–40</div>
       <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-top:8px;">€ pro Person</p>
     </div>
-    <div style="padding:16px 2rem;">
+    <div class="reveal reveal-d4" style="padding:16px 2rem;">
       <div class="stat-num">3</div>
       <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6259;margin-top:8px;">Service-Optionen</p>
     </div>
@@ -583,7 +605,7 @@
   <div class="resp-grid-2" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
 
     <!-- Images -->
-    <div style="position:relative;">
+    <div class="reveal reveal-left" style="position:relative;">
       <!-- Main image -->
       <div class="img-wrap" style="border-radius:2px;overflow:hidden;aspect-ratio:4/5;">
         <img src="https://images.unsplash.com/photo-1559410545-0240e2f22f29?w=600&h=750&auto=format&fit=crop&q=80" alt="Mianno interior" style="width:100%;height:100%;object-fit:cover;" />
@@ -601,7 +623,7 @@
     </div>
 
     <!-- Text -->
-    <div>
+    <div class="reveal reveal-right">
       <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
         <div class="divider"></div>
         <span style="font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#c9a96e;font-weight:500;">Unser Restaurant</span>
@@ -674,7 +696,7 @@
     <div class="resp-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
 
       <!-- Left: header + description -->
-      <div>
+      <div class="reveal reveal-left">
         <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
           <div class="divider"></div>
           <span style="font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#c9a96e;font-weight:500;">Mo – Fr · 11:30 – 15:00 Uhr</span>
@@ -776,7 +798,7 @@
   <div style="max-width:1200px;margin:0 auto;">
 
     <!-- Section header -->
-    <div style="text-align:center;margin-bottom:64px;">
+    <div class="reveal" style="text-align:center;margin-bottom:64px;">
       <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:20px;">
         <div class="divider"></div>
         <span style="font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#c9a96e;font-weight:500;">Kulinarische Highlights</span>
@@ -853,19 +875,19 @@
     <!-- 3-column experiences -->
     <div class="resp-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;">
 
-      <div style="padding:48px 40px;background:#080604;position:relative;overflow:hidden;transition:background 0.3s ease;border-right:1px solid rgba(201,169,110,0.06);" onmouseenter="this.style.background='#0d0a07'" onmouseleave="this.style.background='#080604'">
+      <div class="reveal reveal-d1" style="padding:48px 40px;background:#080604;position:relative;overflow:hidden;transition:background 0.3s ease;border-right:1px solid rgba(201,169,110,0.06);" onmouseenter="this.style.background='#0d0a07'" onmouseleave="this.style.background='#080604'">
         <div style="font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:300;color:rgba(201,169,110,0.12);line-height:1;margin-bottom:24px;">01</div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:500;color:#f5f0e8;margin-bottom:16px;letter-spacing:-0.01em;">Unsere Sushi-Bar</h3>
         <p style="font-size:0.83rem;color:#6b6259;line-height:1.75;font-weight:300;">Frisch gerolltes Sushi von erfahrenen Köchen. Jedes Stück wird mit Sorgfalt und dem besten Fisch des Tages zubereitet — von der klassischen Nigiri bis zur kreativen Signature Roll. Handgemacht, immer frisch.</p>
       </div>
 
-      <div style="padding:48px 40px;background:#080604;position:relative;overflow:hidden;transition:background 0.3s ease;border-right:1px solid rgba(201,169,110,0.06);" onmouseenter="this.style.background='#0d0a07'" onmouseleave="this.style.background='#080604'">
+      <div class="reveal reveal-d2" style="padding:48px 40px;background:#080604;position:relative;overflow:hidden;transition:background 0.3s ease;border-right:1px solid rgba(201,169,110,0.06);" onmouseenter="this.style.background='#0d0a07'" onmouseleave="this.style.background='#080604'">
         <div style="font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:300;color:rgba(201,169,110,0.12);line-height:1;margin-bottom:24px;">02</div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:500;color:#f5f0e8;margin-bottom:16px;letter-spacing:-0.01em;">Vietnamesische Küche</h3>
         <p style="font-size:0.83rem;color:#6b6259;line-height:1.75;font-weight:300;">Authentische vietnamesische Rezepte, weitergegeben über Generationen. Von der dampfenden Pho über knusprige Frühlingsrollen bis hin zu aromatischen Wok-Gerichten — jede Zubereitung erzählt eine Geschichte.</p>
       </div>
 
-      <div style="padding:48px 40px;background:#080604;position:relative;overflow:hidden;transition:background 0.3s ease;" onmouseenter="this.style.background='#0d0a07'" onmouseleave="this.style.background='#080604'">
+      <div class="reveal reveal-d3" style="padding:48px 40px;background:#080604;position:relative;overflow:hidden;transition:background 0.3s ease;" onmouseenter="this.style.background='#0d0a07'" onmouseleave="this.style.background='#080604'">
         <div style="font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:300;color:rgba(201,169,110,0.12);line-height:1;margin-bottom:24px;">03</div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:500;color:#f5f0e8;margin-bottom:16px;letter-spacing:-0.01em;">Am Remsufer</h3>
         <p style="font-size:0.83rem;color:#6b6259;line-height:1.75;font-weight:300;">Einzigartige Lage direkt am Wasser in Remseck am Neckar. Genießen Sie Ihr Essen mit Blick auf den Fluss — drinnen oder draußen auf unserer Terrasse. Das perfekte Ambiente für jeden Anlass.</p>
@@ -909,7 +931,7 @@
 <section id="gallery" class="resp-pad" style="padding:120px 2rem;background:#080604;border-top:1px solid rgba(201,169,110,0.08);">
   <div style="max-width:1200px;margin:0 auto;">
 
-    <div style="text-align:center;margin-bottom:64px;">
+    <div class="reveal" style="text-align:center;margin-bottom:64px;">
       <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:20px;">
         <div class="divider"></div>
         <span style="font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#c9a96e;font-weight:500;">Galerie</span>
@@ -1038,7 +1060,7 @@
     </div>
 
     <!-- Right: info -->
-    <div>
+    <div class="reveal reveal-right">
       <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
         <div class="divider"></div>
         <span style="font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#c9a96e;font-weight:500;">Gutschein</span>
@@ -1097,7 +1119,7 @@
       <span style="font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#c9a96e;font-weight:500;">Gästestimmen</span>
       <div class="divider"></div>
     </div>
-    <h2 style="text-align:center;font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;font-style:italic;color:#a09488;margin:0 0 56px;">"Ein Abend, der uns wochenlang begleitet hat."</h2>
+    <h2 class="reveal" style="text-align:center;font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;font-style:italic;color:#a09488;margin:0 0 56px;">"Ein Abend, der uns wochenlang begleitet hat."</h2>
 
     <div class="resp-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
 
@@ -1559,7 +1581,7 @@
     `).join('');
   }
 
-  // ── Menu tab switch (fix: also reset inline styles so active state is always visible) ──
+  // ── Menu tab switch ──
   function switchTab(category) {
     document.querySelectorAll('.menu-tab').forEach(t => {
       t.classList.remove('active-tab');
@@ -1568,11 +1590,13 @@
       t.style.color         = '#6b6259';
     });
     const active = document.querySelector(`[data-tab="${category}"]`);
+    if (!active) return;
     active.classList.add('active-tab');
     active.style.background  = 'rgba(201,169,110,0.1)';
     active.style.borderColor = 'rgba(201,169,110,0.35)';
     active.style.color       = '#c9a96e';
     renderMenu(category);
+    setTimeout(() => { if (typeof observeCards === 'function') observeCards(); if (typeof addMenuCardLightbox === 'function') addMenuCardLightbox(); }, 60);
   }
 
   // Init — call after function is defined
@@ -1748,12 +1772,17 @@
     cardObserver.observe(el);
   });
 
-  // Re-observe after each tab switch and add lightbox
-  const origSwitchTab = switchTab;
-  function switchTab(category) {
-    origSwitchTab(category);
-    setTimeout(() => { observeCards(); addMenuCardLightbox(); }, 50);
-  }
+  // ── Site-wide reveal observer ──
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
   // Init observers and lightbox
   observeCards();
