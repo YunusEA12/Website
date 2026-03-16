@@ -60,7 +60,7 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background-color: #080604;
+      background-color: #100c08;
       color: #f5f0e8;
       font-family: 'Inter', system-ui, sans-serif;
       font-weight: 300;
@@ -110,10 +110,14 @@
     /* Hero gradients */
     .hero-bg {
       background:
-        radial-gradient(ellipse 70% 60% at 75% 50%, rgba(201,169,110,0.07) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 70% at 20% 80%, rgba(60,40,20,0.5) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 60% at 75% 50%, rgba(201,169,110,0.10) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 70% at 20% 80%, rgba(60,40,20,0.55) 0%, transparent 60%),
         radial-gradient(ellipse 80% 50% at 50% 0%, rgba(14,11,9,0.8) 0%, transparent 50%),
-        linear-gradient(165deg, #0e0b09 0%, #161210 40%, #1a1410 70%, #0e0b09 100%);
+        linear-gradient(165deg, #120e0a 0%, #1c1610 40%, #221a12 70%, #120e0a 100%);
+    }
+    @keyframes heroBgDrift {
+      0%   { transform: scale(1.0) translateX(0px);   }
+      100% { transform: scale(1.06) translateX(-16px); }
     }
 
     /* Divider line */
@@ -175,15 +179,29 @@
     /* Section bg variants */
     .section-dark {
       background:
-        radial-gradient(ellipse 60% 40% at 80% 50%, rgba(201,169,110,0.04) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 60% at 10% 60%, rgba(201,169,110,0.03) 0%, transparent 50%),
-        #0a0804;
+        radial-gradient(ellipse 60% 40% at 80% 50%, rgba(201,169,110,0.055) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 10% 60%, rgba(201,169,110,0.04) 0%, transparent 50%),
+        #120e09;
     }
 
     .section-mid {
       background:
-        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(30,22,12,0.8) 0%, transparent 60%),
-        #0d0a07;
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(38,28,16,0.9) 0%, transparent 60%),
+        #160f09;
+    }
+
+    /* Gold shimmer on italic headings */
+    @keyframes goldShimmer {
+      0%   { background-position: -400px 0; }
+      100% { background-position: 400px 0; }
+    }
+    .shimmer-heading {
+      background: linear-gradient(90deg, #c9a96e 25%, #f0dfa8 45%, #e8d090 50%, #f0dfa8 55%, #c9a96e 75%);
+      background-size: 800px 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: goldShimmer 4s linear infinite;
     }
 
     /* Reservation form */
@@ -491,11 +509,14 @@
 
   <!-- Background image with overlay -->
   <div style="position:absolute;inset:0;z-index:0;">
-    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&h=1080&auto=format&fit=crop&q=80" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.12;" />
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&h=1080&auto=format&fit=crop&q=80" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.22;animation:heroBgDrift 20s ease-in-out infinite alternate;" />
     <!-- Layered radial glows -->
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 55% 65% at 72% 55%, rgba(201,169,110,0.09) 0%, transparent 60%);"></div>
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 40% 50% at 30% 30%, rgba(30,18,8,0.6) 0%, transparent 55%);"></div>
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 55% 65% at 72% 55%, rgba(201,169,110,0.12) 0%, transparent 60%);"></div>
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 40% 50% at 30% 30%, rgba(20,12,4,0.7) 0%, transparent 55%);"></div>
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%, rgba(8,5,2,0.85) 0%, transparent 70%);"></div>
   </div>
+  <!-- Floating gold particles -->
+  <canvas id="particles-canvas" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0.55;"></canvas>
 
   <!-- Decorative koi illustration (large watermark) -->
   <div style="position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:600px;height:600px;opacity:0.15;pointer-events:none;">
@@ -516,7 +537,7 @@
 
     <!-- Main heading -->
     <h1 class="fade-up delay-1" style="font-family:'Playfair Display',serif;font-size:clamp(3.5rem,7vw,6.5rem);font-weight:500;line-height:1.0;letter-spacing:-0.03em;margin:0 0 12px;">
-      <span class="text-gold-gradient">Herzlich</span><br/>
+      <span class="shimmer-heading">Herzlich</span><br/>
       <span style="color:#f5f0e8;">Willkommen</span><br/>
       <span style="font-style:italic;font-weight:400;color:#d0c8b8;">bei Mianno</span>
     </h1>
@@ -557,26 +578,13 @@
     </div>
   </div>
 
-  <!-- Scroll indicator -->
-  <div style="position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0.4;">
-    <span style="font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#a09488;">Scroll</span>
-    <div style="width:1px;height:48px;background:linear-gradient(to bottom, rgba(201,169,110,0.6), transparent);animation:scrollLine 2s ease-in-out infinite;">
-    </div>
-  </div>
 </section>
-
-<style>
-@keyframes scrollLine {
-  0%, 100% { transform: scaleY(1); opacity: 0.6; }
-  50% { transform: scaleY(0.5); opacity: 0.2; }
-}
-</style>
 
 
 <!-- ════════════════════════════════════════════
      STATS BAND
 ════════════════════════════════════════════ -->
-<div style="background:linear-gradient(90deg, #0a0804, #120e08, #0a0804);">
+<div style="background:linear-gradient(90deg, #120e09, #1c1610, #120e09);">
   <div class="resp-grid-4" style="max-width:1200px;margin:0 auto;padding:48px 2rem;display:grid;grid-template-columns:repeat(4,1fr);gap:0;text-align:center;">
     <div class="reveal reveal-d1" style="padding:16px 2rem;border-right:1px solid rgba(201,169,110,0.1);">
       <div class="stat-num">5,0</div>
@@ -690,7 +698,7 @@
 <!-- ════════════════════════════════════════════
      MITTAGSTISCH
 ════════════════════════════════════════════ -->
-<section id="mittagstisch" class="resp-pad" style="padding:120px 2rem;background:linear-gradient(160deg,#0a0804 0%,#0d0a07 60%,#0a0804 100%);border-top:1px solid rgba(201,169,110,0.08);">
+<section id="mittagstisch" class="resp-pad" style="padding:120px 2rem;background:linear-gradient(160deg,#120e09 0%,#1a1410 60%,#120e09 100%);border-top:1px solid rgba(201,169,110,0.08);">
   <div style="max-width:1200px;margin:0 auto;">
 
     <div class="resp-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
@@ -856,7 +864,7 @@
 <!-- ════════════════════════════════════════════
      EXPERIENCE / AMBIANCE
 ════════════════════════════════════════════ -->
-<section id="experience" class="resp-pad" style="position:relative;padding:140px 2rem;overflow:hidden;background:#080604;">
+<section id="experience" class="resp-pad" style="position:relative;padding:140px 2rem;overflow:hidden;background:#100c08;">
 
   <!-- Background decorative -->
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201,169,110,0.05) 0%, transparent 60%);pointer-events:none;"></div>
@@ -875,19 +883,19 @@
     <!-- 3-column experiences -->
     <div class="resp-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;">
 
-      <div class="reveal reveal-d1" style="padding:48px 40px;background:#080604;position:relative;overflow:hidden;transition:background 0.3s ease;border-right:1px solid rgba(201,169,110,0.06);" onmouseenter="this.style.background='#0d0a07'" onmouseleave="this.style.background='#080604'">
+      <div class="reveal reveal-d1" style="padding:48px 40px;background:#100c08;position:relative;overflow:hidden;transition:background 0.3s ease;border-right:1px solid rgba(201,169,110,0.06);" onmouseenter="this.style.background='#0d0a07'" onmouseleave="this.style.background='#080604'">
         <div style="font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:300;color:rgba(201,169,110,0.12);line-height:1;margin-bottom:24px;">01</div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:500;color:#f5f0e8;margin-bottom:16px;letter-spacing:-0.01em;">Unsere Sushi-Bar</h3>
         <p style="font-size:0.83rem;color:#6b6259;line-height:1.75;font-weight:300;">Frisch gerolltes Sushi von erfahrenen Köchen. Jedes Stück wird mit Sorgfalt und dem besten Fisch des Tages zubereitet — von der klassischen Nigiri bis zur kreativen Signature Roll. Handgemacht, immer frisch.</p>
       </div>
 
-      <div class="reveal reveal-d2" style="padding:48px 40px;background:#080604;position:relative;overflow:hidden;transition:background 0.3s ease;border-right:1px solid rgba(201,169,110,0.06);" onmouseenter="this.style.background='#0d0a07'" onmouseleave="this.style.background='#080604'">
+      <div class="reveal reveal-d2" style="padding:48px 40px;background:#100c08;position:relative;overflow:hidden;transition:background 0.3s ease;border-right:1px solid rgba(201,169,110,0.06);" onmouseenter="this.style.background='#0d0a07'" onmouseleave="this.style.background='#080604'">
         <div style="font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:300;color:rgba(201,169,110,0.12);line-height:1;margin-bottom:24px;">02</div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:500;color:#f5f0e8;margin-bottom:16px;letter-spacing:-0.01em;">Vietnamesische Küche</h3>
         <p style="font-size:0.83rem;color:#6b6259;line-height:1.75;font-weight:300;">Authentische vietnamesische Rezepte, weitergegeben über Generationen. Von der dampfenden Pho über knusprige Frühlingsrollen bis hin zu aromatischen Wok-Gerichten — jede Zubereitung erzählt eine Geschichte.</p>
       </div>
 
-      <div class="reveal reveal-d3" style="padding:48px 40px;background:#080604;position:relative;overflow:hidden;transition:background 0.3s ease;" onmouseenter="this.style.background='#0d0a07'" onmouseleave="this.style.background='#080604'">
+      <div class="reveal reveal-d3" style="padding:48px 40px;background:#100c08;position:relative;overflow:hidden;transition:background 0.3s ease;" onmouseenter="this.style.background='#0d0a07'" onmouseleave="this.style.background='#080604'">
         <div style="font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:300;color:rgba(201,169,110,0.12);line-height:1;margin-bottom:24px;">03</div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:500;color:#f5f0e8;margin-bottom:16px;letter-spacing:-0.01em;">Am Remsufer</h3>
         <p style="font-size:0.83rem;color:#6b6259;line-height:1.75;font-weight:300;">Einzigartige Lage direkt am Wasser in Remseck am Neckar. Genießen Sie Ihr Essen mit Blick auf den Fluss — drinnen oder draußen auf unserer Terrasse. Das perfekte Ambiente für jeden Anlass.</p>
@@ -928,7 +936,7 @@
 <!-- ════════════════════════════════════════════
      GALLERY
 ════════════════════════════════════════════ -->
-<section id="gallery" class="resp-pad" style="padding:120px 2rem;background:#080604;border-top:1px solid rgba(201,169,110,0.08);">
+<section id="gallery" class="resp-pad" style="padding:120px 2rem;background:#100c08;border-top:1px solid rgba(201,169,110,0.08);">
   <div style="max-width:1200px;margin:0 auto;">
 
     <div class="reveal" style="text-align:center;margin-bottom:64px;">
@@ -1022,7 +1030,7 @@
 <!-- ════════════════════════════════════════════
      GUTSCHEIN
 ════════════════════════════════════════════ -->
-<section id="gutschein" class="resp-pad-sm" style="padding:100px 2rem;background:linear-gradient(135deg,#0d0a07 0%,#120e08 50%,#0a0804 100%);border-top:1px solid rgba(201,169,110,0.08);position:relative;overflow:hidden;">
+<section id="gutschein" class="resp-pad-sm" style="padding:100px 2rem;background:linear-gradient(135deg,#1a1410 0%,#221a12 50%,#120e09 100%);border-top:1px solid rgba(201,169,110,0.08);position:relative;overflow:hidden;">
   <!-- Background watermark -->
   <div style="position:absolute;left:-60px;top:50%;transform:translateY(-50%);width:400px;height:400px;opacity:0.04;pointer-events:none;">
     <img src="brand_assets/Mianno-Logo-03.png" alt="" style="width:100%;height:100%;object-fit:contain;filter:invert(1);" />
@@ -1032,7 +1040,7 @@
 
     <!-- Left: gift card visual -->
     <div style="position:relative;">
-      <div class="resp-gutschein-card" style="background:linear-gradient(135deg, #1a140e 0%, #241c12 50%, #1a140e 100%);border:1px solid rgba(201,169,110,0.25);padding:48px;aspect-ratio:16/10;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 32px 64px rgba(0,0,0,0.5),0 0 0 1px rgba(201,169,110,0.06);">
+      <div class="resp-gutschein-card" style="background:linear-gradient(135deg, #221810 0%, #2e2214 50%, #1e1810 100%);border:1px solid rgba(201,169,110,0.25);padding:48px;aspect-ratio:16/10;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 32px 64px rgba(0,0,0,0.5),0 0 0 1px rgba(201,169,110,0.06);">
         <!-- Card top -->
         <div style="display:flex;justify-content:space-between;align-items:flex-start;">
           <img src="brand_assets/Mianno-Logo-03.png" alt="Mianno" style="height:40px;filter:brightness(0) invert(1) sepia(1) saturate(0.6) brightness(1.1) contrast(1.1);" />
@@ -1112,7 +1120,7 @@
 <!-- ════════════════════════════════════════════
      TESTIMONIALS
 ════════════════════════════════════════════ -->
-<div class="resp-pad-sm" style="background:#0a0804;padding:100px 2rem;border-top:1px solid rgba(201,169,110,0.08);">
+<div class="resp-pad-sm" style="background:#120e09;padding:100px 2rem;border-top:1px solid rgba(201,169,110,0.08);">
   <div style="max-width:1200px;margin:0 auto;">
     <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:16px;">
       <div class="divider"></div>
@@ -1309,7 +1317,7 @@
 <!-- ════════════════════════════════════════════
      JOBS
 ════════════════════════════════════════════ -->
-<section id="jobs" class="resp-pad-sm" style="padding:100px 2rem;background:#0a0804;border-top:1px solid rgba(201,169,110,0.08);">
+<section id="jobs" class="resp-pad-sm" style="padding:100px 2rem;background:#120e09;border-top:1px solid rgba(201,169,110,0.08);">
   <div style="max-width:1200px;margin:0 auto;">
 
     <div style="text-align:center;margin-bottom:56px;">
@@ -1328,7 +1336,7 @@
 
     <div class="resp-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,169,110,0.08);">
 
-      <div style="padding:40px 36px;background:#0a0804;transition:background 0.3s ease;" onmouseenter="this.style.background='#0e0b08'" onmouseleave="this.style.background='#0a0804'">
+      <div style="padding:40px 36px;background:#120e09;transition:background 0.3s ease;" onmouseenter="this.style.background='#0e0b08'" onmouseleave="this.style.background='#0a0804'">
         <div style="width:40px;height:40px;border:1px solid rgba(201,169,110,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1L1 5v8l8 4 8-4V5L9 1z" stroke="#c9a96e" stroke-width="1.2" stroke-linejoin="round"/></svg>
         </div>
@@ -1337,7 +1345,7 @@
         <a href="mailto:info@mianno.de" style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#c9a96e;text-decoration:none;border-bottom:1px solid rgba(201,169,110,0.3);padding-bottom:2px;">Jetzt bewerben →</a>
       </div>
 
-      <div style="padding:40px 36px;background:#0a0804;transition:background 0.3s ease;" onmouseenter="this.style.background='#0e0b08'" onmouseleave="this.style.background='#0a0804'">
+      <div style="padding:40px 36px;background:#120e09;transition:background 0.3s ease;" onmouseenter="this.style.background='#0e0b08'" onmouseleave="this.style.background='#0a0804'">
         <div style="width:40px;height:40px;border:1px solid rgba(201,169,110,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="7" r="4" stroke="#c9a96e" stroke-width="1.2"/><path d="M1 17c0-4 3.6-7 8-7s8 3 8 7" stroke="#c9a96e" stroke-width="1.2" stroke-linecap="round"/></svg>
         </div>
@@ -1346,7 +1354,7 @@
         <a href="mailto:info@mianno.de" style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#c9a96e;text-decoration:none;border-bottom:1px solid rgba(201,169,110,0.3);padding-bottom:2px;">Jetzt bewerben →</a>
       </div>
 
-      <div style="padding:40px 36px;background:#0a0804;transition:background 0.3s ease;" onmouseenter="this.style.background='#0e0b08'" onmouseleave="this.style.background='#0a0804'">
+      <div style="padding:40px 36px;background:#120e09;transition:background 0.3s ease;" onmouseenter="this.style.background='#0e0b08'" onmouseleave="this.style.background='#0a0804'">
         <div style="width:40px;height:40px;border:1px solid rgba(201,169,110,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="11" rx="1" stroke="#c9a96e" stroke-width="1.2"/><path d="M6 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1" stroke="#c9a96e" stroke-width="1.2"/></svg>
         </div>
@@ -1368,7 +1376,7 @@
 <!-- ════════════════════════════════════════════
      CONTACT
 ════════════════════════════════════════════ -->
-<section id="contact" class="resp-pad-sm" style="padding:100px 2rem;background:#080604;border-top:1px solid rgba(201,169,110,0.08);">
+<section id="contact" class="resp-pad-sm" style="padding:100px 2rem;background:#100c08;border-top:1px solid rgba(201,169,110,0.08);">
   <div class="resp-grid-2" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
 
     <!-- Left -->
@@ -1477,11 +1485,61 @@
      JAVASCRIPT
 ════════════════════════════════════════════ -->
 <script>
+  // ── Gold particle canvas ──
+  (function() {
+    const canvas = document.getElementById('particles-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [];
+
+    function resize() {
+      W = canvas.width  = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const GOLD = ['rgba(201,169,110,', 'rgba(232,208,160,', 'rgba(184,147,63,'];
+    for (let i = 0; i < 55; i++) {
+      particles.push({
+        x: Math.random() * 1920,
+        y: Math.random() * 1080,
+        r: Math.random() * 1.4 + 0.3,
+        o: Math.random() * 0.5 + 0.1,
+        vx: (Math.random() - 0.5) * 0.18,
+        vy: -(Math.random() * 0.22 + 0.06),
+        c: GOLD[Math.floor(Math.random() * GOLD.length)],
+        twinkle: Math.random() * Math.PI * 2,
+        ts: Math.random() * 0.012 + 0.004,
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      const now = performance.now() * 0.001;
+      particles.forEach(p => {
+        p.twinkle += p.ts;
+        const opacity = p.o * (0.55 + 0.45 * Math.sin(p.twinkle));
+        ctx.beginPath();
+        ctx.arc(p.x % W, p.y % H, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.c + opacity + ')';
+        ctx.fill();
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.y < -4) { p.y = H + 4; p.x = Math.random() * W; }
+        if (p.x < 0)  p.x = W;
+        if (p.x > W)  p.x = 0;
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
   // ── Navbar scroll effect ──
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 60) {
-      navbar.style.background = 'rgba(8,6,4,0.92)';
+      navbar.style.background = 'rgba(16,12,8,0.94)';
       navbar.style.backdropFilter = 'blur(16px)';
       navbar.style.boxShadow = '0 1px 0 rgba(201,169,110,0.08)';
     } else {
