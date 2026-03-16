@@ -364,75 +364,93 @@
       /* Nav */
       .nav-desktop    { display: none !important; }
       .nav-hamburger  { display: block !important; }
-      .nav-logo       { height: 72px !important; filter: brightness(0) invert(1) sepia(1) saturate(0.6) brightness(1.15) drop-shadow(0 2px 8px rgba(201,169,110,0.25)) !important; }
+      /* Logo: bigger, gold, always visible */
+      .nav-logo {
+        height: 68px !important;
+        filter: brightness(0) invert(1) sepia(1) saturate(0.8) brightness(1.3)
+                drop-shadow(0 0 12px rgba(201,169,110,0.4))
+                drop-shadow(0 2px 4px rgba(0,0,0,0.8)) !important;
+      }
 
-      /* Section padding */
-      .resp-pad    { padding-top: 64px !important; padding-bottom: 64px !important; padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
-      .resp-pad-sm { padding-top: 52px !important; padding-bottom: 52px !important; padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+      /* Tighter section padding on mobile */
+      .resp-pad    { padding: 52px 1.1rem !important; }
+      .resp-pad-sm { padding: 44px 1.1rem !important; }
 
       /* Grids → single column */
-      .resp-grid-2, .resp-grid-3 { grid-template-columns: 1fr !important; gap: 36px !important; }
-      .resp-grid-form             { grid-template-columns: 1fr !important; gap: 16px !important; }
-      .resp-grid-4                { grid-template-columns: repeat(2,1fr) !important; }
+      .resp-grid-2, .resp-grid-3 { grid-template-columns: 1fr !important; gap: 28px !important; }
+      .resp-grid-form             { grid-template-columns: 1fr !important; gap: 14px !important; }
+      .resp-grid-4                { grid-template-columns: repeat(2,1fr) !important; gap: 0 !important; }
 
       /* Flex → column */
-      .resp-flex-col       { flex-direction: column !important; gap: 16px !important; }
-      .resp-hero-info      { flex-direction: column !important; gap: 16px !important; }
+      .resp-flex-col       { flex-direction: column !important; gap: 14px !important; }
+      /* Hero info: compact 2-col grid instead of long row */
+      .resp-hero-info {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 14px 20px !important;
+        margin-top: 36px !important;
+        padding-top: 24px !important;
+      }
       .resp-hero-info > div[style*="width:1px"] { display: none !important; }
-      .resp-footer         { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+      .resp-footer { flex-direction: column !important; align-items: flex-start !important; gap: 10px !important; }
 
       /* Hide */
       .resp-hide { display: none !important; }
 
-      /* Menu tabs — horizontal scroll */
-      .resp-tabs { overflow-x: auto !important; justify-content: flex-start !important; flex-wrap: nowrap !important; padding-bottom: 4px !important; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      /* Menu tabs — horizontal scroll, no wrap */
+      .resp-tabs { overflow-x: auto !important; justify-content: flex-start !important; flex-wrap: nowrap !important; padding-bottom: 2px !important; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 6px !important; }
       .resp-tabs::-webkit-scrollbar { display: none; }
-      .resp-tabs button { flex-shrink: 0 !important; }
+      .resp-tabs button { flex-shrink: 0 !important; padding: 8px 16px !important; font-size: 0.6rem !important; }
 
-      /* Testimonial: remove raise on middle card */
-      .resp-testimonial-raise { transform: translateY(0) !important; box-shadow: none !important; }
+      /* Testimonials: stack, no raise */
+      .resp-testimonial-raise { transform: none !important; box-shadow: none !important; }
 
-      /* Form full-width select */
+      /* Form */
       .resp-form-full { max-width: 100% !important; width: 100% !important; }
+      .resp-form-pad  { padding: 28px 16px !important; }
 
-      /* Experience image strip */
+      /* Experience image strip: show only first image */
       .resp-img-strip { height: auto !important; grid-template-columns: 1fr !important; }
-      .resp-img-strip > div { height: 220px !important; }
+      .resp-img-strip > div { height: 200px !important; }
       .resp-img-strip > div:nth-child(2),
       .resp-img-strip > div:nth-child(3) { display: none !important; }
 
-      /* Gallery */
-      .resp-gallery-grid    { grid-template-columns: 1fr 1fr !important; }
-      .resp-gallery-feature { grid-row: span 1 !important; min-height: 200px !important; aspect-ratio: 4/3 !important; }
+      /* Gallery: 2-col */
+      .resp-gallery-grid    { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+      .resp-gallery-feature { grid-row: span 1 !important; min-height: 180px !important; aspect-ratio: 4/3 !important; }
 
-      /* Gutschein card */
-      .resp-gutschein-card { aspect-ratio: auto !important; padding: 28px 20px !important; }
+      /* Gutschein */
+      .resp-gutschein-card { aspect-ratio: auto !important; padding: 24px 18px !important; }
+      .resp-voucher-btns   { flex-wrap: wrap !important; gap: 8px !important; }
+      .resp-voucher-btns > div { flex: 1 1 calc(50% - 8px) !important; }
 
-      /* Gutschein amount buttons */
-      .resp-voucher-btns { flex-wrap: wrap !important; gap: 10px !important; }
-      .resp-voucher-btns > div { flex: 1 1 calc(50% - 10px) !important; }
+      /* Stats: smaller numbers */
+      .stat-num { font-size: 2rem !important; }
 
-      /* Stat numbers */
-      .stat-num { font-size: 2.4rem !important; }
+      /* Hero content: below fixed nav */
+      .resp-hero-content { padding-top: 96px !important; }
 
-      /* Hero heading */
-      .resp-hero-content { padding-top: 100px !important; }
-
-      /* About floating image */
+      /* About */
       .resp-about-main-img { margin-bottom: 0 !important; }
 
-      /* Form padding */
-      .resp-form-pad { padding: 32px 20px !important; }
+      /* Contact info */
+      .resp-contact-info { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
 
-      /* Contact info grid */
-      .resp-contact-info { grid-template-columns: 1fr 1fr !important; gap: 28px !important; }
+      /* Section headings: tighter */
+      h1 { font-size: clamp(2.8rem,10vw,4rem) !important; }
+      h2 { font-size: clamp(1.6rem,6vw,2.2rem) !important; }
+
+      /* Cards: full-width on mobile */
+      .menu-card { min-width: 0 !important; }
+      #menu-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
     }
 
     @media (max-width: 480px) {
-      .resp-gallery-grid { grid-template-columns: 1fr !important; }
-      .resp-contact-info { grid-template-columns: 1fr !important; }
-      .resp-grid-4       { grid-template-columns: repeat(2,1fr) !important; }
+      .resp-gallery-grid    { grid-template-columns: 1fr !important; }
+      .resp-contact-info    { grid-template-columns: 1fr !important; }
+      .resp-grid-4          { grid-template-columns: repeat(2,1fr) !important; }
       .resp-voucher-btns > div { flex: 1 1 100% !important; }
+      .resp-hero-info { grid-template-columns: 1fr !important; }
     }
   </style>
 
@@ -465,7 +483,7 @@
 <nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:96px;display:flex;align-items:center;justify-content:space-between;transition:background 0.4s ease,backdrop-filter 0.4s ease,box-shadow 0.4s ease;">
   <!-- Logo -->
   <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-    <img src="brand_assets/Mianno-Logo-03.png" alt="Mianno" class="nav-logo" style="height:96px;width:auto;filter:brightness(0) invert(1) sepia(1) saturate(0.5) brightness(1.05);" />
+    <img src="brand_assets/Mianno-Logo-03.png" alt="Mianno" class="nav-logo" style="height:96px;width:auto;filter:brightness(0) invert(1) sepia(1) saturate(0.65) brightness(1.2) drop-shadow(0 0 10px rgba(201,169,110,0.3));" />
   </a>
 
   <!-- Desktop Nav -->
@@ -522,9 +540,6 @@
   <div style="position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:600px;height:600px;opacity:0.15;pointer-events:none;">
     <img src="brand_assets/Mianno-Logo-03.png" alt="" style="width:100%;height:100%;object-fit:contain;filter:invert(1);transform:scale(1.4);" />
   </div>
-
-  <!-- Vertical line accent -->
-  <div style="position:absolute;left:calc(50% - 1px);top:0;bottom:0;width:1px;background:linear-gradient(to bottom, transparent, rgba(201,169,110,0.08) 30%, rgba(201,169,110,0.08) 70%, transparent);pointer-events:none;"></div>
 
   <!-- Hero content -->
   <div class="resp-hero-content" style="position:relative;z-index:1;max-width:900px;padding-top:100px;">
@@ -698,7 +713,7 @@
 <!-- ════════════════════════════════════════════
      MITTAGSTISCH
 ════════════════════════════════════════════ -->
-<section id="mittagstisch" class="resp-pad" style="padding:120px 2rem;background:linear-gradient(160deg,#120e09 0%,#1a1410 60%,#120e09 100%);border-top:1px solid rgba(201,169,110,0.08);">
+<section id="mittagstisch" class="resp-pad" style="padding:120px 2rem;background:linear-gradient(160deg,#120e09 0%,#1a1410 60%,#120e09 100%);">
   <div style="max-width:1200px;margin:0 auto;">
 
     <div class="resp-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
@@ -936,7 +951,7 @@
 <!-- ════════════════════════════════════════════
      GALLERY
 ════════════════════════════════════════════ -->
-<section id="gallery" class="resp-pad" style="padding:120px 2rem;background:#100c08;border-top:1px solid rgba(201,169,110,0.08);">
+<section id="gallery" class="resp-pad" style="padding:120px 2rem;background:#100c08;">
   <div style="max-width:1200px;margin:0 auto;">
 
     <div class="reveal" style="text-align:center;margin-bottom:64px;">
@@ -1030,7 +1045,7 @@
 <!-- ════════════════════════════════════════════
      GUTSCHEIN
 ════════════════════════════════════════════ -->
-<section id="gutschein" class="resp-pad-sm" style="padding:100px 2rem;background:linear-gradient(135deg,#1a1410 0%,#221a12 50%,#120e09 100%);border-top:1px solid rgba(201,169,110,0.08);position:relative;overflow:hidden;">
+<section id="gutschein" class="resp-pad-sm" style="padding:100px 2rem;background:linear-gradient(135deg,#1a1410 0%,#221a12 50%,#120e09 100%);position:relative;overflow:hidden;">
   <!-- Background watermark -->
   <div style="position:absolute;left:-60px;top:50%;transform:translateY(-50%);width:400px;height:400px;opacity:0.04;pointer-events:none;">
     <img src="brand_assets/Mianno-Logo-03.png" alt="" style="width:100%;height:100%;object-fit:contain;filter:invert(1);" />
@@ -1120,7 +1135,7 @@
 <!-- ════════════════════════════════════════════
      TESTIMONIALS
 ════════════════════════════════════════════ -->
-<div class="resp-pad-sm" style="background:#120e09;padding:100px 2rem;border-top:1px solid rgba(201,169,110,0.08);">
+<div class="resp-pad-sm" style="background:#120e09;padding:100px 2rem;">
   <div style="max-width:1200px;margin:0 auto;">
     <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:16px;">
       <div class="divider"></div>
@@ -1317,7 +1332,7 @@
 <!-- ════════════════════════════════════════════
      JOBS
 ════════════════════════════════════════════ -->
-<section id="jobs" class="resp-pad-sm" style="padding:100px 2rem;background:#120e09;border-top:1px solid rgba(201,169,110,0.08);">
+<section id="jobs" class="resp-pad-sm" style="padding:100px 2rem;background:#120e09;">
   <div style="max-width:1200px;margin:0 auto;">
 
     <div style="text-align:center;margin-bottom:56px;">
@@ -1376,7 +1391,7 @@
 <!-- ════════════════════════════════════════════
      CONTACT
 ════════════════════════════════════════════ -->
-<section id="contact" class="resp-pad-sm" style="padding:100px 2rem;background:#100c08;border-top:1px solid rgba(201,169,110,0.08);">
+<section id="contact" class="resp-pad-sm" style="padding:100px 2rem;background:#100c08;">
   <div class="resp-grid-2" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
 
     <!-- Left -->
@@ -1443,7 +1458,7 @@
 <!-- ════════════════════════════════════════════
      FOOTER
 ════════════════════════════════════════════ -->
-<footer class="footer-bg" style="padding:32px 2rem;border-top:1px solid rgba(201,169,110,0.08);">
+<footer class="footer-bg" style="padding:32px 2rem;">
   <div class="resp-footer" style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
     <p style="font-size:0.62rem;color:#3a342e;letter-spacing:0.1em;">© 2026 Mianno Restaurant GmbH · Sushi &amp; Grill · Alle Rechte vorbehalten.</p>
     <div style="display:flex;gap:24px;">
@@ -1630,7 +1645,7 @@
             ${item.badge ? `<span class="badge">${item.badge}</span>` : ''}
           </div>
           <p style="font-size:0.78rem;color:#6b6259;line-height:1.65;margin-bottom:16px;font-weight:300;">${item.desc}</p>
-          <div style="display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(201,169,110,0.08);">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding-top:12px;">
             <span class="price">${item.price} €</span>
             <button style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#a09488;background:none;border:none;cursor:pointer;padding:0;transition:color 0.2s ease;" onmouseenter="this.style.color='#c9a96e'" onmouseleave="this.style.color='#a09488'">Bestellen →</button>
           </div>
