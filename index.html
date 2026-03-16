@@ -8,6 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+  <!-- Google Analytics 4 — replace G-XXXXXXXXXX with your Measurement ID from analytics.google.com -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
   <script>
     tailwind.config = {
       theme: {
@@ -320,6 +328,13 @@
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+
+    /* Reviews ticker */
+    @keyframes reviewsScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    #reviews-track:hover { animation-play-state: paused; }
     .fade-up { animation: fadeUp 0.9s cubic-bezier(0.4, 0, 0.2, 1) both; }
     .delay-1 { animation-delay: 0.15s; }
     .delay-2 { animation-delay: 0.3s; }
@@ -1135,67 +1150,30 @@
 <!-- ════════════════════════════════════════════
      TESTIMONIALS
 ════════════════════════════════════════════ -->
-<div class="resp-pad-sm" style="background:#120e09;padding:100px 2rem;">
-  <div style="max-width:1200px;margin:0 auto;">
+<div class="resp-pad-sm" style="background:#120e09;padding:100px 0;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 2rem;">
     <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:16px;">
       <div class="divider"></div>
       <span style="font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#c9a96e;font-weight:500;">Gästestimmen</span>
       <div class="divider"></div>
     </div>
-    <h2 class="reveal" style="text-align:center;font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;font-style:italic;color:#a09488;margin:0 0 56px;">"Ein Abend, der uns wochenlang begleitet hat."</h2>
+    <h2 class="reveal" style="text-align:center;font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;font-style:italic;color:#a09488;margin:0 0 12px;">"Frisch, kreativ, wunderschön angerichtet."</h2>
+    <p class="reveal reveal-d1" style="text-align:center;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:#6b6259;margin:0 0 52px;">
+      <span style="color:#c9a96e;">★★★★★</span>&ensp;5,0 · 52 Google-Bewertungen
+    </p>
+  </div>
 
-    <div class="resp-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+  <!-- Auto-scrolling reviews ticker -->
+  <div style="position:relative;overflow:hidden;">
+    <div style="position:absolute;left:0;top:0;bottom:0;width:100px;background:linear-gradient(to right,#120e09,transparent);z-index:2;pointer-events:none;"></div>
+    <div style="position:absolute;right:0;top:0;bottom:0;width:100px;background:linear-gradient(to left,#120e09,transparent);z-index:2;pointer-events:none;"></div>
+    <div id="reviews-track" style="display:flex;gap:20px;width:max-content;animation:reviewsScroll 90s linear infinite;padding:4px 0 12px;"></div>
+  </div>
 
-      <div class="testimonial-card" style="padding:36px 32px;">
-        <!-- Stars -->
-        <div style="display:flex;gap:4px;margin-bottom:20px;">
-          <span style="color:#c9a96e;font-size:0.75rem;">★★★★★</span>
-        </div>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:#c8bfae;line-height:1.7;margin-bottom:24px;">„Das Omakase war einzigartig — jedes Stück perfekt in Temperatur, Textur und Würzung. Die Präzision des Küchenchefs ist außergewöhnlich."</p>
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div style="width:36px;height:36px;background:rgba(201,169,110,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;">
-            <span style="font-family:'Playfair Display',serif;color:#c9a96e;font-size:0.8rem;">E</span>
-          </div>
-          <div>
-            <p style="font-size:0.75rem;color:#f5f0e8;font-weight:500;margin-bottom:2px;">Eleanor M.</p>
-            <p style="font-size:0.65rem;color:#6b6259;letter-spacing:0.08em;">Gastronomiekritikerin</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card resp-testimonial-raise" style="padding:36px 32px;transform:translateY(-12px);box-shadow:0 32px 64px rgba(0,0,0,0.4);">
-        <div style="display:flex;gap:4px;margin-bottom:20px;">
-          <span style="color:#c9a96e;font-size:0.75rem;">★★★★★</span>
-        </div>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:#c8bfae;line-height:1.7;margin-bottom:24px;">„Das Wagyu vom Binchotan war der unvergesslichste Bissen des Jahres. Die Grillstation ist Theater in seiner reinsten Form — man sieht, wie das Gericht zu etwas Besonderem wird."</p>
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div style="width:36px;height:36px;background:rgba(201,169,110,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;">
-            <span style="font-family:'Playfair Display',serif;color:#c9a96e;font-size:0.8rem;">J</span>
-          </div>
-          <div>
-            <p style="font-size:0.75rem;color:#f5f0e8;font-weight:500;margin-bottom:2px;">Jonas T.</p>
-            <p style="font-size:0.65rem;color:#6b6259;letter-spacing:0.08em;">Restaurantkritiker</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card" style="padding:36px 32px;">
-        <div style="display:flex;gap:4px;margin-bottom:20px;">
-          <span style="color:#c9a96e;font-size:0.75rem;">★★★★★</span>
-        </div>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:#c8bfae;line-height:1.7;margin-bottom:24px;">„Mianno versteht etwas Seltenes: Gastfreundschaft ist kein Service — sie ist echte Fürsorge. Von dem Moment an, als wir ankamen, waren wir der einzige Tisch, der zählte."</p>
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div style="width:36px;height:36px;background:rgba(201,169,110,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;">
-            <span style="font-family:'Playfair Display',serif;color:#c9a96e;font-size:0.8rem;">S</span>
-          </div>
-          <div>
-            <p style="font-size:0.75rem;color:#f5f0e8;font-weight:500;margin-bottom:2px;">Sabine L.</p>
-            <p style="font-size:0.65rem;color:#6b6259;letter-spacing:0.08em;">Stammgast</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
+  <div style="text-align:center;margin-top:44px;">
+    <a href="https://maps.app.goo.gl/M3ov2Dne8XEMZ4uo8" target="_blank" rel="noopener"
+       style="display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:#c9a96e;text-decoration:none;border-bottom:1px solid rgba(201,169,110,0.3);padding-bottom:3px;transition:border-color 0.3s ease;"
+       onmouseenter="this.style.borderColor='rgba(201,169,110,0.7)'" onmouseleave="this.style.borderColor='rgba(201,169,110,0.3)'">Alle Bewertungen auf Google ansehen →</a>
   </div>
 </div>
 
@@ -1838,12 +1816,63 @@
     });
   }
 
-  document.querySelectorAll('.testimonial-card').forEach(el => {
-    el.style.opacity    = '0';
-    el.style.transform  = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    cardObserver.observe(el);
-  });
+  // ── Populate real Google reviews ticker ──
+  (function() {
+    const reviews = [
+      { name: 'M. Schindler',            badge: 'Local Guide', text: 'Tolles asiatisches Restaurant! Das Essen war frisch, schnell serviert und richtig lecker. Das Personal super nett, alles sehr sauber. Wir kommen auf jeden Fall wieder!' },
+      { name: 'Pasqualina Prezioso',      badge: '',            text: 'Sehr gute Qualität der Speisen und leckere Getränke. Gemütliches warmes Ambiente und überaus freundliches Personal. Bitte bleibt genau so!' },
+      { name: 'Denis Zezelj',             badge: 'Local Guide', text: 'Sehr freundliches Personal und eine richtig schnelle Küche! Das Essen kam extrem schnell, hat hervorragend geschmeckt und war auch fürs Auge top angerichtet. Man merkt, dass hier mit Herz und Organisation gearbeitet wird.' },
+      { name: 'Maritta Lösch',            badge: 'Local Guide', text: 'Es war sehr lecker und Preis-Leistung sind sehr zu empfehlen! Der Service ist unschlagbar! Besuchen Sie das Lokal und lassen Sie sich verwöhnen!' },
+      { name: 'Katja Kendel',             badge: '',            text: 'Wir waren heute zum Mittagessen dort. Super leckeres Essen und super nettes Personal! Wir werden definitiv öfters kommen!' },
+      { name: 'Christin Olmesdahl',       badge: '',            text: 'Super freundlich, sehr lecker und frisch. Preislich absolut angemessen. Wir haben uns rundum wohl gefühlt, freuen uns sehr über diese gute Adresse und kommen gerne wieder.' },
+      { name: 'Chantal Friedrich',        badge: '',            text: 'Alle unsere Gerichte – Suppe, Sushi, Pad Thai, Flying Noodles – haben fantastisch geschmeckt, alles super frisch! Tolles Ambiente und mega netter Service.' },
+      { name: 'Larissa Schopf',           badge: 'Local Guide', text: 'Sehr lecker! Kann das Restaurant nur empfehlen. Die Atmosphäre ist sehr schön und die Wartezeiten kurz. Die Bun Bowl war wunderschön angerichtet.' },
+      { name: 'Senanur Ş.',               badge: '',            text: 'Wurden direkt freundlich empfangen. Die Gyozas waren eine leckere Vorspeise, die gebratenen Ramen und Reisnudeln zum Hauptgang absolut empfehlenswert.' },
+      { name: 'Lena Schoechlin',          badge: '',            text: 'Das Essen ist sehr lecker, kommt sehr schnell und die Bedienung ist sehr nett. Das Restaurant ist außerdem sehr schön eingerichtet. Kann ich auf jeden Fall weiterempfehlen.' },
+      { name: 'Mikkey 63',                badge: '',            text: 'Mein Essen mit Tofu war richtig lecker und frisch. Sehr freundliches Personal und eine angenehme, gemütliche Atmosphäre. Absolut empfehlenswert.' },
+      { name: 'Eric Windsch',             badge: 'Local Guide', text: 'Sehr gutes Essen, freundliches Personal und sehr schönes Ambiente. Wir kommen auf jeden Fall wieder.' },
+      { name: 'Michael',                  badge: '',            text: 'Wir haben heute spontan zu fünft hier gegessen – es war voll, aber wir hatten Glück. Leckeres Sushi, geschmackvolles Curry, sehr freundliche Mitarbeiter trotz vollem Haus.' },
+      { name: 'Dilan Temirci',            badge: '',            text: 'Waren gestern mit der Familie essen. Nettes Personal, leckere Speisen und gute Portionen. Gerne wieder!' },
+      { name: 'Nguyễn Việt Dũng',         badge: '',            text: 'Sehr leckeres und abwechslungsreiches Essen. Freundlicher und aufmerksamer Service. Ich komme gerne wieder.' },
+      { name: 'Katrin Schwaberland',      badge: 'Local Guide', text: 'Sehr lecker! Netter Service, schöne Einrichtung und super Essen. Die Pho war spitze, Bun war auch sehr lecker. Faire Preise.' },
+      { name: 'Raimund Richter',          badge: '',            text: 'Tolles neues Restaurant in Neckarrems. Der erste Besuch hat unsere Erwartungen übertroffen – die fliegenden Nudeln waren wirklich super lecker und toll anzuschauen.' },
+      { name: 'Christiane',               badge: 'Local Guide', text: 'Ich bin absolut begeistert! Der Service war unglaublich freundlich und aufmerksam. Das Interieur ist modern, schick und sehr einladend. Das Essen – frisch, kreativ, wunderschön angerichtet.' },
+      { name: 'J. Uerschy',               badge: 'Local Guide', text: 'Ganz tolles Lokal mit authentischer und köstlicher Küche! Essen: 5 Sterne, Atmosphäre: 5 Sterne, Service: 5 Sterne.' },
+      { name: 'Sarah Sch.',               badge: '',            text: 'Sehr leckeres Essen! Man sitzt sehr schön und die Bedienung war jedes Mal sehr freundlich. Das Essen kam immer zügig. Kann ich nur weiterempfehlen.' },
+      { name: 'Nils Scherzer',            badge: '',            text: 'Absolut empfehlenswert! Das Pad Thai war unglaublich lecker. Für uns sogar besser als viele asiatische Restaurants in Ludwigsburg oder Stuttgart. Wir kommen definitiv wieder!' },
+      { name: 'HappyXuxu',               badge: 'Local Guide', text: 'Ein Geheimtipp in Remseck – gemütliches und sauberes Restaurant mit leckerem Essen.' },
+      { name: 'Sabine Loibl',             badge: 'Local Guide', text: 'Das Essen war wirklich sehr gut, der Service äußerst nett und freundlich. Alles schön eingerichtet, tolles Ambiente. Wir kommen sehr gerne wieder.' },
+    ];
+
+    const track = document.getElementById('reviews-track');
+    if (!track) return;
+
+    function buildCard(r) {
+      const initial = r.name.trim().charAt(0).toUpperCase();
+      const card = document.createElement('div');
+      card.className = 'testimonial-card';
+      card.style.cssText = 'flex:0 0 320px;padding:28px 28px 24px;display:flex;flex-direction:column;';
+      card.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+          <span style="color:#c9a96e;font-size:0.7rem;letter-spacing:0.05em;">★★★★★</span>
+          <span style="font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:#6b6259;">Google</span>
+        </div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:0.98rem;font-style:italic;color:#c8bfae;line-height:1.7;flex:1;margin-bottom:20px;">„${r.text}"</p>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:32px;height:32px;background:rgba(201,169,110,0.12);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-family:'Playfair Display',serif;color:#c9a96e;font-size:0.78rem;">${initial}</span>
+          </div>
+          <div>
+            <p style="font-size:0.72rem;color:#f5f0e8;font-weight:500;margin:0 0 1px;">${r.name}</p>
+            ${r.badge ? `<p style="font-size:0.6rem;color:#6b6259;letter-spacing:0.06em;">${r.badge}</p>` : ''}
+          </div>
+        </div>`;
+      return card;
+    }
+
+    // Duplicate reviews for seamless loop
+    [...reviews, ...reviews].forEach(r => track.appendChild(buildCard(r)));
+  })();
 
   // ── Site-wide reveal observer ──
   const revealObserver = new IntersectionObserver((entries) => {
