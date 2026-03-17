@@ -234,18 +234,23 @@
       background: rgba(40,32,22,0.7);
     }
     .form-input option { background: #161210; }
-    /* Date input: normalize height — browser adds its own internal padding */
+    /* Date input: force identical rendering to other form-inputs across all browsers */
     input[type="date"].form-input {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
       height: 50px;
-      padding: 0 18px;
-      line-height: 50px;
+      padding: 14px 18px;
       box-sizing: border-box;
+      line-height: normal;
     }
-    input[type="date"].form-input::-webkit-datetime-edit { padding: 0; line-height: 1; }
+    input[type="date"].form-input::-webkit-datetime-edit { padding: 0; color: rgba(160,148,136,0.5); }
+    input[type="date"].form-input::-webkit-datetime-edit-fields-wrapper { padding: 0; }
     input[type="date"].form-input::-webkit-calendar-picker-indicator {
       opacity: 0.35;
       filter: invert(1) sepia(1) saturate(0.6) brightness(1.1);
       cursor: pointer;
+      margin-right: -4px;
     }
 
     /* CTA button */
@@ -1192,7 +1197,7 @@
 
       <!-- Bottom far right -->
       <div class="img-wrap" style="overflow:hidden;border-radius:2px;aspect-ratio:4/3;">
-        <img src="https://images.unsplash.com/photo-1564671574-f54de13fbfa2?w=580&h=380&auto=format&fit=crop&q=80" alt="Dessert" style="width:100%;height:100%;object-fit:cover;" />
+        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=580&h=380&auto=format&fit=crop&q=80" alt="Dessert" style="width:100%;height:100%;object-fit:cover;" />
         <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(8,6,4,0.6) 0%,transparent 60%);"></div>
         <div style="position:absolute;bottom:20px;left:20px;z-index:1;">
           <p style="font-family:'Playfair Display',serif;font-size:1rem;color:#f5f0e8;">Matcha Dessert</p>
@@ -1209,7 +1214,7 @@
         <div style="position:absolute;bottom:16px;left:16px;z-index:1;"><p style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:#c9a96e;">Sake Auswahl</p></div>
       </div>
       <div class="img-wrap" style="overflow:hidden;border-radius:2px;aspect-ratio:16/9;">
-        <img src="https://images.unsplash.com/photo-1607301405390-d831c242f59d?w=580&h=280&auto=format&fit=crop&q=80" alt="Gyoza" style="width:100%;height:100%;object-fit:cover;" />
+        <img src="https://images.unsplash.com/photo-1562802378-063ec186a863?w=580&h=280&auto=format&fit=crop&q=80" alt="Gyoza" style="width:100%;height:100%;object-fit:cover;" />
         <div style="position:absolute;inset:0;background:rgba(8,6,4,0.3);"></div>
         <div style="position:absolute;bottom:16px;left:16px;z-index:1;"><p style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:#c9a96e;">Gyoza & Vorspeisen</p></div>
       </div>
@@ -1335,7 +1340,7 @@
   <div style="position:relative;overflow:hidden;">
     <div style="position:absolute;left:0;top:0;bottom:0;width:100px;background:linear-gradient(to right,#120e09,transparent);z-index:2;pointer-events:none;"></div>
     <div style="position:absolute;right:0;top:0;bottom:0;width:100px;background:linear-gradient(to left,#120e09,transparent);z-index:2;pointer-events:none;"></div>
-    <div id="reviews-track" style="display:flex;gap:20px;width:max-content;animation:reviewsScroll 90s linear infinite;padding:4px 0 12px;"></div>
+    <div id="reviews-track" style="display:flex;gap:20px;width:max-content;animation:reviewsScroll 160s linear infinite;padding:4px 0 12px;"></div>
   </div>
 
   <div style="text-align:center;margin-top:44px;">
@@ -1784,36 +1789,36 @@
       { name: 'Gebratene Ente mit Gemüse', desc: 'Knusprige Entenkeule in Hoisin-Sauce, wok-gebratenes Saisongemüse, Jasminreis.', price: '22,50', badge: 'Empfehlung', img: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=580&h=380&auto=format&fit=crop&q=80' },
       { name: 'Rindfleisch Pho', desc: 'Vietnamesische Rinderbrühe, Reisnudeln, dünn geschnittenes Rindfleisch, Basilikum, Bohnenkeim, Limette.', price: '17,50', badge: 'Klassiker', img: 'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=580&h=380&auto=format&fit=crop&q=80' },
       { name: 'Garnelen Wok', desc: 'Tigergarnelenm, Zuckererbsen, Paprika, Karotten in Knoblauch-Austernsauce, Jasminreis.', price: '21,00', badge: null, img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=580&h=380&auto=format&fit=crop&q=80' },
-      { name: 'Chicken Teriyaki', desc: 'Zartes Hähnchenbrust-Filet in hausgemachter Teriyaki-Glasur, gedämpfter Brokkoli, Reis.', price: '18,50', badge: 'Beliebt', img: 'https://images.unsplash.com/photo-1547592180-6a6b50c31f77?w=580&h=380&auto=format&fit=crop&q=80' },
+      { name: 'Chicken Teriyaki', desc: 'Zartes Hähnchenbrust-Filet in hausgemachter Teriyaki-Glasur, gedämpfter Brokkoli, Reis.', price: '18,50', badge: 'Beliebt', img: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=580&h=380&auto=format&fit=crop&q=80' },
       { name: 'Gegrillter Lachs', desc: 'Frischer Atlantik-Lachs vom Grill, Miso-Glasur, wok-gebratener Spinat, Süßkartoffelpüree.', price: '24,50', badge: 'Signature', img: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=580&h=380&auto=format&fit=crop&q=80' },
       { name: 'Tofu mit Gemüse', desc: 'Gebratener Tofu, saisonales Gemüse, Shiitake-Pilze, Ingwer-Soja-Sauce, Jasminreis.', price: '16,00', badge: 'Vegetarisch', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=580&h=380&auto=format&fit=crop&q=80' },
       { name: 'Rindfleisch Bulgogi', desc: 'Mariniertes koreanisch-inspiriertes Rindfleisch, Sesam-Frühlingszwiebeln, eingelegter Rettich, Reis.', price: '23,00', badge: null, img: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=580&h=380&auto=format&fit=crop&q=80' },
       { name: 'Bun Bo Hue', desc: 'Würzige vietnamesische Suppennudeln mit Rind- und Schweinefleisch, Zitronengras, Chili.', price: '16,50', badge: null, img: 'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=580&h=380&auto=format&fit=crop&q=80' },
-      { name: 'Fried Rice Mianno', desc: 'Gebratener Jasminreis, Ei, Gemüse, Hühnchen oder Garnele, Soja-Ingwer-Sauce. Hausrezept.', price: '15,50', badge: 'Hausrezept', img: 'https://images.unsplash.com/photo-1547592180-6a6b50c31f77?w=580&h=380&auto=format&fit=crop&q=80' },
+      { name: 'Fried Rice Mianno', desc: 'Gebratener Jasminreis, Ei, Gemüse, Hühnchen oder Garnele, Soja-Ingwer-Sauce. Hausrezept.', price: '15,50', badge: 'Hausrezept', img: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=580&h=380&auto=format&fit=crop&q=80' },
     ],
     vorspeisen: [
-      { name: 'Frühlingsrollen (4 Stk.)', desc: 'Knusprige Reisteig-Rollen mit Gemüse und Glasnudeln, süß-saure Dipping-Sauce.', price: '8,50', badge: 'Beliebt', img: 'https://images.unsplash.com/photo-1607301405390-d831c242f59d?w=580&h=380&auto=format&fit=crop&q=80' },
+      { name: 'Frühlingsrollen (4 Stk.)', desc: 'Knusprige Reisteig-Rollen mit Gemüse und Glasnudeln, süß-saure Dipping-Sauce.', price: '8,50', badge: 'Beliebt', img: 'https://images.unsplash.com/photo-1562802378-063ec186a863?w=580&h=380&auto=format&fit=crop&q=80' },
       { name: 'Edamame', desc: 'Gedämpfte Sojabohnenschoten mit Meersalz und Sesam. Der perfekte Start.', price: '5,50', badge: null, img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=580&h=380&auto=format&fit=crop&q=80' },
-      { name: 'Gyoza (6 Stk.)', desc: 'Gebratene Teigtaschen gefüllt mit Schweinefleisch und Kohl, Ponzu zum Dippen.', price: '9,50', badge: null, img: 'https://images.unsplash.com/photo-1607301405390-d831c242f59d?w=580&h=380&auto=format&fit=crop&q=80' },
-      { name: 'Miso-Suppe', desc: 'Traditionelle japanische Miso-Suppe mit Tofu, Wakame und Frühlingszwiebeln.', price: '4,50', badge: null, img: 'https://images.unsplash.com/photo-1547592180-6a6b50c31f77?w=580&h=380&auto=format&fit=crop&q=80' },
+      { name: 'Gyoza (6 Stk.)', desc: 'Gebratene Teigtaschen gefüllt mit Schweinefleisch und Kohl, Ponzu zum Dippen.', price: '9,50', badge: null, img: 'https://images.unsplash.com/photo-1562802378-063ec186a863?w=580&h=380&auto=format&fit=crop&q=80' },
+      { name: 'Miso-Suppe', desc: 'Traditionelle japanische Miso-Suppe mit Tofu, Wakame und Frühlingszwiebeln.', price: '4,50', badge: null, img: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=580&h=380&auto=format&fit=crop&q=80' },
       { name: 'Asiatischer Salat', desc: 'Mischsalat mit Gurke, Karotte, Radieschen, Sesam-Ingwer-Dressing, gerösteten Erdnüssen.', price: '9,00', badge: 'Leicht', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=580&h=380&auto=format&fit=crop&q=80' },
       { name: 'Tempura Garnelen (4 Stk.)', desc: 'Luftig ausgebackene Tigergarnelenm, Tentsuyu-Dipping-Sauce, geriebener Rettich.', price: '12,50', badge: "Chef's Choice", img: 'https://images.unsplash.com/photo-1562802378-063ec186a863?w=580&h=380&auto=format&fit=crop&q=80' },
     ],
     getraenke: [
       { name: 'Japanisches Bier (Asahi / Sapporo)', desc: 'Erfrischendes japanisches Premium-Bier, 0,33 l.', price: '4,50', badge: null, img: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=580&h=380&auto=format&fit=crop&q=80' },
       { name: 'Sake kalt (0,2 l)', desc: 'Ausgewählter japanischer Sake, leicht und frisch. Ideal zur Sushi-Platte.', price: '7,50', badge: 'Empfehlung', img: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=580&h=380&auto=format&fit=crop&q=80' },
-      { name: 'Grüner Tee (Kanne)', desc: 'Sencha-Qualität, natürlich und aromatisch, heiß serviert.', price: '3,50', badge: null, img: 'https://images.unsplash.com/photo-1547592180-6a6b50c31f77?w=580&h=380&auto=format&fit=crop&q=80' },
+      { name: 'Grüner Tee (Kanne)', desc: 'Sencha-Qualität, natürlich und aromatisch, heiß serviert.', price: '3,50', badge: null, img: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=580&h=380&auto=format&fit=crop&q=80' },
       { name: 'Lychee Limonade', desc: 'Hausgemachte Limonade mit Lychee, frischer Minze und Limettensaft.', price: '4,00', badge: 'Hausgemacht', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=580&h=380&auto=format&fit=crop&q=80' },
       { name: 'Thai Eistee', desc: 'Traditioneller thailändischer Eistee mit Kondensmilch und Eiswürfeln. Süß und cremig.', price: '4,50', badge: 'Beliebt', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=580&h=380&auto=format&fit=crop&q=80' },
       { name: 'Softdrinks / Wasser', desc: 'Coca-Cola, Fanta, Sprite, Mineralwasser (still/sprudelnd), 0,33 l.', price: '3,00', badge: null, img: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=580&h=380&auto=format&fit=crop&q=80' },
     ],
     desserts: [
-      { name: 'Matcha Eis (2 Kugeln)', desc: 'Cremiges Matcha-Eis aus japanischem Ceremonial-Grade-Matcha, Mochi-Würfel obendrauf.', price: '6,50', badge: 'Signature', img: 'https://images.unsplash.com/photo-1564671574-f54de13fbfa2?w=580&h=380&auto=format&fit=crop&q=80' },
-      { name: 'Mango Sticky Rice', desc: 'Klassisches vietnamesisches Dessert: Klebreis mit frischer Mango und Kokosmilch-Sauce.', price: '7,50', badge: 'Klassiker', img: 'https://images.unsplash.com/photo-1547592180-6a6b50c31f77?w=580&h=380&auto=format&fit=crop&q=80' },
-      { name: 'Mochi-Auswahl (3 Stk.)', desc: 'Drei hausgemachte Mochi: schwarzer Sesam, Mango und Erdbeere. Saisonale Rotation.', price: '7,00', badge: null, img: 'https://images.unsplash.com/photo-1564671574-f54de13fbfa2?w=580&h=380&auto=format&fit=crop&q=80' },
+      { name: 'Matcha Eis (2 Kugeln)', desc: 'Cremiges Matcha-Eis aus japanischem Ceremonial-Grade-Matcha, Mochi-Würfel obendrauf.', price: '6,50', badge: 'Signature', img: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=580&h=380&auto=format&fit=crop&q=80' },
+      { name: 'Mango Sticky Rice', desc: 'Klassisches vietnamesisches Dessert: Klebreis mit frischer Mango und Kokosmilch-Sauce.', price: '7,50', badge: 'Klassiker', img: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=580&h=380&auto=format&fit=crop&q=80' },
+      { name: 'Mochi-Auswahl (3 Stk.)', desc: 'Drei hausgemachte Mochi: schwarzer Sesam, Mango und Erdbeere. Saisonale Rotation.', price: '7,00', badge: null, img: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=580&h=380&auto=format&fit=crop&q=80' },
       { name: 'Gebratene Banane', desc: 'In Kokosöl gebratene Banane, Vanilleeis, Karamellsauce, geröstete Sesamsamen.', price: '6,00', badge: 'Beliebt', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=580&h=380&auto=format&fit=crop&q=80' },
-      { name: 'Crème Brûlée Matcha', desc: 'Klassische Crème Brûlée mit Matcha-Infusion, karamellisierte Zuckerkruste.', price: '8,00', badge: "Chef's Choice", img: 'https://images.unsplash.com/photo-1564671574-f54de13fbfa2?w=580&h=380&auto=format&fit=crop&q=80' },
-      { name: 'Schwarzer Sesam Panna Cotta', desc: 'Samtige Panna Cotta mit schwarzem Sesam, Honigglasur und gerösteten Sesamsamen.', price: '6,50', badge: null, img: 'https://images.unsplash.com/photo-1564671574-f54de13fbfa2?w=580&h=380&auto=format&fit=crop&q=80' },
+      { name: 'Crème Brûlée Matcha', desc: 'Klassische Crème Brûlée mit Matcha-Infusion, karamellisierte Zuckerkruste.', price: '8,00', badge: "Chef's Choice", img: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=580&h=380&auto=format&fit=crop&q=80' },
+      { name: 'Schwarzer Sesam Panna Cotta', desc: 'Samtige Panna Cotta mit schwarzem Sesam, Honigglasur und gerösteten Sesamsamen.', price: '6,50', badge: null, img: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=580&h=380&auto=format&fit=crop&q=80' },
     ],
   };
 
