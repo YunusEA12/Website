@@ -225,6 +225,8 @@
       transition: border-color 0.3s ease, background 0.3s ease;
       outline: none;
       width: 100%;
+      box-sizing: border-box;
+      min-height: 50px;
     }
     .form-input::placeholder { color: rgba(160,148,136,0.5); }
     .form-input:focus {
@@ -232,6 +234,19 @@
       background: rgba(40,32,22,0.7);
     }
     .form-input option { background: #161210; }
+    /* Date input: normalize height — browser adds its own internal padding */
+    input[type="date"].form-input {
+      height: 50px;
+      padding: 0 18px;
+      line-height: 50px;
+      box-sizing: border-box;
+    }
+    input[type="date"].form-input::-webkit-datetime-edit { padding: 0; line-height: 1; }
+    input[type="date"].form-input::-webkit-calendar-picker-indicator {
+      opacity: 0.35;
+      filter: invert(1) sepia(1) saturate(0.6) brightness(1.1);
+      cursor: pointer;
+    }
 
     /* CTA button */
     .btn-gold {
@@ -415,6 +430,8 @@
       .resp-tabs { overflow-x: auto !important; justify-content: flex-start !important; flex-wrap: nowrap !important; padding-bottom: 2px !important; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 6px !important; }
       .resp-tabs::-webkit-scrollbar { display: none; }
       .resp-tabs button { flex-shrink: 0 !important; padding: 8px 16px !important; font-size: 0.6rem !important; }
+      /* Fade-right scroll hint */
+      .resp-tabs-wrap::after { content:''; position:absolute; top:0; right:0; width:48px; height:100%; background:linear-gradient(to left,#0f0c09 0%,transparent 100%); pointer-events:none; }
 
       /* Testimonials: stack, no raise */
       .resp-testimonial-raise { transform: none !important; box-shadow: none !important; }
@@ -1010,12 +1027,14 @@
     </div>
 
     <!-- Menu categories tabs -->
-    <div class="resp-tabs" style="display:flex;justify-content:center;gap:4px;margin-bottom:56px;" id="menu-tabs">
+    <div class="resp-tabs-wrap" style="position:relative;margin-bottom:56px;">
+    <div class="resp-tabs" style="display:flex;justify-content:center;gap:4px;" id="menu-tabs">
       <button class="menu-tab active-tab" data-tab="sushi" onclick="switchTab('sushi')" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:10px 24px;background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.25);color:#c9a96e;cursor:pointer;transition:all 0.3s ease;font-family:'Inter',sans-serif;font-weight:500;">Sushi</button>
       <button class="menu-tab" data-tab="hauptgerichte" onclick="switchTab('hauptgerichte')" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:10px 24px;background:transparent;border:1px solid rgba(160,148,136,0.15);color:#6b6259;cursor:pointer;transition:all 0.3s ease;font-family:'Inter',sans-serif;font-weight:500;">Hauptgerichte</button>
       <button class="menu-tab" data-tab="vorspeisen" onclick="switchTab('vorspeisen')" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:10px 24px;background:transparent;border:1px solid rgba(160,148,136,0.15);color:#6b6259;cursor:pointer;transition:all 0.3s ease;font-family:'Inter',sans-serif;font-weight:500;">Vorspeisen</button>
       <button class="menu-tab" data-tab="getraenke" onclick="switchTab('getraenke')" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:10px 24px;background:transparent;border:1px solid rgba(160,148,136,0.15);color:#6b6259;cursor:pointer;transition:all 0.3s ease;font-family:'Inter',sans-serif;font-weight:500;">Getränke</button>
       <button class="menu-tab" data-tab="desserts" onclick="switchTab('desserts')" style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:10px 24px;background:transparent;border:1px solid rgba(160,148,136,0.15);color:#6b6259;cursor:pointer;transition:all 0.3s ease;font-family:'Inter',sans-serif;font-weight:500;">Desserts</button>
+    </div>
     </div>
 
     <!-- Menu grid -->
