@@ -1,0 +1,66 @@
+name: Auto-update Google Reviews
+
+on:
+  schedule:
+    - cron: '0 7 * * 1'   # Every Monday at 07:00 UTC
+  workflow_dispatch:        # Manual trigger from GitHub UI
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write       # Needed to commit the updated file
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch Google rating via SerpAPI
+        env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+        run: |
+          node - <<'EOF'
+          const https = require('https');
+          const fs    = require('fs');
+
+          const query = encodeURIComponent('Mianno Sushi & Grill Remseck am Neckar');
+          const url   = `https://serpapi.com/search.json?engine=google_maps&q=${query}&api_key=${process.env.SERPAPI_KEY}`;
+
+          https.get(url, (res) => {
+            let raw = '';
+            res.on('data', c => raw += c);
+            res.on('end', () => {
+              const data = JSON.parse(raw);
+              const place = (data.local_results || [])[0];
+
+              if (!place) {
+                console.error('No place found in SerpAPI response. Keeping existing config.');
+                process.exit(0);
+              }
+
+              const config = {
+                rating: place.rating   ?? 5.0,
+                total:  place.reviews  ?? 52,
+              };
+
+              fs.writeFileSync('reviews-config.json', JSON.stringify(config, null, 2) + '\n');
+              console.log('Updated reviews-config.json:', config);
+            });
+          }).on('error', (e) => {
+            console.error('Fetch error:', e.message);
+            process.exit(1);
+          });
+          EOF
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reviews-config.json
+          git diff --cached --quiet && echo "No changes, skipping commit." || (
+            git commit -m "Auto-update Google review data [skip ci]"
+            git push
+          )
