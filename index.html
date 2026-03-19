@@ -603,47 +603,50 @@
       position: fixed;
       bottom: 0; left: 0; right: 0;
       z-index: 98;
-      background: rgba(8,6,4,0.97);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
-      border-top: 1px solid rgba(201,169,110,0.14);
+      background: rgba(5,4,2,0.99);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-top: 1px solid rgba(201,169,110,0.16);
+      box-shadow: 0 -8px 48px rgba(0,0,0,0.6);
     }
     #mobile-cta .cta-inner {
       display: flex;
-      gap: 10px;
-      max-width: 420px;
+      gap: 0;
+      max-width: 480px;
       margin: 0 auto;
+      padding-bottom: env(safe-area-inset-bottom);
     }
     #mobile-cta .cta-call {
       flex: 0 0 auto;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 7px;
-      padding: 13px 18px;
-      border: 1px solid rgba(201,169,110,0.3);
+      gap: 4px;
+      padding: 14px 22px;
+      border: none;
+      border-right: 1px solid rgba(201,169,110,0.1);
       color: #c9a96e;
-      font-size: 0.62rem;
-      letter-spacing: 0.14em;
+      font-size: 0.52rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       font-weight: 500;
       font-family: 'Inter', sans-serif;
       text-decoration: none;
-      transition: background 0.2s ease, border-color 0.2s ease;
+      transition: background 0.2s ease;
     }
-    #mobile-cta .cta-call:active { background: rgba(201,169,110,0.08); }
+    #mobile-cta .cta-call:active { background: rgba(201,169,110,0.06); }
     #mobile-cta .cta-reserve {
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 13px 16px;
+      gap: 10px;
+      padding: 16px 20px;
       background: linear-gradient(135deg, #c9a96e 0%, #b8933f 60%, #a07830 100%);
       color: #0e0b09;
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
+      font-size: 0.64rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       font-weight: 600;
       font-family: 'Inter', sans-serif;
@@ -942,27 +945,8 @@
       }
       #mobile-menu a.nav-link { all: unset !important; }
 
-      /* Sticky CTA bar: premium dark */
-      #mobile-cta {
-        background: rgba(5,4,2,0.99) !important;
-        border-top: 1px solid rgba(201,169,110,0.16) !important;
-        padding: 12px 16px calc(12px + env(safe-area-inset-bottom)) !important;
-        box-shadow: 0 -8px 48px rgba(0,0,0,0.6) !important;
-      }
-      .cta-call {
-        border: 1px solid rgba(201,169,110,0.28) !important;
-        border-radius: 0 !important;
-        padding: 14px 20px !important;
-        font-size: 0.6rem !important;
-        letter-spacing: 0.16em !important;
-        gap: 6px !important;
-        flex: 0 0 auto !important;
-      }
-      .cta-reserve {
-        padding: 14px 18px !important;
-        font-size: 0.62rem !important;
-        letter-spacing: 0.2em !important;
-      }
+      /* Sticky CTA bar: show on mobile */
+      #mobile-cta { display: block !important; }
     }
 
     /* ── Fix horizontal scroll / page wiggle ── */
@@ -2040,10 +2024,10 @@
 <div id="mobile-cta" aria-hidden="true">
   <div class="cta-inner">
     <a href="tel:071464073772" class="cta-call" aria-label="Restaurant anrufen">
-      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 1.5C1 1.5 2.5 3 2.5 4.5S1.5 6 1.5 7C1.5 9 4 11.5 6 11.5c1 0 2.5-1 2.5-1S10 9 11.5 9s2 2 2 2-1 3-5.5 1C3.5 10.5 1 7 1 4.5 1 2.5 1 1.5 1 1.5z" stroke="#c9a96e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Anrufen
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 2C2 2 3.5 3.8 3.5 5.5S2.2 7 2.2 8.2C2.2 10.5 5 13 7.2 13c1.2 0 2.8-1.2 2.8-1.2S11.5 10.2 13 10.2s1.8 2.2 1.8 2.2-1.2 2-5.5.5C4.5 11.5 1 8 1 5.5 1 3 2 2 2 2z" stroke="#c9a96e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Anrufen</span>
     </a>
-    <a href="#reservations" class="cta-reserve" onclick="document.getElementById('mobile-cta').style.opacity='0.7';setTimeout(()=>document.getElementById('mobile-cta').style.opacity='1',400)">
+    <a href="#reservations" class="cta-reserve">
       Tisch Reservieren
       <svg width="12" height="9" viewBox="0 0 12 9" fill="none" aria-hidden="true"><path d="M0 4.5h11M7.5 1l3.5 3.5L7.5 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
