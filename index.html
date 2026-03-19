@@ -892,34 +892,42 @@
         margin-bottom: 12px !important;
       }
 
-      /* Hero sub: readable, high contrast */
+      /* Hero sub: clean Inter, readable */
       .hero-sub {
-        font-size: 1.05rem !important;
-        line-height: 1.55 !important;
-        color: #d4ccbe !important;
-        margin: 14px 0 26px !important;
+        font-family: 'Inter', sans-serif !important;
+        font-style: normal !important;
+        font-weight: 300 !important;
+        font-size: 0.9rem !important;
+        line-height: 1.72 !important;
+        color: #c8bfae !important;
+        margin: 14px 0 28px !important;
         max-width: 100% !important;
         text-shadow: 0 1px 20px rgba(0,0,0,1), 0 2px 8px rgba(0,0,0,0.9) !important;
-        -webkit-text-fill-color: #d4ccbe !important;
+        -webkit-text-fill-color: #c8bfae !important;
       }
 
-      /* Hero CTAs: full-width stacked */
-      .hero-ctas {
-        flex-direction: column !important;
-        gap: 10px !important;
-        width: 100% !important;
-      }
-      .hero-ctas .btn-gold,
-      .hero-ctas .btn-ghost {
-        width: 100% !important;
-        justify-content: center !important;
-        padding: 17px 24px !important;
-        font-size: 0.67rem !important;
-        letter-spacing: 0.22em !important;
-      }
+      /* Hero CTAs: hide on mobile — floating bottom pill handles reservations */
+      .hero-ctas { display: none !important; }
+
+      /* Hero scroll hint: show on mobile */
+      .hero-scroll-hint { display: flex !important; }
 
       /* Section h2: bigger, more authority */
-      h2 { font-size: clamp(2.1rem, 8.5vw, 3rem) !important; }
+      h2 { font-size: clamp(2.4rem, 9vw, 3.2rem) !important; line-height: 1.06 !important; letter-spacing: -0.03em !important; }
+
+      /* Experience: tighter heading margin */
+      #experience h2 { margin-bottom: 32px !important; }
+
+      /* Experience cards: more compact */
+      .exp-card { padding: 24px 18px !important; }
+      .exp-card > div:first-child { font-size: 2.4rem !important; margin-bottom: 12px !important; }
+
+      /* Nav overlay: numbers more visible */
+      .mob-nav-num { color: rgba(201,169,110,0.85) !important; font-size: 0.82rem !important; }
+      .mob-nav-label { font-size: 1.75rem !important; }
+
+      /* Job cards: compact on mobile */
+      .job-card { padding: 24px 18px !important; }
 
       /* Stats: bolder numbers */
       .stat-num { font-size: 2.9rem !important; white-space: nowrap !important; }
@@ -988,6 +996,14 @@
       /* Hamburger: show on mobile */
       #ham-btn { display: flex !important; }
     }
+
+    /* ── Hero scroll hint ── */
+    .hero-scroll-hint { display: none; align-items: center; gap: 10px; }
+    @keyframes scrollChevron {
+      0%, 100% { transform: translateY(0); opacity: 0.45; }
+      55% { transform: translateY(5px); opacity: 0.9; }
+    }
+    .hero-scroll-hint svg { animation: scrollChevron 2s ease-in-out infinite; }
 
     /* ── Fix horizontal scroll / page wiggle ── */
     html { overflow-x: hidden; }
@@ -1173,7 +1189,7 @@
       Vietnamesische &amp; asiatische Küche trifft auf die Kunst des Sushi — direkt am Remsufer in Remseck. Frisch, authentisch, unvergesslich.
     </p>
 
-    <!-- CTAs -->
+    <!-- CTAs (desktop only — mobile uses floating bottom bar) -->
     <div class="hero-ctas fade-up delay-3" style="display:flex;flex-wrap:wrap;gap:16px;">
       <a href="#reservations" class="btn-gold">
         Tisch Reservieren
@@ -1181,6 +1197,12 @@
       </a>
       <a href="#menu" class="btn-ghost">Speisekarte</a>
     </div>
+
+    <!-- Scroll hint (mobile only) -->
+    <a href="#about" class="hero-scroll-hint fade-up delay-3" style="text-decoration:none;margin-top:28px;">
+      <span style="font-size:0.52rem;letter-spacing:0.24em;text-transform:uppercase;color:rgba(201,169,110,0.5);font-weight:500;">Entdecken</span>
+      <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="rgba(201,169,110,0.6)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
 
     <!-- Opening info -->
     <div class="fade-up delay-4 resp-hero-info hero-info-mobile-hide" style="display:flex;gap:32px;margin-top:60px;padding-top:40px;border-top:1px solid rgba(201,169,110,0.12);">
