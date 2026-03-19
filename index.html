@@ -597,24 +597,28 @@
       margin: 0;
     }
 
-    /* Mobile CTA bar */
+    /* Mobile CTA bar — floating pill */
     #mobile-cta {
       display: none;
       position: fixed;
-      bottom: 0; left: 0; right: 0;
+      bottom: max(16px, env(safe-area-inset-bottom));
+      left: 12px;
+      right: 12px;
       z-index: 98;
-      background: rgba(5,4,2,0.99);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-top: 1px solid rgba(201,169,110,0.16);
-      box-shadow: 0 -8px 48px rgba(0,0,0,0.6);
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(10,8,5,0.96);
+      backdrop-filter: blur(28px) saturate(1.5);
+      -webkit-backdrop-filter: blur(28px) saturate(1.5);
+      border: 1px solid rgba(201,169,110,0.15);
+      box-shadow:
+        0 4px 24px rgba(0,0,0,0.55),
+        0 16px 64px rgba(0,0,0,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.03);
     }
     #mobile-cta .cta-inner {
       display: flex;
       gap: 0;
-      max-width: 480px;
-      margin: 0 auto;
-      padding-bottom: env(safe-area-inset-bottom);
     }
     #mobile-cta .cta-call {
       flex: 0 0 auto;
@@ -622,20 +626,20 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 3px;
       padding: 14px 22px;
       border: none;
-      border-right: 1px solid rgba(201,169,110,0.1);
+      border-right: 1px solid rgba(201,169,110,0.12);
       color: #c9a96e;
-      font-size: 0.52rem;
-      letter-spacing: 0.18em;
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       font-weight: 500;
       font-family: 'Inter', sans-serif;
       text-decoration: none;
       transition: background 0.2s ease;
     }
-    #mobile-cta .cta-call:active { background: rgba(201,169,110,0.06); }
+    #mobile-cta .cta-call:active { background: rgba(201,169,110,0.08); }
     #mobile-cta .cta-reserve {
       flex: 1;
       display: flex;
@@ -643,9 +647,9 @@
       justify-content: center;
       gap: 10px;
       padding: 16px 20px;
-      background: linear-gradient(135deg, #c9a96e 0%, #b8933f 60%, #a07830 100%);
+      background: linear-gradient(135deg, #c9a96e 0%, #b8933f 55%, #a07830 100%);
       color: #0e0b09;
-      font-size: 0.64rem;
+      font-size: 0.62rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       font-weight: 600;
@@ -816,20 +820,29 @@
          PREMIUM MOBILE REDESIGN
       ════════════════════════════════════════ */
 
-      /* Navbar: always crisp dark glass */
+      /* ── Floating navbar pill ── */
       #navbar {
-        height: 60px !important;
-        padding: 0 20px !important;
-        background: rgba(8,6,4,0.96) !important;
-        backdrop-filter: blur(24px) saturate(1.5) !important;
-        -webkit-backdrop-filter: blur(24px) saturate(1.5) !important;
-        border-bottom: 1px solid rgba(201,169,110,0.1) !important;
-        box-shadow: 0 1px 0 rgba(201,169,110,0.06), 0 4px 40px rgba(0,0,0,0.7) !important;
+        top: max(10px, env(safe-area-inset-top)) !important;
+        left: 12px !important;
+        right: 12px !important;
+        width: auto !important;
+        height: 52px !important;
+        padding: 0 16px !important;
+        border-radius: 14px !important;
+        background: rgba(8,6,4,0.88) !important;
+        backdrop-filter: blur(28px) saturate(1.6) !important;
+        -webkit-backdrop-filter: blur(28px) saturate(1.6) !important;
+        border: 1px solid rgba(201,169,110,0.13) !important;
+        box-shadow:
+          0 2px 12px rgba(0,0,0,0.5),
+          0 8px 40px rgba(0,0,0,0.35),
+          inset 0 1px 0 rgba(255,255,255,0.03) !important;
+        transition: background 0.3s ease, box-shadow 0.3s ease !important;
       }
-      .nav-logo { height: 36px !important; }
+      .nav-logo { height: 32px !important; }
       .resp-hero-content { padding-top: 0 !important; }
-      section[id], div[id] { scroll-margin-top: 60px !important; }
-      body { padding-bottom: 76px; }
+      section[id], div[id] { scroll-margin-top: 80px !important; }
+      body { padding-bottom: 100px; }
 
       /* Hero: cinematic full-bleed — content at bottom */
       #main-content {
