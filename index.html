@@ -2155,7 +2155,18 @@
     const track = document.getElementById('reviews-track');
     if (!track) return;
 
+    function formatName(name) {
+      const parts = name.trim().split(/\s+/);
+      if (parts.length === 1) return parts[0];
+      const first = parts[0];
+      const last  = parts[parts.length - 1];
+      // Already abbreviated (e.g. "Sch." or "Ş.") — keep as-is
+      if (/^[^\s]{1,3}\.$/.test(last)) return `${first} ${last}`;
+      return `${first} ${last.charAt(0).toUpperCase()}.`;
+    }
+
     function buildCard(r) {
+      const displayName = formatName(r.name);
       const initial = r.name.trim().charAt(0).toUpperCase();
       const card = document.createElement('div');
       card.className = 'testimonial-card';
@@ -2171,7 +2182,7 @@
             <span style="font-family:'Playfair Display',serif;color:#c9a96e;font-size:0.78rem;">${initial}</span>
           </div>
           <div>
-            <p style="font-size:0.72rem;color:#f5f0e8;font-weight:500;margin:0 0 1px;">${r.name}</p>
+            <p style="font-size:0.72rem;color:#f5f0e8;font-weight:500;margin:0 0 1px;">${displayName}</p>
             ${r.badge ? `<p style="font-size:0.6rem;color:#6b6259;letter-spacing:0.06em;">${r.badge}</p>` : ''}
           </div>
         </div>`;
