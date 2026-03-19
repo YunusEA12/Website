@@ -682,6 +682,133 @@
       outline: 2px solid rgba(201,169,110,0.5);
       outline-offset: 3px;
     }
+
+    /* ════════════════════════════════════════════
+       MOBILE EXPERIENCE — GLOBAL
+    ════════════════════════════════════════════ */
+
+    /* Remove blue tap flash on all touch devices */
+    * { -webkit-tap-highlight-color: transparent; }
+
+    /* Remove 300 ms tap delay on all interactive elements */
+    button, a, label, [onclick] { touch-action: manipulation; }
+
+    /* Prevent stat numbers wrapping (e.g. "30–40 €") */
+    .stat-num { white-space: nowrap; }
+
+    /* ── Mobile menu: smooth fade-in / fade-out animation ──
+       Override the display:none / display:flex toggle with
+       an opacity + visibility transition instead.           */
+    #mobile-menu {
+      display: flex !important;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.32s cubic-bezier(0.4,0,0.2,1),
+                  visibility 0s linear 0.32s;
+    }
+    #mobile-menu.open {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transition: opacity 0.32s cubic-bezier(0.4,0,0.2,1),
+                  visibility 0s linear 0s !important;
+    }
+
+    /* ════════════════════════════════════════════
+       MOBILE EXPERIENCE — RESPONSIVE OVERRIDES
+    ════════════════════════════════════════════ */
+    @media (max-width: 899px) {
+
+      /* ── iOS: prevent auto-zoom on input focus (font-size must be ≥16px) ── */
+      .form-input { font-size: 16px !important; }
+
+      /* ── Hamburger: larger touch target (min 44×44px) ── */
+      #ham-btn {
+        padding: 12px !important;
+        margin-right: -8px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+
+      /* ── Mobile menu close button: larger touch target ── */
+      #close-btn {
+        padding: 20px !important;
+        top: 12px !important;
+        right: 12px !important;
+        min-width: 56px !important;
+        min-height: 56px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+
+      /* ── Mobile nav links: bigger tap zone + scale animation on tap ── */
+      #mobile-menu a.nav-link {
+        padding: 10px 32px !important;
+        font-size: 0.95rem !important;
+        letter-spacing: 0.22em !important;
+      }
+      #mobile-menu .btn-gold {
+        margin-top: 8px !important;
+        padding: 16px 40px !important;
+      }
+
+      /* ── All primary/ghost buttons: minimum 48px height ── */
+      .btn-gold, .btn-ghost { min-height: 48px !important; }
+
+      /* ── Menu tabs: taller for finger taps ── */
+      .resp-tabs button {
+        min-height: 42px !important;
+        padding: 10px 18px !important;
+        font-size: 0.62rem !important;
+      }
+
+      /* ── Voucher amount buttons: comfortable tap size ── */
+      .voucher-btn {
+        min-height: 54px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+
+      /* ── Contact section: prevent long hours text overflow ── */
+      .resp-contact-info .flex.justify-between {
+        flex-direction: column !important;
+        gap: 2px !important;
+        align-items: flex-start !important;
+      }
+      .resp-contact-info .flex.justify-between span:last-child {
+        color: #a09488 !important;
+        font-size: 0.72rem !important;
+      }
+
+      /* ── Hero info block: slightly tighter on mobile ── */
+      .resp-hero-info {
+        gap: 10px 20px !important;
+        margin-top: 28px !important;
+        padding-top: 20px !important;
+      }
+
+      /* ── Mobile CTA bar: safe area inset on modern phones ── */
+      #mobile-cta {
+        padding-bottom: max(12px, env(safe-area-inset-bottom)) !important;
+      }
+
+      /* ── Cookie banner: safe area inset ── */
+      #cookie-banner .max-w-full {
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+      }
+
+      /* ── Job apply links: larger tap area ── */
+      .job-card a[href^="mailto"] {
+        display: inline-block !important;
+        padding: 8px 0 !important;
+      }
+    }
   </style>
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -1644,17 +1771,17 @@
       <div>
         <p style="font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:#c9a96e;margin-bottom:16px;font-weight:500;">Öffnungszeiten</p>
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(201,169,110,0.07);padding-bottom:8px;">
-            <span style="font-size:0.78rem;color:#6b6259;">Mo – Fr</span>
-            <span style="font-size:0.78rem;color:#a09488;">11:30–15:00 &amp; 17:00–22:00</span>
+          <div class="hours-row" style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(201,169,110,0.07);padding-bottom:8px;">
+            <span style="font-size:0.78rem;color:#6b6259;flex-shrink:0;margin-right:8px;">Mo – Fr</span>
+            <span style="font-size:0.78rem;color:#a09488;text-align:right;">11:30–15:00<br/>17:00–22:00</span>
           </div>
-          <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(201,169,110,0.07);padding-bottom:8px;">
-            <span style="font-size:0.78rem;color:#6b6259;">Sa &amp; So</span>
-            <span style="font-size:0.78rem;color:#a09488;">12:00 – 22:00</span>
+          <div class="hours-row" style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(201,169,110,0.07);padding-bottom:8px;">
+            <span style="font-size:0.78rem;color:#6b6259;flex-shrink:0;margin-right:8px;">Sa &amp; So</span>
+            <span style="font-size:0.78rem;color:#a09488;text-align:right;">12:00 – 22:00</span>
           </div>
-          <div style="display:flex;justify-content:space-between;">
-            <span style="font-size:0.78rem;color:#6b6259;">Feiertage</span>
-            <span style="font-size:0.78rem;color:#a09488;">12:00 – 22:00</span>
+          <div class="hours-row" style="display:flex;justify-content:space-between;">
+            <span style="font-size:0.78rem;color:#6b6259;flex-shrink:0;margin-right:8px;">Feiertage</span>
+            <span style="font-size:0.78rem;color:#a09488;text-align:right;">12:00 – 22:00</span>
           </div>
         </div>
       </div>
