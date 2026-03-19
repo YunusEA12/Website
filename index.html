@@ -623,22 +623,24 @@
     #mobile-cta .cta-call {
       flex: 0 0 auto;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       justify-content: center;
-      gap: 3px;
-      padding: 11px 18px;
+      gap: 7px;
+      padding: 0 20px;
+      height: 48px;
       border: none;
       border-right: 1px solid rgba(201,169,110,0.12);
       color: #c9a96e;
-      font-size: 0.48rem;
-      letter-spacing: 0.2em;
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       font-weight: 500;
       font-family: 'Inter', sans-serif;
       text-decoration: none;
       transition: background 0.2s ease;
     }
+    #mobile-cta .cta-call svg { flex-shrink: 0; }
     #mobile-cta .cta-call:active { background: rgba(201,169,110,0.08); }
     #mobile-cta .cta-reserve {
       flex: 1;
@@ -646,7 +648,8 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 13px 16px;
+      height: 48px;
+      padding: 0 16px;
       background: linear-gradient(135deg, #c9a96e 0%, #b8933f 55%, #a07830 100%);
       color: #0e0b09;
       font-size: 0.6rem;
@@ -838,27 +841,26 @@
 
       /* ── Floating navbar pill ── */
       #navbar {
-        top: max(10px, env(safe-area-inset-top)) !important;
-        left: 12px !important;
-        right: 12px !important;
+        top: 16px !important;
+        left: 14px !important;
+        right: 14px !important;
         width: auto !important;
-        height: 52px !important;
+        height: 50px !important;
         padding: 0 16px !important;
-        border-radius: 14px !important;
-        background: rgba(8,6,4,0.88) !important;
+        border-radius: 12px !important;
+        background: rgba(8,6,4,0.9) !important;
         backdrop-filter: blur(28px) saturate(1.6) !important;
         -webkit-backdrop-filter: blur(28px) saturate(1.6) !important;
-        border: 1px solid rgba(201,169,110,0.13) !important;
+        border: 1px solid rgba(201,169,110,0.14) !important;
         box-shadow:
-          0 2px 12px rgba(0,0,0,0.5),
-          0 8px 40px rgba(0,0,0,0.35),
+          0 2px 16px rgba(0,0,0,0.55),
+          0 8px 40px rgba(0,0,0,0.3),
           inset 0 1px 0 rgba(255,255,255,0.03) !important;
-        transition: background 0.3s ease, box-shadow 0.3s ease !important;
       }
-      .nav-logo { height: 32px !important; }
+      .nav-logo { height: 30px !important; }
       .resp-hero-content { padding-top: 0 !important; }
       section[id], div[id] { scroll-margin-top: 80px !important; }
-      body { padding-bottom: 100px; }
+      body { padding-bottom: 90px; }
 
       /* Hero: cinematic full-bleed — content at bottom */
       #main-content {
@@ -885,13 +887,15 @@
         margin-bottom: 12px !important;
       }
 
-      /* Hero sub: compact, readable */
+      /* Hero sub: readable, high contrast */
       .hero-sub {
-        font-size: 0.95rem !important;
-        line-height: 1.5 !important;
-        margin: 12px 0 24px !important;
+        font-size: 1.05rem !important;
+        line-height: 1.55 !important;
+        color: #d4ccbe !important;
+        margin: 14px 0 26px !important;
         max-width: 100% !important;
-        text-shadow: 0 1px 16px rgba(0,0,0,1) !important;
+        text-shadow: 0 1px 20px rgba(0,0,0,1), 0 2px 8px rgba(0,0,0,0.9) !important;
+        -webkit-text-fill-color: #d4ccbe !important;
       }
 
       /* Hero CTAs: full-width stacked */
