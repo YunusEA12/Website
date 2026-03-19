@@ -597,70 +597,75 @@
       margin: 0;
     }
 
-    /* Mobile CTA bar — floating pill */
+    /* ── Hamburger → X animation ── */
+    .ham-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      width: 22px;
+    }
+    .ham-line {
+      display: block;
+      height: 1.5px;
+      background: #c9a96e;
+      border-radius: 2px;
+      transform-origin: center;
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity   0.25s ease,
+                  width     0.3s ease;
+    }
+    .ham-line-1 { width: 22px; }
+    .ham-line-2 { width: 15px; }
+    .ham-line-3 { width: 22px; }
+    /* When menu open: morph to × */
+    #ham-btn[aria-expanded="true"] .ham-line-1 {
+      transform: translateY(6.5px) rotate(45deg);
+      width: 22px;
+    }
+    #ham-btn[aria-expanded="true"] .ham-line-2 {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    #ham-btn[aria-expanded="true"] .ham-line-3 {
+      transform: translateY(-6.5px) rotate(-45deg);
+      width: 22px;
+    }
+
+    /* ── Mobile CTA bar — single floating pill ── */
     #mobile-cta {
       display: none;
       position: fixed;
       bottom: max(16px, env(safe-area-inset-bottom));
-      left: 12px;
-      right: 12px;
+      left: 14px;
+      right: 14px;
       z-index: 98;
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
-      background: rgba(10,8,5,0.96);
-      backdrop-filter: blur(28px) saturate(1.5);
-      -webkit-backdrop-filter: blur(28px) saturate(1.5);
-      border: 1px solid rgba(201,169,110,0.15);
       box-shadow:
-        0 4px 24px rgba(0,0,0,0.55),
-        0 16px 64px rgba(0,0,0,0.4),
-        inset 0 1px 0 rgba(255,255,255,0.03);
+        0 4px 24px rgba(0,0,0,0.5),
+        0 12px 48px rgba(0,0,0,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.04);
     }
-    #mobile-cta .cta-inner {
-      display: flex;
-      gap: 0;
-    }
-    #mobile-cta .cta-call {
-      flex: 0 0 auto;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      padding: 0 20px;
-      height: 48px;
-      border: none;
-      border-right: 1px solid rgba(201,169,110,0.12);
-      color: #c9a96e;
-      font-size: 0.55rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-weight: 500;
-      font-family: 'Inter', sans-serif;
-      text-decoration: none;
-      transition: background 0.2s ease;
-    }
-    #mobile-cta .cta-call svg { flex-shrink: 0; }
-    #mobile-cta .cta-call:active { background: rgba(201,169,110,0.08); }
-    #mobile-cta .cta-reserve {
-      flex: 1;
+    #mobile-cta .cta-reserve,
+    #mobile-cta > a.cta-reserve {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      height: 48px;
-      padding: 0 16px;
+      gap: 10px;
+      height: 52px;
+      padding: 0 24px;
+      width: 100%;
       background: linear-gradient(135deg, #c9a96e 0%, #b8933f 55%, #a07830 100%);
       color: #0e0b09;
-      font-size: 0.6rem;
-      letter-spacing: 0.18em;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       font-weight: 600;
       font-family: 'Inter', sans-serif;
       text-decoration: none;
       transition: opacity 0.2s ease;
     }
-    #mobile-cta .cta-reserve:active { opacity: 0.85; }
+    #mobile-cta > a.cta-reserve:active { opacity: 0.85; }
 
     /* Count-up stat numbers */
     .stat-num[data-target] { transition: none; }
@@ -980,6 +985,8 @@
 
       /* Sticky CTA bar: show on mobile */
       #mobile-cta { display: block !important; }
+      /* Hamburger: show on mobile */
+      #ham-btn { display: flex !important; }
     }
 
     /* ── Fix horizontal scroll / page wiggle ── */
@@ -1051,11 +1058,11 @@
 
   <!-- Mobile hamburger -->
   <button id="ham-btn" class="nav-hamburger" style="display:none;background:none;border:none;cursor:pointer;padding:10px;margin-right:-10px;" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-menu">
-    <svg width="24" height="15" viewBox="0 0 24 15" fill="none">
-      <path d="M0 1h24" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M0 7.5h17" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M0 14h24" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>
+    <span class="ham-lines">
+      <span class="ham-line ham-line-1"></span>
+      <span class="ham-line ham-line-2"></span>
+      <span class="ham-line ham-line-3"></span>
+    </span>
   </button>
 </nav>
 
@@ -2055,16 +2062,10 @@
      MOBILE STICKY CTA
 ════════════════════════════════════════════ -->
 <div id="mobile-cta" aria-hidden="true">
-  <div class="cta-inner">
-    <a href="tel:071464073772" class="cta-call" aria-label="Restaurant anrufen">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 2C2 2 3.5 3.8 3.5 5.5S2.2 7 2.2 8.2C2.2 10.5 5 13 7.2 13c1.2 0 2.8-1.2 2.8-1.2S11.5 10.2 13 10.2s1.8 2.2 1.8 2.2-1.2 2-5.5.5C4.5 11.5 1 8 1 5.5 1 3 2 2 2 2z" stroke="#c9a96e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span>Anrufen</span>
-    </a>
-    <a href="#reservations" class="cta-reserve">
-      Tisch Reservieren
-      <svg width="12" height="9" viewBox="0 0 12 9" fill="none" aria-hidden="true"><path d="M0 4.5h11M7.5 1l3.5 3.5L7.5 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-  </div>
+  <a href="#reservations" class="cta-reserve">
+    Tisch Reservieren
+    <svg width="13" height="10" viewBox="0 0 13 10" fill="none" aria-hidden="true"><path d="M0 5h12M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
 </div>
 
 <!-- ════════════════════════════════════════════
